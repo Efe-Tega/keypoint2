@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        font-family: "Montserrat", sans-serif;
+    }
+}
+
+@layer utilities {
+    .bg-custom {
+        background-image: url("/backend/assets/bg/bg-2.jpg");
+    }
+}
