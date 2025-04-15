@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('task_videos', function (Blueprint $table) {
             $table->id();
+            $table->string('movie_title')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->string('level')->nullable();
             $table->string('video_url')->nullable();
+            $table->string('summary')->nullable();
             $table->timestamps();
         });
     }

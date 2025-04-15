@@ -25,9 +25,8 @@
             <div class="video_container">
                 <div class="video_player ">
                     <video preload="metadata" class="main-video" id="challengeVideo" playsinline webkit-playsinline
-                        poster="{{ asset('backend/assets/thumnail/bond-26.jpg') }}">
-                        <source src="{{ asset('https://d2qdns14jj6ua6.cloudfront.net/' . $video->video_url) }}"
-                            type="video/mp4" />
+                        poster="{{ $cloudfrontUrl . '/' . $video->thumbnail }}">
+                        <source src="{{ $cloudfrontUrl . '/' . $video->video_url }}" type="video/mp4" />
                     </video>
                 </div>
             </div>

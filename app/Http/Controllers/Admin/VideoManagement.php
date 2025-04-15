@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\CompressImage;
 use App\Jobs\CompressVideo;
+use App\Jobs\ProcessMediaUpload;
 use FFMpeg\Format\Video\X264;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Illuminate\Http\Request;
@@ -49,25 +51,59 @@ class VideoManagement extends Controller
     public function postVideo(Request $request)
     {
 
+        $request->validate([
+            'movie_title' => 'required|string',
+            'level' => 'required',
+            'imgUpload' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'uploadMe' => 'required',
+            'summary' => 'required|string',
+        ]);
 
-        if ($request->hasFile('uploadMe')) {
-            $video = $request->file('uploadMe');
+        // Handle Video
 
-            $filename = uniqid() . '.' . $video->getClientOriginalExtension();
-            $tempPath = $video->storeAs('videos', $filename, 'public');
+        $video = $request->file('uploadMe');
 
-            $inputPath = storage_path('app/public/' . $tempPath);
-            $compressedFilename = 'compressed_' . $filename;
-            $outputPath = storage_path('app/public/compress/' . $compressedFilename);
+        $filename = uniqid() . '.' . $video->getClientOriginalExtension();
+        $tempPath = $video->storeAs('videos', $filename, 'public');
 
-            CompressVideo::dispatch($inputPath, $outputPath, $compressedFilename);
+        $videoInputPath = storage_path('app/public/' . $tempPath);
+        $videoCompressedFilename = 'compressed_' . $filename;
+        $videoOutputPath = storage_path('app/public/compress/' . $videoCompressedFilename);
 
-            return response()->json([
-                "status" => "success",
-                "redirect" => route('add.video', ['message' => 'Video uploaded successfully!']),
-            ]);
-        }
+        // CompressVideo::dispatch($videoInputPath, $videoOutputPath, $compressedFilename);
 
-        return redirect()->back()->with('error', 'No videos were uploaded.');
+
+        // === Handle Image ===
+
+        $image = $request->file('imgUpload');
+        $imageFilename = uniqid() . '.' . $image->getClientOriginalExtension();
+        $imageTempPath = $image->storeAs('images', $imageFilename, 'public');
+
+        $imageInputPath = storage_path('app/public/' . $imageTempPath);
+        $imageCompressedFilename = 'compressed_' . $imageFilename;
+        $imageOutputPath = storage_path('app/public/compress/' . $imageCompressedFilename);
+
+        // CompressImage::dispatch($imageInputPath, $imageOutputPath, $imageCompressedFilename);
+
+        // === Dispatch Job ===
+
+        ProcessMediaUpload::dispatch(
+            $videoInputPath,
+            $videoOutputPath,
+            $videoCompressedFilename,
+            $imageInputPath,
+            $imageOutputPath,
+            $imageCompressedFilename,
+            $request->movie_title,
+            $request->summary ?? '',
+            $request->level
+        );
+
+        return redirect()->back()->with('success', 'Task Uploaded Successfully');
+
+        // return response()->json([
+        //     "status" => "success",
+        //     "redirect" => route('add.video', ['message' => 'Task uploaded successfully!']),
+        // ]);
     }
 }

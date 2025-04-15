@@ -31,8 +31,8 @@
                             <!-- Image with play overlay -->
                             <div class="relative">
                                 <a href="{{ route('task.detail', ['id' => $video->id]) }}">
-                                    <img src="{{ asset('backend/assets/thumnail/bond-26.jpg') }}" class="w-full h-auto"
-                                        alt="Thumbnail" />
+                                    <img src="{{ asset('https://d2qdns14jj6ua6.cloudfront.net/' . $video->thumbnail) }}"
+                                        class="w-full h-auto" alt="Thumbnail" />
 
                                     <!-- Play Icon -->
                                     <div
