@@ -59,11 +59,12 @@ class VideoManagement extends Controller
             'summary' => 'required|string',
         ]);
 
-        // Handle Video
+        $slug = $request->slug;
 
+        // Handle Video
         $video = $request->file('uploadMe');
 
-        $filename = uniqid() . '.' . $video->getClientOriginalExtension();
+        $filename = $slug . '.' . $video->getClientOriginalExtension();
         $tempPath = $video->storeAs('videos', $filename, 'public');
 
         $videoInputPath = storage_path('app/public/' . $tempPath);
@@ -74,9 +75,8 @@ class VideoManagement extends Controller
 
 
         // === Handle Image ===
-
         $image = $request->file('imgUpload');
-        $imageFilename = uniqid() . '.' . $image->getClientOriginalExtension();
+        $imageFilename = $slug . '.' . $image->getClientOriginalExtension();
         $imageTempPath = $image->storeAs('images', $imageFilename, 'public');
 
         $imageInputPath = storage_path('app/public/' . $imageTempPath);
@@ -86,7 +86,6 @@ class VideoManagement extends Controller
         // CompressImage::dispatch($imageInputPath, $imageOutputPath, $imageCompressedFilename);
 
         // === Dispatch Job ===
-
         ProcessMediaUpload::dispatch(
             $videoInputPath,
             $videoOutputPath,

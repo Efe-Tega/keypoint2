@@ -1,5 +1,7 @@
 @extends('admin.admin-master')
 @section('content')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <div class="row">
         <div class="col">
             <div class="card">
@@ -11,9 +13,6 @@
                         </div>
                     @endif
 
-                    {{-- @if (request('message'))
-                    @endif --}}
-
                     <form id="uploadForm" action="{{ route('post.video') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
@@ -21,10 +20,12 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Movie Title</label>
-                                    <input type="text" class="form-control" id="" name="movie_title"
+                                    <input type="text" class="form-control" id="movie-title" name="movie_title"
                                         placeholder="Enter movie title" required>
                                 </div>
                             </div>
+
+                            <input type="text" class="form-control" name="slug" id="task-slug" hidden readonly>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -41,10 +42,18 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Video Thumbnail</label>
-                                    <input type="file" class="form-control" id="" placeholder="First name"
+                                    <input type="file" class="form-control" id="image" placeholder="First name"
                                         name="imgUpload" accept="image/*" required>
                                 </div>
                             </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-10">
+                                    <img class="rounded avatar-lg" id="showImage" src="{{ url('upload/no_image.jpg') }}"
+                                        alt="Card image cap">
+                                </div>
+                            </div>
+                            <!-- end row -->
 
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -199,6 +208,36 @@
                     successMessage.style.display = 'none';
                 }, 3000); // 5000ms = 5 seconds
             }
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#image').change(function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#showImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
+        });
+    </script>
+
+    <script>
+        function generateSlug(name) {
+            return name
+                .toLowerCase()
+                .trim()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-');
+        }
+
+        const nameInput = document.getElementById('movie-title');
+        const slugInput = document.getElementById('task-slug');
+
+        nameInput.addEventListener('input', () => {
+            slugInput.value = generateSlug(nameInput.value);
         });
     </script>
 @endsection
