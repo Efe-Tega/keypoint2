@@ -29,7 +29,7 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="validationCustom02" class="form-label">Level</label>
+                                    <label for="" class="form-label">Level</label>
                                     <select name="level" id="" class="form-select">
                                         <option value="internship">Internship</option>
                                         <option value="vip1">VIP1</option>
@@ -74,13 +74,13 @@
                         </div>
 
                         <div>
-                            <div id="progressBarContainer" class="progress mb-3 d-none">
-                                <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%"
-                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
-                            </div>
-
                             <button class="btn btn-primary" type="submit" id="uploadBtn">
-                                Upload video
+                                Upload Task
+                            </button>
+
+                            <button class="btn btn-success d-none" id="spinner" type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Adding task...
                             </button>
                         </div>
                     </form>
@@ -238,6 +238,13 @@
 
         nameInput.addEventListener('input', () => {
             slugInput.value = generateSlug(nameInput.value);
+        });
+    </script>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function() {
+            document.getElementById('uploadBtn').classList.add('d-none');
+            document.getElementById('spinner').classList.remove('d-none');
         });
     </script>
 @endsection
