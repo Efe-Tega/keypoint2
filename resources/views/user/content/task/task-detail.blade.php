@@ -36,18 +36,12 @@
             <div class="mb-8 space-y-4">
                 <div class="movie-title">
                     <h1 class="font-semibold">Movie Title</h1>
-                    <span class="text-gray-700">Bond 25</span>
+                    <span class="text-gray-700">{{ $video->movie_title }}</span>
                 </div>
 
                 <div class="movie-summary">
                     <h1 class="font-semibold">Movie Summary</h1>
-                    <span class="flex text-justify text-gray-700 text-sm md:text-lg">25 years after a streak
-                        of
-                        brutal murders
-                        shocked the
-                        quiet town of
-                        Woodsboro, Calif, a new killer dons the Ghostface mask and begins targeting a group of teenagers
-                        to resurrect secrets from the town's deadly past.</span>
+                    <span class="flex text-justify text-gray-700 text-sm md:text-lg">{{ $video->summary }}</span>
                 </div>
 
                 <div class="task-requirement">

@@ -23,10 +23,16 @@
     <section>
         <div class="container mx-auto px-4">
             @foreach ($videos->chunk(2) as $chunk)
-                <div class="flex space-x-6 justify-between py-10 relative">
+                <div class="flex space-x-6 justify-between pt-10 last:mb-5 relative">
                     @foreach ($chunk as $video)
                         <div class="flex flex-col w-1/2">
-                            <span class="absolute top-4 bg-red-600 text-white px-2 rounded-t">Internship</span>
+                            @if ($video->level === 'internship')
+                                <span
+                                    class="absolute top-4 bg-red-600 text-white px-2 rounded-t capitalize">{{ $video->level }}</span>
+                            @else
+                                <span
+                                    class="absolute top-4 bg-red-600 text-white px-2 rounded-t uppercase">{{ $video->level }}</span>
+                            @endif
 
                             <!-- Image with play overlay -->
                             <div class="relative">

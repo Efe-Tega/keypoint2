@@ -68,8 +68,19 @@ class ProcessMediaUpload implements ShouldQueue
         $ffmpeg = FFMpeg::create();
         $video = $ffmpeg->open($this->videoInputPath);
 
-        $format = new X264('libmp3lame', 'libx264');
+        $format = new X264('aac', 'libx264');
         $format->setKiloBitrate(800);
+        $format->setAudioCodec('aac');
+
+        // Add additional parameters for iOS and streaming compatibility
+        $format->setAdditionalParameters([
+            '-profile:v',
+            'baseline',       // Wider device support (older iPhones)
+            '-level',
+            '3.0',
+            '-movflags',
+            '+faststart'       // Ensures streaming starts quickly
+        ]);
 
         $video->save($format, $this->videoOutputPath);
 
