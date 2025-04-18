@@ -75,7 +75,7 @@
     $backgroundColor = '';
     $backgroundImage = '';
 
-    if (in_array($routeName, ['daily.report', 'personal.info', 'account.change', 'user.wallet'])) {
+    if (in_array($routeName, ['daily.report', 'personal.info', 'account.change', 'user.wallet', 'withdraw'])) {
         $backgroundImage = asset('backend/assets/bg/bg-2.jpg');
     } else {
         $backgroundColor = '#F9FBFD';

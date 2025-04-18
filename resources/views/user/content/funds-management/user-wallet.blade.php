@@ -16,7 +16,7 @@
                         <a href="" class="font-semibold text-sm lg:text-lg">Recharge</a> |
                     </span>
                     <span>
-                        <a href="" class="font-semibold text-sm lg:text-lg">Withdraw</a>
+                        <a href="{{ route('withdraw') }}" class="font-semibold text-sm lg:text-lg">Withdraw</a>
                     </span>
                 </div>
             </div>

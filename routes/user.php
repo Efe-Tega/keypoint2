@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AccountController;
 use App\Http\Controllers\Backend\DepositController;
 use App\Http\Controllers\Backend\NavigationController;
 use App\Http\Controllers\Backend\TaskController;
+use App\Http\Controllers\Backend\WithdrawController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(NavigationController::class)->group(function () {
@@ -27,3 +28,7 @@ Route::controller(TaskController::class)
         Route::get('/task/detail/{id}', 'taskDetail')->name('task.detail');
         Route::get('/task-list', 'taskList')->name('task.list');
     });
+
+Route::controller(WithdrawController::class)->group(function () {
+    Route::get('/withdraw', 'withdraw')->name('withdraw');
+});
