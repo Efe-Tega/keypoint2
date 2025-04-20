@@ -13,7 +13,7 @@
                         </div>
                     @endif
 
-                    <form id="uploadForm" action="{{ route('post.video') }}" method="POST" enctype="multipart/form-data">
+                    <form id="uploadForm" action="{{ route('post.task') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row">
@@ -45,15 +45,12 @@
                                     <input type="file" class="form-control" id="image" placeholder="First name"
                                         name="imgUpload" accept="image/*" required>
                                 </div>
-                            </div>
 
-                            <div class="row mb-3">
                                 <div class="col-sm-10">
                                     <img class="rounded avatar-lg" id="showImage" src="{{ url('upload/no_image.jpg') }}"
                                         alt="Card image cap">
                                 </div>
                             </div>
-                            <!-- end row -->
 
                             <div class="col-md-6">
                                 <div class="mb-3">

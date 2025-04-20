@@ -27,11 +27,11 @@
         <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect">
                 <i class="ri-settings-2-line"></i>
-                <span>Video Management</span>
+                <span>Task Management</span>
             </a>
             <ul class="sub-menu" aria-expanded="false">
-                <li><a href="">All Video</a></li>
-                <li><a href="{{ route('add.video') }}">Add Video</a></li>
+                <li><a href="">All Task</a></li>
+                <li><a href="{{ route('add.task') }}">Add Task</a></li>
             </ul>
         </li>
 
