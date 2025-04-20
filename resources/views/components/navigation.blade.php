@@ -1,4 +1,4 @@
-<header class="bg-backgroundLight">
+<header class="bg-backgroundLight sticky top-0 z-50">
     <nav class="p-4 container mx-auto">
         <!-- flex container -->
         <div class="flex justify-between items-center">

@@ -1,4 +1,4 @@
-<footer class="bg-backgroundLight border-t-2 border-primaryLight rounded-t-3xl">
+<footer class="bg-backgroundLight border-t-2 border-primaryLight rounded-t-3xl sticky bottom-0">
     <div class="flex container mx-auto px-4 justify-between">
         <a href="{{ route('user.dashboard') }}" class="py-2 active:text-primaryDark nav-link">
             <div class="flex flex-col items-center hover:text-primaryDark">
