@@ -45,5 +45,12 @@
                 <li><a href="">Withdraw</a></li>
             </ul>
         </li>
+
+        <li>
+            <a href="{{ route('settings') }}" class=" waves-effect">
+                <i class="ri-calendar-2-line"></i>
+                <span>Settings</span>
+            </a>
+        </li>
     </ul>
 </div>
