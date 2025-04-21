@@ -10,6 +10,7 @@ class TaskController extends Controller
 {
     public function index(Request $request)
     {
+
         $videos = TaskVideo::all();
         return view('user.content.task.index', compact('videos'));
     }

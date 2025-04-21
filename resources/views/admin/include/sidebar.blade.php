@@ -30,7 +30,7 @@
                 <span>Task Management</span>
             </a>
             <ul class="sub-menu" aria-expanded="false">
-                <li><a href="">All Task</a></li>
+                <li><a href="{{ route('view.task') }}">All Task</a></li>
                 <li><a href="{{ route('add.task') }}">Add Task</a></li>
             </ul>
         </li>

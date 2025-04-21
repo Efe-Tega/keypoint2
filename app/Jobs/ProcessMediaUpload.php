@@ -30,6 +30,7 @@ class ProcessMediaUpload implements ShouldQueue
     protected string $videoName;
     protected string $videoSummary;
     protected string $level;
+    protected string $slug;
 
 
     /**
@@ -45,6 +46,7 @@ class ProcessMediaUpload implements ShouldQueue
         string $videoName,
         string $videoSummary,
         string $level,
+        string $slug,
     ) {
         $this->videoInputPath = $videoInputPath;
         $this->videoOutputPath = $videoOutputPath;
@@ -57,6 +59,8 @@ class ProcessMediaUpload implements ShouldQueue
         $this->videoName = $videoName;
         $this->videoSummary = $videoSummary;
         $this->level = $level;
+
+        $this->slug = $slug;
     }
 
     /**
@@ -102,8 +106,9 @@ class ProcessMediaUpload implements ShouldQueue
         // === Save to Database ===
         TaskVideo::insert([
             'movie_title' => $this->videoName,
+            'slug' => $this->slug,
             'summary' => $this->videoSummary,
-            'level' => $this->level,
+            'level_id' => $this->level,
             'video_url' => $videoS3Path,
             'thumbnail' => $imageS3Path,
             'created_at' => Carbon::now(),

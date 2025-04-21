@@ -10,7 +10,13 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::controller(TaskManagement::class)->group(function () {
         Route::get('/add-task', 'addTask')->name('add.task');
+        Route::get('/view-tasks', 'viewTask')->name('view.task');
+        Route::get('/get-task', 'getTask')->name('get.task');
+        Route::get('/edit-task/{id}', 'editTask')->name('edit.task');
+        Route::get('/delete-task/{id}', 'deleteTask')->name('delete.task');
+
         Route::post('/post-task', 'postTask')->name('post.task');
+        Route::post('/update-task', 'updateTask')->name('update.task');
     });
 
     Route::controller(UserManagement::class)->group(function () {

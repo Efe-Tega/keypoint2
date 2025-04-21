@@ -30,9 +30,10 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Level</label>
-                                    <select name="level" id="" class="form-select">
-                                        <option value="internship">Internship</option>
-                                        <option value="vip1">VIP1</option>
+                                    <select name="level_id" id="" class="form-select">
+                                        @foreach ($levels as $level)
+                                            <option value="{{ $level->id }}">{{ $level->level }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -194,54 +195,4 @@
             xhr.send(formData);
         });
     </script> --}}
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const successMessage = document.getElementById('successMessage');
-
-            if (successMessage) {
-                // Set a timer to hide the message after 5 seconds
-                setTimeout(function() {
-                    successMessage.style.display = 'none';
-                }, 3000); // 5000ms = 5 seconds
-            }
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#image').change(function(e) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#showImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
-            });
-        });
-    </script>
-
-    <script>
-        function generateSlug(name) {
-            return name
-                .toLowerCase()
-                .trim()
-                .replace(/[^a-z0-9\s-]/g, '')
-                .replace(/\s+/g, '-')
-                .replace(/-+/g, '-');
-        }
-
-        const nameInput = document.getElementById('movie-title');
-        const slugInput = document.getElementById('task-slug');
-
-        nameInput.addEventListener('input', () => {
-            slugInput.value = generateSlug(nameInput.value);
-        });
-    </script>
-
-    <script>
-        document.getElementById('uploadForm').addEventListener('submit', function() {
-            document.getElementById('uploadBtn').classList.add('d-none');
-            document.getElementById('spinner').classList.remove('d-none');
-        });
-    </script>
 @endsection

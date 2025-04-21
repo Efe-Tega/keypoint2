@@ -26,19 +26,19 @@
                 <div class="flex space-x-6 justify-between pt-10 last:mb-5 relative">
                     @foreach ($chunk as $video)
                         <div class="flex flex-col w-1/2">
-                            @if ($video->level === 'internship')
+                            @if ($video->level->level === 'Internship')
                                 <span
-                                    class="absolute top-4 bg-red-600 text-white px-2 rounded-t capitalize">{{ $video->level }}</span>
+                                    class="absolute top-4 bg-red-600 text-white px-2 rounded-t capitalize">{{ $video->level->level }}</span>
                             @else
                                 <span
-                                    class="absolute top-4 bg-red-600 text-white px-2 rounded-t uppercase">{{ $video->level }}</span>
+                                    class="absolute top-4 bg-red-600 text-white px-2 rounded-t uppercase">{{ $video->level->level }}</span>
                             @endif
 
                             <!-- Image with play overlay -->
                             <div class="relative">
                                 <a href="{{ route('task.detail', ['id' => $video->id]) }}">
                                     <img src="{{ asset('https://d2qdns14jj6ua6.cloudfront.net/' . $video->thumbnail) }}"
-                                        class="w-full h-auto" alt="Thumbnail" />
+                                        class="w-full h-28 md:h-48 lg:h-64" alt="Thumbnail" />
 
                                     <!-- Play Icon -->
                                     <div
