@@ -47,6 +47,13 @@
         </li>
 
         <li>
+            <a href="{{ route('view.level') }}" class=" waves-effect">
+                <i class="ri-calendar-2-line"></i>
+                <span>Level Management</span>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('settings') }}" class=" waves-effect">
                 <i class="ri-calendar-2-line"></i>
                 <span>Settings</span>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AppSettings;
+use App\Http\Controllers\Admin\LevelManagement;
 use App\Http\Controllers\Admin\TaskManagement;
 use App\Http\Controllers\Admin\UserManagement;
 use App\Http\Controllers\Admin\VideoManagement;
@@ -19,5 +20,14 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
 
     Route::controller(AppSettings::class)->group(function () {
         Route::get('/settings', 'settings')->name('settings');
+    });
+
+    Route::controller(LevelManagement::class)->group(function () {
+        Route::get('/view-level', 'viewLevel')->name('view.level');
+        Route::get('/edit-level/{id}', 'editLevel')->name('edit.level');
+        Route::get('/delete-level/{id}', 'destroyLevel')->name('delete.level');
+
+        Route::post('/add-level', 'addLevel')->name('add.level');
+        Route::post('/update-level/{id}', 'updateLevel')->name('update.level');
     });
 });
