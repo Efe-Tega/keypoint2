@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('fullname');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('profile_pic')->nullable();
             $table->string('referral_code')->nullable();
             $table->string('level')->default('intership');
             $table->string('phone')->nullable();

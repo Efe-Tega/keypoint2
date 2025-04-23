@@ -4,7 +4,7 @@
         <li class="menu-title">Menu</li>
 
         <li>
-            <a href="index.html" class="waves-effect">
+            <a href="{{ route('admin.index') }}" class="waves-effect">
                 <i class="ri-dashboard-line"></i>
                 <span>Dashboard</span>
             </a>

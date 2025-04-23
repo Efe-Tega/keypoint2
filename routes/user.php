@@ -11,12 +11,18 @@ Route::controller(NavigationController::class)->group(function () {
     Route::get('/account', 'account')->name('account');
 });
 
-Route::controller(AccountController::class)->group(function () {
-    Route::get('/personal-info', 'personalInfo')->name('personal.info');
-    Route::get('/daily-report', 'dailyReport')->name('daily.report');
-    Route::get('/account-change', 'accountChange')->name('account.change');
-    Route::get('/user-wallet', 'userWallet')->name('user.wallet');
-});
+Route::middleware('auth')
+    ->controller(AccountController::class)
+    ->group(function () {
+        Route::get('/personal-info', 'personalInfo')->name('personal.info');
+        Route::get('/daily-report', 'dailyReport')->name('daily.report');
+        Route::get('/account-change', 'accountChange')->name('account.change');
+        Route::get('/user-wallet', 'userWallet')->name('user.wallet');
+
+        Route::post('/upload-pic', 'uploadPic')->name('upload.pic');
+        Route::post('/update-info', 'updateInfo')->name('update.info');
+        Route::post('/change-password', 'changePassword')->name('change.password');
+    });
 
 Route::controller(DepositController::class)->group(function () {
     Route::get('/recharge', 'recharge')->name('recharge');
