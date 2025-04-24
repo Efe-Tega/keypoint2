@@ -23,7 +23,7 @@
                     <form id="uploadForm" action="{{ route('update.task') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
-                        <input type="text" name="task_id" value="{{ $task->id }}">
+                        <input type="hidden" name="task_id" value="{{ $task->id }}">
 
                         <div class="row">
                             <div class="col-md-6">
@@ -55,7 +55,7 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Video Thumbnail</label>
                                     <input type="file" class="form-control" id="image" placeholder="First name"
-                                        name="imgUpload" accept="image/*" required>
+                                        name="imgUpload" accept="image/*">
                                 </div>
 
                                 {{-- {{ $cloudfrontUrl . '/' . $video->thumbnail }} --}}

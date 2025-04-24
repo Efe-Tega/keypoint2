@@ -131,12 +131,12 @@ class TaskManagement extends Controller
 
     public function updateTask(Request $request)
     {
-        $request->validate([
-            'movie_title' => 'required|string',
-            'level_id' => 'required',
-            'imgUpload' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
-            'summary' => 'required|string',
-        ]);
+        // $request->validate([
+        //     'movie_title' => 'required|string',
+        //     'level_id' => 'required',
+        //     'imgUpload' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+        //     'summary' => 'required|string',
+        // ]);
 
         $slug = $request->slug;
 
@@ -163,6 +163,16 @@ class TaskManagement extends Controller
 
             return redirect()->back()->with('success', 'Task Uploaded With Thumbnail Successfully');
         } else {
+            $taskId = $request->task_id;
+            // === Save to Database
+            TaskVideo::findOrFail($taskId)->update([
+                'movie_title' => $request->movie_title,
+                'slug' => $request->slug,
+                'summary' => $request->summary,
+                'level_id' => $request->level_id,
+            ]);
+
+            return redirect()->back()->with('success', 'Task Uploaded Successfully');
         }
     }
 
