@@ -11,7 +11,7 @@ class LevelManagement extends Controller
 {
     public function viewLevel()
     {
-        $levels = Level::latest()->get();
+        $levels = Level::oldest()->get();
         return view('admin.level.index', compact('levels'));
     }
 
@@ -19,12 +19,16 @@ class LevelManagement extends Controller
     {
         $request->validate([
             'level' => 'required|string',
-            'level_amount' => 'required'
+            'upgrade_amount' => 'required',
+            'reward_amount' => 'required',
+            'daily_task' => 'required|integer'
         ]);
 
         Level::insert([
             'level' => $request->level,
-            'amount' => $request->level_amount,
+            'upgrade_amount' => $request->upgrade_amount,
+            'reward_amount' => $request->reward_amount,
+            'daily_task' => $request->daily_task,
             'created_at' => Carbon::now()
         ]);
 
@@ -41,12 +45,16 @@ class LevelManagement extends Controller
     {
         $request->validate([
             'level' => 'required|string',
-            'level_amount' => 'required'
+            'upgrade_amount' => 'required',
+            'reward_amount' => 'required',
+            'daily_task' => 'required|integer'
         ]);
 
         Level::findOrFail($id)->update([
             'level' => $request->level,
-            'amount' => $request->level_amount
+            'upgrade_amount' => $request->upgrade_amount,
+            'reward_amount' => $request->reward_amount,
+            'daily_task' => $request->daily_task,
         ]);
 
         return redirect()->back()->with('success', 'Level Updated Successfully');

@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\TaskVideo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
     public function index(Request $request)
     {
-
-        $videos = TaskVideo::all();
+        $user = Auth::user();
+        $videos = TaskVideo::where('level_id', $user->level)->get();
         return view('user.content.task.index', compact('videos'));
     }
 

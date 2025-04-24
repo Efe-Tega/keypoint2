@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('levels', function (Blueprint $table) {
             $table->id();
             $table->string('level')->nullable();
-            $table->string('amount')->nullable();
+            $table->string('upgrade_amount')->nullable();
+            $table->string('reward_amount')->nullable();
+            $table->integer('daily_task')->nullable();
             $table->timestamps();
         });
     }

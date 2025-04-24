@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Backend\NavigationController;
 use App\Http\Controllers\Backend\TaskController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -13,9 +14,9 @@ Route::get('/', function () {
 Route::get('/login', [UserController::class, 'showLogin'])->name('login');
 Route::post('/login', [UserController::class, 'login']);
 
-Route::middleware('auth')->get('/dashboard', function () {
-    return view('user.index');
-})->name('user.dashboard');
+Route::middleware('auth')->controller(NavigationController::class)->group(function () {
+    Route::get('/dashboard', 'index')->name('user.dashboard');
+});
 
 Route::get('/admin-login', [AdminController::class, 'adminLogin']);
 Route::post('/admin-login', [AdminController::class, 'login']);

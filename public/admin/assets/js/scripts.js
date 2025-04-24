@@ -55,16 +55,20 @@ document.addEventListener("DOMContentLoaded", function () {
             // Get the data attributes
             const id = this.getAttribute('data-id');
             const level = this.getAttribute('data-level');
-            const amount = this.getAttribute('data-amount');
+            const upgradeAmount = this.getAttribute('data-upgradeamount');
+            const rewardAmount = this.getAttribute('data-rewardamount');
+            const dailyTask = this.getAttribute('data-dailyTask');
             const action = this.getAttribute('data-action');
 
             // Set the form values
             document.getElementById('level-id').value = id;
             document.getElementById('level').value = level;
-            document.getElementById('amount').value = amount;
+            document.getElementById('upgrade-amount').value = upgradeAmount;
+            document.getElementById('reward-amount').value = rewardAmount;
+            document.getElementById('daily-task').value = dailyTask;
 
             // Update form action URL
-            document.querySelector('.credit-debit-modal form').action = action;
+            document.querySelector('.level-modal form').action = action;
         });
     });
 });

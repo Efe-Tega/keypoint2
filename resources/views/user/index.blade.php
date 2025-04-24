@@ -160,19 +160,42 @@
                 </button>
             </div>
 
-            <div class="flex space-x-6 justify-between py-10 relative">
-                <div class="flex flex-col w-1/2">
-                    <span class="absolute top-4 bg-red-600 text-white px-2 rounded-t">Internship</span>
-                    <img src="{{ asset('backend/assets/img/playimage.png') }}" alt="" class="w-50 h-50" />
-                    <button class="bg-gray-400 mt-2">NGN +200.00</button>
-                </div>
 
-                <div class="flex flex-col w-1/2">
-                    <span class="absolute top-4 bg-red-600 text-white px-2 rounded-t">VIP</span>
-                    <img src="{{ asset('backend/assets/img/playimage.png') }}" alt="" class="w-50 h-50" />
-                    <button class="bg-gray-400 mt-2">NGN +200.00</button>
-                </div>
+            <div class="container mx-auto px-4">
+                @foreach ($videos->chunk(2) as $chunk)
+                    <div class="flex space-x-6 justify-between pt-10 last:mb-5 relative">
+                        @foreach ($chunk as $video)
+                            <div class="flex flex-col w-1/2">
+                                <span
+                                    class="absolute top-4 bg-red-600 text-white px-2 rounded-t capitalize">{{ $video->level->level }}</span>
+
+                                <!-- Image with play overlay -->
+                                <div class="relative">
+                                    <a href="{{ route('task.detail', ['id' => $video->id]) }}">
+                                        <img src="{{ asset('https://d2qdns14jj6ua6.cloudfront.net/' . $video->thumbnail) }}"
+                                            class="w-full h-28 md:h-48 lg:h-64" alt="Thumbnail" />
+
+                                        <!-- Play Icon -->
+                                        <div
+                                            class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 cursor-pointer">
+                                            <div class="bg-white p-2 lg:p-4 rounded-full">
+                                                <svg class="w-5 h-5 lg:w-10 lg:h-10 text-gray-800" fill="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path d="M8 5v14l11-7z"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <button class="bg-gray-400 mt-2">NGN +200.00</button>
+                            </div>
+                        @endforeach
+                    </div>
+                @endforeach
             </div>
+
+
         </div>
     </section>
 

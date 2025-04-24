@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('profile_pic')->nullable();
             $table->string('referral_code')->nullable();
-            $table->string('level')->default('intership');
+            $table->integer('level')->default('1');
             $table->string('phone')->nullable();
             $table->string('password');
             $table->rememberToken();
