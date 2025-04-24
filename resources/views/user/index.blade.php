@@ -176,6 +176,10 @@
         </div>
     </section>
 
+    @php
+        $newMembers = App\Models\MembershipList::all();
+    @endphp
+
     <!-- Membership List -->
     <section class="pt-10">
         <div class="text-center border-t-2 border-b-2 border-primaryLight py-5 bg-backgroundLight">
@@ -186,131 +190,25 @@
             <div class="w-full overflow-hidden">
                 <div class="scroll-container">
                     <div id="scroll-content" class="scroll-content">
-                        <div class="flex items-center justify-between text-gray-700 text-sm font-medium bg-gray-200 rounded-2xl mb-3 px-2"
-                            style="height: 70px">
-                            <div class="flex gap-1.5 items-center">
-                                <img src="{{ asset('backend/assets/avatar/woman.jpg') }}" alt=""
-                                    class="w-14 h-14 rounded-full" />
-                                <div class="flex flex-col items-start gap-2">
-                                    <span>Congratulations: 07******68</span>
-                                    <span>Income this week</span>
+                        @foreach ($newMembers as $member)
+                            <div class="flex items-center justify-between text-gray-700 text-sm font-medium bg-gray-200 rounded-2xl mb-3 px-1"
+                                style="height: 70px">
+                                <div class="flex gap-1.5 items-center">
+                                    <img src="{{ asset('backend/assets/avatar/woman.jpg') }}" alt=""
+                                        class="w-14 h-14 rounded-full" />
+                                    <div class="flex flex-col items-start gap-2">
+                                        <span class="text-xs sm:text-sm md:text-base">Congratulations:
+                                            {{ substr($member->phone, 0, 2) . '*******' . substr($member->phone, -2) }}
+                                        </span>
+                                        <span class="text-xs sm:text-sm md:text-base">Income this week</span>
+                                    </div>
+                                </div>
+
+                                <div class="text-green-500 font-semibold text-xs sm:text-sm md:text-base">
+                                    {{ $member->amount }} NGN
                                 </div>
                             </div>
-
-                            <div class="text-green-500 font-semibold">44938.00 NGN</div>
-                        </div>
-
-                        <div class="flex items-center justify-between text-gray-700 text-sm font-medium bg-gray-200 rounded-2xl mb-3 px-2"
-                            style="height: 70px">
-                            <div class="flex gap-1.5 items-center">
-                                <img src="{{ asset('backend/assets/avatar/woman.jpg') }}" alt=""
-                                    class="w-14 h-14 rounded-full" />
-                                <div class="flex flex-col items-start gap-2">
-                                    <span>Congratulations: 07******68</span>
-                                    <span>Income this week</span>
-                                </div>
-                            </div>
-
-                            <div class="text-green-500 font-semibold">44938.00 NGN</div>
-                        </div>
-
-                        <div class="flex items-center justify-between text-gray-700 text-sm font-medium bg-gray-200 rounded-2xl mb-3 px-2"
-                            style="height: 70px">
-                            <div class="flex gap-1.5 items-center">
-                                <img src="{{ asset('backend/assets/avatar/woman.jpg') }}" alt=""
-                                    class="w-14 h-14 rounded-full" />
-                                <div class="flex flex-col items-start gap-2">
-                                    <span>Congratulations: 07******68</span>
-                                    <span>Income this week</span>
-                                </div>
-                            </div>
-
-                            <div class="text-green-500 font-semibold">44938.00 NGN</div>
-                        </div>
-
-                        <div class="flex items-center justify-between text-gray-700 text-sm font-medium bg-gray-200 rounded-2xl mb-3 px-2"
-                            style="height: 70px">
-                            <div class="flex gap-1.5 items-center">
-                                <img src="{{ asset('backend/assets/avatar/woman.jpg') }}" alt=""
-                                    class="w-14 h-14 rounded-full" />
-                                <div class="flex flex-col items-start gap-2">
-                                    <span>Congratulations: 07******68</span>
-                                    <span>Income this week</span>
-                                </div>
-                            </div>
-
-                            <div class="text-green-500 font-semibold">44938.00 NGN</div>
-                        </div>
-
-                        <div class="flex items-center justify-between text-gray-700 text-sm font-medium bg-gray-200 rounded-2xl mb-3 px-2"
-                            style="height: 70px">
-                            <div class="flex gap-1.5 items-center">
-                                <img src="{{ asset('backend/assets/avatar/woman.jpg') }}" alt=""
-                                    class="w-14 h-14 rounded-full" />
-                                <div class="flex flex-col items-start gap-2">
-                                    <span>Congratulations: 07******68</span>
-                                    <span>Income this week</span>
-                                </div>
-                            </div>
-
-                            <div class="text-green-500 font-semibold">44938.00 NGN</div>
-                        </div>
-
-                        <div class="flex items-center justify-between text-gray-700 text-sm font-medium bg-gray-200 rounded-2xl mb-3 px-2"
-                            style="height: 70px">
-                            <div class="flex gap-1.5 items-center">
-                                <img src="{{ asset('backend/assets/avatar/woman.jpg') }}" alt=""
-                                    class="w-14 h-14 rounded-full" />
-                                <div class="flex flex-col items-start gap-2">
-                                    <span>Congratulations: 07******68</span>
-                                    <span>Income this week</span>
-                                </div>
-                            </div>
-
-                            <div class="text-green-500 font-semibold">44938.00 NGN</div>
-                        </div>
-
-                        <div class="flex items-center justify-between text-gray-700 text-sm font-medium bg-gray-200 rounded-2xl mb-3 px-2"
-                            style="height: 70px">
-                            <div class="flex gap-1.5 items-center">
-                                <img src="{{ asset('backend/assets/avatar/woman.jpg') }}" alt=""
-                                    class="w-14 h-14 rounded-full" />
-                                <div class="flex flex-col items-start gap-2">
-                                    <span>Congratulations: 07******68</span>
-                                    <span>Income this week</span>
-                                </div>
-                            </div>
-
-                            <div class="text-green-500 font-semibold">44938.00 NGN</div>
-                        </div>
-
-                        <div class="flex items-center justify-between text-gray-700 text-sm font-medium bg-gray-200 rounded-2xl mb-3 px-2"
-                            style="height: 70px">
-                            <div class="flex gap-1.5 items-center">
-                                <img src="{{ asset('backend/assets/avatar/woman.jpg') }}" alt=""
-                                    class="w-14 h-14 rounded-full" />
-                                <div class="flex flex-col items-start gap-2">
-                                    <span>Congratulations: 07******68</span>
-                                    <span>Income this week</span>
-                                </div>
-                            </div>
-
-                            <div class="text-green-500 font-semibold">44938.00 NGN</div>
-                        </div>
-
-                        <div class="flex items-center justify-between text-gray-700 text-sm font-medium bg-gray-200 rounded-2xl mb-3 px-2"
-                            style="height: 70px">
-                            <div class="flex gap-1.5 items-center">
-                                <img src="{{ asset('backend/assets/avatar/woman.jpg') }}" alt=""
-                                    class="w-14 h-14 rounded-full" />
-                                <div class="flex flex-col items-start gap-2">
-                                    <span>Congratulations: 07******68</span>
-                                    <span>Income this week</span>
-                                </div>
-                            </div>
-
-                            <div class="text-green-500 font-semibold">44938.00 NGN</div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
