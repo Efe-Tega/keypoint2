@@ -14,9 +14,9 @@
                     <div class="mt-4 mt-md-0 text-center">
                         <img class="img-thumbnail rounded-circle avatar-xl" alt="200x200"
                             src=" {{ asset('admin/upload/profile-pics/blank_profile_pic.png') }}" data-holder-rendered="true">
-                        <h3 class="mt-3">Efetega</h3>
-                        <h5>efetega@gmail.com</h5>
-                        <h6>08328374837</h6>
+                        <h3 class="mt-3">{{ $user->fullname }}</h3>
+                        <h5>{{ $user->email }}</h5>
+                        <h6>{{ $user->phone }}</h6>
                     </div>
 
                     <hr>
@@ -24,40 +24,40 @@
                     <div class="mt-5">
                         <div class="d-flex justify-content-between mb-2">
                             <div class="card-text text-capitalize">Account Balance:</div>
-                            <div><span>NGN </span> 20</div>
+                            <div> {{ $user->wallet->acct_bal }} <span>NGN </span></div>
                         </div>
 
                         <div class="d-flex justify-content-between mb-2">
-                            <div class="card-text text-capitalize">Profit:</div>
+                            <div class="card-text text-capitalize">Deposit:</div>
                             <div><span>NGN </span> 20</div>
                         </div>
 
-                        <div class="d-flex justify-content-between mb-2">
+                        {{-- <div class="d-flex justify-content-between mb-2">
                             <div class="card-text text-capitalize">Referral Bonus:</div>
                             <div><span>NGN </span> 20</div>
                         </div>
 
                         <div class="d-flex justify-content-between mb-2">
-                            <div class="card-text text-capitalize">Bonus:</div>
+                            <div class="card-text text-capitalize">Signin Bonus:</div>
                             <div><span>NGN </span> 20</div>
-                        </div>
+                        </div> --}}
 
                         <hr>
 
                         <!-- Bank Information -->
                         <div class="d-flex justify-content-between mb-2">
                             <div class="card-text text-capitalize">Bank Name:</div>
-                            <div>First Bank</div>
+                            <div>{{ $bank->bank_name }}</div>
                         </div>
 
                         <div class="d-flex justify-content-between mb-2">
                             <div class="card-text text-capitalize">Name on Account:</div>
-                            <div>Efe Tega</div>
+                            <div>{{ $bank->acct_name }}</div>
                         </div>
 
                         <div class="d-flex justify-content-between mb-2">
                             <div class="card-text text-capitalize">Account Number:</div>
-                            <div>3161165890</div>
+                            <div>{{ $bank->acct_no }}</div>
                         </div>
 
                         <hr>
@@ -66,8 +66,11 @@
                             <div class="card-text text-capitalize">User Account Status:</div>
 
                             <div class="square-switch">
-                                <input type="checkbox" id="square-switch1" switch="none" checked />
-                                <label for="square-switch1" data-on-label="Active" data-off-label="Blocked"></label>
+                                <input type="checkbox" id="square-switch-{{ $user->id }}" switch="none"
+                                    {{ $user->status == 1 ? 'checked' : '' }}
+                                    onchange="toggleUserStatus({{ $user->id }})" />
+                                <label for="square-switch-{{ $user->id }}" data-on-label="Active"
+                                    data-off-label="Blocked"></label>
                             </div>
                         </div>
 
@@ -75,14 +78,17 @@
                             <div class="card-text text-capitalize">Withdrawal:</div>
 
                             <div class="square-switch">
-                                <input type="checkbox" id="withdraw-status" switch="none" checked />
-                                <label for="withdraw-status" data-on-label="Enable" data-off-label="Disable"></label>
+                                <input type="checkbox" id="withdraw-status-{{ $user->id }}" switch="none"
+                                    {{ $user->withdraw_status == 1 ? 'checked' : '' }}
+                                    onchange="toggleWithdrawStatus({{ $user->id }})" />
+                                <label for="withdraw-status-{{ $user->id }}" data-on-label="Enable"
+                                    data-off-label="Disable"></label>
                             </div>
                         </div>
 
                         <div class="d-flex justify-content-between mb-2">
                             <div class="card-text text-capitalize">Level:</div>
-                            <div>Internship</div>
+                            <div>{{ $user->level->level }}</div>
                         </div>
 
                     </div>
@@ -255,4 +261,47 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+
+    <script>
+        function toggleUserStatus(userId) {
+            fetch('/admin/users/toggle-status/' + userId, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                }).then(response => response.json())
+                .then(data => {
+                    console.log(data.message);
+                    toastr.success(data.message);
+                }).catch(error => {
+                    console.error('Error', error);
+                    alert('Something went wrong!');
+
+                });
+        }
+    </script>
+
+    <script>
+        function toggleWithdrawStatus(userId) {
+            fetch('/admin/withdraw/toggle-status/' + userId, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message);
+                    toastr.success(data.message);
+                }).catch(error => {
+                    console.log('Error', error);
+                    alert('Something went wrong!');
+                })
+        }
+    </script>
 @endsection

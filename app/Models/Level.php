@@ -12,4 +12,9 @@ class Level extends Model
     {
         return $this->hasMany(TaskVideo::class);
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

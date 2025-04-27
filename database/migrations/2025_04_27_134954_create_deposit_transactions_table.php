@@ -12,12 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bank_infos', function (Blueprint $table) {
+        Schema::create('deposit_transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->string('acct_name')->nullable();
-            $table->string('bank_name')->nullable();
-            $table->string('acct_no')->nullable();
+            $table->foreignIdFor(User::class)->nullable();
+            $table->string('amount')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bank_infos');
+        Schema::dropIfExists('deposit_transactions');
     }
 };

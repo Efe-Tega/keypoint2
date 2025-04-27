@@ -14,12 +14,12 @@ return new class extends Migration
     {
         Schema::create('earnings', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->nullable();
-            $table->string('yesterday_earning')->nullable();
-            $table->string('today_earning')->nullable();
-            $table->string('this_week_earning')->nullable();
-            $table->string('this_month_earning')->nullable();
-            $table->string('total_earning')->nullable();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->integer('yesterday_earning')->default(0);
+            $table->integer('today_earning')->default(0);
+            $table->integer('this_week_earning')->default(0);
+            $table->integer('this_month_earning')->default(0);
+            $table->integer('total_earning')->default(0);
             $table->timestamps();
         });
     }

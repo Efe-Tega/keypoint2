@@ -14,10 +14,10 @@ return new class extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->nullable();
-            $table->string('acct_bal')->nullable();
-            $table->string('main_wallet')->nullable();
-            $table->string('com_wallet')->nullable();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->integer('acct_bal')->default(0);
+            $table->integer('main_wallet')->default(0);
+            $table->integer('com_wallet')->default(0);
             $table->timestamps();
         });
     }

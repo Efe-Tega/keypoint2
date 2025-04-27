@@ -21,7 +21,10 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
 
     Route::controller(UserManagement::class)->group(function () {
         Route::get('/view_users', 'index')->name('view.users');
-        Route::get('/user-details', 'userDetails')->name('user.details');
+        Route::get('/user-details/{id}', 'userDetails')->name('user.details');
+
+        Route::post('/users/toggle-status/{id}', 'userToggleStatus');
+        Route::post('/withdraw/toggle-status/{id}', 'withdrawToggleStatus');
     });
 
     Route::controller(AppSettings::class)->group(function () {

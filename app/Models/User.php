@@ -42,4 +42,29 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function isActive()
+    {
+        return $this->status === 1;
+    }
+
+    public function isDisabled()
+    {
+        return $this->status === 2;
+    }
+
+    public function bankInfo()
+    {
+        return $this->hasOne(BankInfo::class);
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
+    }
+
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class);
+    }
 }

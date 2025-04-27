@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\BankInfo;
+use App\Models\Earning;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -21,10 +24,22 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
         ]);
 
-        User::create([
+        $user = User::create([
             'fullname' => 'Test User',
             'email' => 'user@gmail.com',
             'password' => Hash::make('12345678'),
+        ]);
+
+        BankInfo::create([
+            'user_id' => $user->id,
+        ]);
+
+        Wallet::create([
+            'user_id' => $user->id,
+        ]);
+
+        Earning::create([
+            'user_id' => $user->id,
         ]);
     }
 }
