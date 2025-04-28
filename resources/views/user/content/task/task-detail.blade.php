@@ -9,6 +9,11 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/player.css') }}" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
     <title>Video Player</title>
     <!-- S-Tech04 -->
     <!-- www.youtube.com/c/STech04 -->
@@ -64,23 +69,13 @@
                 </div>
             </div>
 
-            <!-- Popup Notification -->
-            <div id="popup-notification" class="container mx-auto px-4 hidden">
-                <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                    <div class="bg-white p-6 rounded-lg shadow-lg text-center max-w-sm">
-                        <p class="text-red-600 font-semibold mb-4">Please complete the task before submitting!</p>
-                        <button onclick="closePopup()"
-                            class="mt-2 px-4 py-2 bg-primaryDark text-white rounded-md">Okay</button>
-                    </div>
-                </div>
-            </div>
-
+            <x-popup-notification>Please complete the task before submitting!</x-popup-notification>
 
             <div class="task-button flex justify-between gap-5">
                 <button
                     class="bg-textSecondary text-white font-semibold px-4 py-2 w-1/2 rounded-tr-lg rounded-bl-lg">Watch
                     Later</button>
-                <button
+                <button data-task-id="{{ $video->id }}"
                     class="bg-primaryDark text-white font-semibold px-4 py-1 lg:py-2 text-sm lg:text-lg w-1/2 rounded-tr-lg rounded-bl-lg">Submit
                     Completed
                     Task</button>
@@ -93,7 +88,10 @@
     <script src="{{ asset('backend/assets/js/video-script.js') }}"></script>
 
     <script>
-        document.querySelector('.task-button button:last-child').addEventListener('click', function(e) {
+        const button = document.querySelector('.task-button button:last-child');
+        const taskId = button.getAttribute('data-task-id');
+
+        button.addEventListener('click', function(e) {
             const currentTimeText = document.getElementById('current_video_time').innerText;
             const timeInSeconds = parseInt(currentTimeText);
 
@@ -101,8 +99,8 @@
                 e.preventDefault();
                 showPopup();
             } else {
-                // Proceed with form submission or any action
-                console.log("Task submitted!");
+                console.log("Task Submitted", taskId);
+                submitTask(taskId);
             }
         });
 
@@ -113,7 +111,54 @@
         function closePopup() {
             document.getElementById('popup-notification').classList.add('hidden');
         }
+
+        function submitTask(taskId) {
+            fetch("/reward-task", {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        task_id: taskId,
+                    })
+                }).then(response => response.json())
+                .then(data => {
+                    toastr.success('Task Completed!');
+                    window.location.href = "{{ route('task') }}"
+                    // console.log(data.message);
+                }).catch(error => {
+                    console.error('Error: ', error);
+                })
+        }
     </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
+        @endif
+    </script>
+
 
 </body>
 

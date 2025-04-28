@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\BankInfo;
 use App\Models\Earning;
 use App\Models\User;
+use App\Models\UserTask;
 use App\Models\Wallet;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -31,6 +32,10 @@ class UserSeeder extends Seeder
         ]);
 
         BankInfo::create([
+            'user_id' => $user->id,
+        ]);
+
+        UserTask::create([
             'user_id' => $user->id,
         ]);
 

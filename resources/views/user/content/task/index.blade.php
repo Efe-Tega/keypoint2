@@ -10,12 +10,12 @@
     <section class="bg-primaryThinLight">
         <div class="container mx-auto px-4 flex justify-between justify-items-center py-4">
             <div class="w-1/2 text-center space-y-3">
-                <span class="text-4xl">0</span>
+                <span class="text-4xl">{{ $user->remaining_task }}</span>
                 <p class="text-lg">Remaining Tasks Today</p>
             </div>
             <div class="w-1/2 text-center space-y-3">
-                <span class="text-4xl">0</span>
-                <p class="text-lg">Remaining Tasks Today</p>
+                <span class="text-4xl">{{ $user->task_completed }}</span>
+                <p class="text-lg">Task Completed Today</p>
             </div>
         </div>
     </section>
@@ -31,22 +31,42 @@
 
                             <!-- Image with play overlay -->
                             <div class="relative">
-                                <a href="{{ route('task.detail', ['id' => $video->id]) }}">
-                                    <img src="{{ asset('https://d2qdns14jj6ua6.cloudfront.net/' . $video->thumbnail) }}"
-                                        class="w-full h-28 md:h-48 lg:h-64" alt="Thumbnail" />
+                                @if ($user->remaining_task === 0)
+                                    <a onclick="showPopup()">
+                                        <img src="{{ asset('https://d2qdns14jj6ua6.cloudfront.net/' . $video->thumbnail) }}"
+                                            class="w-full h-28 md:h-48 lg:h-64" alt="Thumbnail" />
 
-                                    <!-- Play Icon -->
-                                    <div
-                                        class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 cursor-pointer">
-                                        <div class="bg-white p-2 lg:p-4 rounded-full">
-                                            <svg class="w-5 h-5 lg:w-10 lg:h-10 text-gray-800" fill="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path d="M8 5v14l11-7z"></path>
-                                            </svg>
+                                        <!-- Play Icon -->
+                                        <div
+                                            class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 cursor-pointer">
+                                            <div class="bg-white p-2 lg:p-4 rounded-full">
+                                                <svg class="w-5 h-5 lg:w-10 lg:h-10 text-gray-800" fill="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path d="M8 5v14l11-7z"></path>
+                                                </svg>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                @else
+                                    <a href="{{ route('task.detail', ['id' => $video->id]) }}">
+                                        <img src="{{ asset('https://d2qdns14jj6ua6.cloudfront.net/' . $video->thumbnail) }}"
+                                            class="w-full h-28 md:h-48 lg:h-64" alt="Thumbnail" />
+
+                                        <!-- Play Icon -->
+                                        <div
+                                            class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 cursor-pointer">
+                                            <div class="bg-white p-2 lg:p-4 rounded-full">
+                                                <svg class="w-5 h-5 lg:w-10 lg:h-10 text-gray-800" fill="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path d="M8 5v14l11-7z"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endif
                             </div>
+
+                            <x-popup-notification>No more daily Task</x-popup-notification>
 
                             <button class="bg-gray-400 mt-2">NGN +200.00</button>
                         </div>
@@ -57,16 +77,15 @@
 
 
     </section>
+    <script>
+        function showPopup() {
+            document.getElementById('popup-notification').classList.remove('hidden');
+        }
 
-    <!-- JavaScript to Play Video on Click -->
-    {{-- <script>
-        document
-            .getElementById("playButton1")
-            .addEventListener("click", function() {
-                const url = this.dataset.url;
-                window.location.href = url;
-            });
-    </script> --}}
+        function closePopup() {
+            document.getElementById('popup-notification').classList.add('hidden');
+        }
+    </script>
     </body>
 
     </html>

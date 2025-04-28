@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->nullable();
             $table->string('amount')->nullable();
+            $table->string('trans_id')->nullable();
             $table->timestamps();
         });
     }

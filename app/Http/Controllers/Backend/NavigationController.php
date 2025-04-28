@@ -13,7 +13,7 @@ class NavigationController extends Controller
     {
         $user = Auth::user();
         $videos = TaskVideo::where('level_id', $user->level)->get();
-        return view('user.index', compact('videos'));
+        return view('user.index', compact('videos', 'user'));
     }
     public function account(Request $request)
     {

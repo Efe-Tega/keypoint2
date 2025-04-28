@@ -113,52 +113,7 @@
 
         <div class="container px-4 mx-auto">
             <!-- Tasks -->
-            <div class="grid grid-cols-4 py-8 gap-8 justify-items-center">
-                <button
-                    class="rounded w-full md:w-32 lg:w-48 col-span-2 md:col-span-1 py-2 bg-gradient-to-tr from-primaryLight to-primaryDark text-white font-semibold">
-                    Internship
-                </button>
-
-                <a href="{{ route('task') }}"
-                    class="flex flex-row justify-center items-center gap-2 rounded w-full sm:w-full md:w-32 lg:w-48 py-2 bg-backgroundLight font-semibold shadow-md shadow-primaryDark/30">
-                    <span>VIP1</span>
-                    <img src="{{ asset('backend/assets/svg/lock.svg') }}" alt="" class="w-3.5 h-3.5" />
-                </a>
-                <button
-                    class="rounded w-full sm:w-full md:w-32 lg:w-48 py-2 bg-gradient-to-tr from-primaryLight to-primaryDark text-white font-semibold">
-                    VIP2
-                </button>
-                <button
-                    class="rounded w-full sm:w-full md:w-32 lg:w-48 py-2 bg-gradient-to-tr from-primaryLight to-primaryDark text-white font-semibold">
-                    VIP3
-                </button>
-                <button
-                    class="rounded w-full sm:w-full md:w-32 lg:w-48 py-2 bg-gradient-to-tr from-primaryLight to-primaryDark text-white font-semibold">
-                    VIP4
-                </button>
-                <button
-                    class="rounded w-full sm:w-full md:w-32 lg:w-48 py-2 bg-gradient-to-tr from-primaryLight to-primaryDark text-white font-semibold">
-                    VIP5
-                </button>
-                <button
-                    class="rounded w-full sm:w-full md:w-32 lg:w-48 py-2 bg-gradient-to-tr from-primaryLight to-primaryDark text-white font-semibold">
-                    VIP6
-                </button>
-                <button
-                    class="rounded w-full sm:w-full md:w-32 lg:w-48 py-2 bg-gradient-to-tr from-primaryLight to-primaryDark text-white font-semibold">
-                    VIP7
-                </button>
-
-                <button
-                    class="rounded w-full sm:w-full md:w-32 lg:w-48 py-2 bg-gradient-to-tr from-primaryLight to-primaryDark text-white font-semibold">
-                    VIP8
-                </button>
-
-                <button
-                    class="rounded w-full md:w-32 lg:w-48 col-span-2 md:col-span-1 py-2 bg-gradient-to-tr from-primaryLight to-primaryDark text-white font-semibold">
-                    VIP9
-                </button>
-            </div>
+            @include('user.include.tasks-grid')
 
 
             <div class="container mx-auto px-4">

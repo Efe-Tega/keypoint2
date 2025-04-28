@@ -23,6 +23,8 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
         Route::get('/view_users', 'index')->name('view.users');
         Route::get('/user-details/{id}', 'userDetails')->name('user.details');
 
+        Route::get('/reset-task', 'resetTask')->name('reset.task');
+
         Route::post('/users/toggle-status/{id}', 'userToggleStatus');
         Route::post('/withdraw/toggle-status/{id}', 'withdrawToggleStatus');
     });

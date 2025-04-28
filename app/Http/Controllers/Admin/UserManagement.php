@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ResetUserTasks;
 use App\Models\BankInfo;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -38,5 +39,12 @@ class UserManagement extends Controller
         $user->save();
 
         return response()->json(['message' => 'Withdraw Status Changed!']);
+    }
+
+    public function resetTask()
+    {
+        ResetUserTasks::dispatch();
+
+        return redirect()->back();
     }
 }

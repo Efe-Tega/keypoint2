@@ -33,6 +33,8 @@ Route::controller(TaskController::class)
         Route::get('/task', 'index')->name('task');
         Route::get('/task/detail/{id}', 'taskDetail')->name('task.detail');
         Route::get('/task-list', 'taskList')->name('task.list');
+
+        Route::post('/reward-task', 'rewardTask')->name('reward.task');
     });
 
 Route::controller(WithdrawController::class)->group(function () {

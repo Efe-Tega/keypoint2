@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\TaskVideo;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,13 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_tasks', function (Blueprint $table) {
+        Schema::create('watched_videos', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->nullable();
-            $table->tinyInteger('today_task_completed')->default(0);
-            $table->tinyInteger('today_task_remain')->default(0);
-            $table->tinyInteger('task_reward')->default(0);
-            $table->tinyInteger('referral_reward')->default(0);
+            $table->foreignIdFor(TaskVideo::class)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_tasks');
+        Schema::dropIfExists('watched_videos');
     }
 };
