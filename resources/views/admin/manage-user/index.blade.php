@@ -3,7 +3,7 @@
     <!-- start page title -->
     <x-admin.page-title>
         <x-slot:heading>User List</x-slot:heading>
-        <a href="{{ route('reset.task') }}" class="btn btn-primary">Add User</a>
+        <a href="" class="btn btn-primary">Add User</a>
     </x-admin.page-title>
     <!-- end page title -->
 

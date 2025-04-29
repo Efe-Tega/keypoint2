@@ -10,5 +10,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 
-// Schedule::job(new ResetUserTasks())->dailyAt('00:00');
-Schedule::job(new ResetUserTasks())->everyMinute();
+// Schedule::job(new ResetUserTasks())->dailyAt('09:50')->timezone('Africa/Lagos');
+// Schedule::job(new ResetUserTasks())->everyMinute();

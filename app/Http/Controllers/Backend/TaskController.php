@@ -45,11 +45,6 @@ class TaskController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        // $notification = array(
-        //     'message' => 'Task Submitted',
-        //     'alert-type' => 'success',
-        // );
-
         return response()->json(['message' => 'Task Completed!']);
     }
 

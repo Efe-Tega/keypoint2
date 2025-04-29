@@ -111,7 +111,7 @@
             <h1 class="text-2xl font-semibold">Task Hall</h1>
         </div>
 
-        <div class="container px-4 mx-auto">
+        <div class="bg-blue-300 container px-4 mx-auto">
             <!-- Tasks -->
             @include('user.include.tasks-grid')
 

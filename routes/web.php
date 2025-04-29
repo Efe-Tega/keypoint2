@@ -4,11 +4,17 @@ use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Backend\NavigationController;
 use App\Http\Controllers\Backend\TaskController;
+use App\Jobs\ResetUserTasks;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/run-schedule', function () {
+    ResetUserTasks::dispatch();
+    return 'Reset job dispatched';
 });
 
 Route::get('/login', [UserController::class, 'showLogin'])->name('login');
@@ -24,12 +30,6 @@ Route::post('/admin-login', [AdminController::class, 'login']);
 Route::middleware('admin.auth')->get('/admin/dashboard', function () {
     return view('admin.index');
 })->name('admin.index');
-
-
-// Route::get('/run-queue', function () {
-//     Artisan::call('queue:work --once');
-//     return response()->json(['status' => 'queue worker triggered']);
-// });
 
 // Route::get('/run-queue', function () {
 //     while (true) {

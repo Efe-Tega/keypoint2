@@ -40,11 +40,4 @@ class UserManagement extends Controller
 
         return response()->json(['message' => 'Withdraw Status Changed!']);
     }
-
-    public function resetTask()
-    {
-        ResetUserTasks::dispatch();
-
-        return redirect()->back();
-    }
 }
