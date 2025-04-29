@@ -25,26 +25,26 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
         ]);
 
-        $user = User::create([
-            'fullname' => 'Test User',
-            'email' => 'user@gmail.com',
-            'password' => Hash::make('12345678'),
-        ]);
+        // $user = User::create([
+        //     'fullname' => 'Test User',
+        //     'email' => 'user@gmail.com',
+        //     'password' => Hash::make('12345678'),
+        // ]);
 
-        BankInfo::create([
-            'user_id' => $user->id,
-        ]);
+        // BankInfo::create([
+        //     'user_id' => $user->id,
+        // ]);
 
-        UserTask::create([
-            'user_id' => $user->id,
-        ]);
+        // UserTask::create([
+        //     'user_id' => $user->id,
+        // ]);
 
-        Wallet::create([
-            'user_id' => $user->id,
-        ]);
+        // Wallet::create([
+        //     'user_id' => $user->id,
+        // ]);
 
-        Earning::create([
-            'user_id' => $user->id,
-        ]);
+        // Earning::create([
+        //     'user_id' => $user->id,
+        // ]);
     }
 }

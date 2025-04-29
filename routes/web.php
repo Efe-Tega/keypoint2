@@ -17,8 +17,14 @@ Route::get('/run-schedule', function () {
     return 'Reset job dispatched';
 });
 
-Route::get('/login', [UserController::class, 'showLogin'])->name('login');
-Route::post('/login', [UserController::class, 'login']);
+// === User Authentication ===
+Route::controller(UserController::class)->group(function () {
+    Route::get('/login', 'showLogin')->name('login');
+    Route::post('/login', 'login');
+    Route::get('/user-registration', 'userRegistration')->name('user.registration');
+    Route::post('/register', 'register')->name('register');
+});
+
 
 Route::middleware('auth')->controller(NavigationController::class)->group(function () {
     Route::get('/dashboard', 'index')->name('user.dashboard');

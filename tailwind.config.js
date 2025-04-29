@@ -12,7 +12,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                purple: '#800080',
+                // purple: '#800080',
                 textSecondary: '#6E84A3',
                 primaryThinLight: '#68d7ff',
                 primaryLight: '#09bbfe',
