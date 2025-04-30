@@ -1,4 +1,4 @@
-<div class="grid grid-cols-4 py-8 gap-8 justify-items-center">
+<div class="grid grid-cols-4 py-4 gap-8 justify-items-center">
     @if ($user->level_id === 1)
         <x-task-button href="{{ route('task') }}" class="col-span-2 md:col-span-1">
             Internship

@@ -17,4 +17,9 @@ class Level extends Model
     {
         return $this->hasOne(User::class);
     }
+
+    public function pending()
+    {
+        return $this->hasOne(PendingTask::class);
+    }
 }

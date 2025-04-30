@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\PendingTask;
 use App\Models\TaskVideo;
 use App\Models\User;
 use App\Models\WatchedVideo;
@@ -26,8 +27,32 @@ class TaskController extends Controller
 
     public function taskDetail($id)
     {
-        $video = TaskVideo::findOrFail($id);
-        return view('user.content.task.task-detail', compact('video'));
+        $user = Auth::user();
+        $userId = $user->id;
+        $pendingTask = PendingTask::where('user_id', $userId)
+            ->first();
+
+        $play = PendingTask::where('id', $id)->first();
+
+        if ($play) {
+            $video = TaskVideo::find($play->task_video_id);
+            return view('user.content.task.task-detail', compact('video'));
+        }
+
+        if ($pendingTask) {
+            return redirect()->route('task.list', ['id' => $pendingTask->task_video_id]);
+        } else {
+            PendingTask::insert([
+                'user_id' => $userId,
+                'task_video_id' => $id,
+                'level_id' => $user->level_id,
+                'created_at' => Carbon::now(),
+            ]);
+
+            $video = TaskVideo::findOrFail($id);
+
+            return view('user.content.task.task-detail', compact('video'));
+        }
     }
 
     public function rewardTask(Request $request)
@@ -42,14 +67,20 @@ class TaskController extends Controller
         WatchedVideo::insert([
             'user_id' => $user->id,
             'task_video_id' => $taskId,
+            'level_id' => $user->level_id,
             'created_at' => Carbon::now()
         ]);
+
+        PendingTask::where('task_video_id', $taskId)->delete();
 
         return response()->json(['message' => 'Task Completed!']);
     }
 
-    public function taskList()
+    public function taskList($id)
     {
-        return view('user.content.task.task-list');
+        $video = PendingTask::where('id', $id)->first();
+        $pendingTask = PendingTask::where('task_video_id', $id)->first();
+        $watchedVideos = WatchedVideo::latest()->get();
+        return view('user.content.task.task-list', compact('pendingTask', 'video', 'watchedVideos'));
     }
 }

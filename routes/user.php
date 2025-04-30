@@ -32,7 +32,7 @@ Route::controller(TaskController::class)
     ->group(function () {
         Route::get('/task', 'index')->name('task');
         Route::get('/task/detail/{id}', 'taskDetail')->name('task.detail');
-        Route::get('/task-list', 'taskList')->name('task.list');
+        Route::get('/task-list/{id}', 'taskList')->name('task.list');
 
         Route::post('/reward-task', 'rewardTask')->name('reward.task');
     });

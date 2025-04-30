@@ -23,6 +23,11 @@
             height: 250px;
         }
 
+        .slick-next,
+        .slick-prev {
+            display: none !important;
+        }
+
         .slick-slide img {
             height: 100%;
             width: 100%;
@@ -81,7 +86,7 @@
     if (in_array($routeName, ['daily.report', 'personal.info', 'account.change', 'user.wallet', 'withdraw'])) {
         $backgroundImage = asset('backend/assets/bg/bg-2.jpg');
     } else {
-        $backgroundColor = '#F9FBFD';
+        $backgroundColor = '#f1f5f9';
     }
 @endphp
 

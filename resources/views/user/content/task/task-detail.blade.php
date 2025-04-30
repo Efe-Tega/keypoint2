@@ -15,8 +15,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 
     <title>Video Player</title>
-    <!-- S-Tech04 -->
-    <!-- www.youtube.com/c/STech04 -->
+
     @vite('resources/css/app.css')
 </head>
 
@@ -72,9 +71,9 @@
             <x-popup-notification>Please complete the task before submitting!</x-popup-notification>
 
             <div class="task-button flex justify-between gap-5">
-                <button
-                    class="bg-textSecondary text-white font-semibold px-4 py-2 w-1/2 rounded-tr-lg rounded-bl-lg">Watch
-                    Later</button>
+                <a href="{{ route('task.detail', ['id' => $video->id]) }}"
+                    class="text-center bg-textSecondary text-white font-semibold px-4 py-2 w-1/2 rounded-tr-lg rounded-bl-lg">Watch
+                    Later</a>
                 <button data-task-id="{{ $video->id }}"
                     class="bg-primaryDark text-white font-semibold px-4 py-1 lg:py-2 text-sm lg:text-lg w-1/2 rounded-tr-lg rounded-bl-lg">Submit
                     Completed

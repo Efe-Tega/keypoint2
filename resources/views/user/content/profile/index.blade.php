@@ -30,7 +30,7 @@
 
                 <div class="space-y-1">
                     <p class="text-sm lg:text-lg font-semibold">
-                        Account: 09136076047
+                        Account: {{ $user->phone }}
                     </p>
                     <p class="text-xs lg:text-sm">Actual Sign-in Bonus: 200.00</p>
                 </div>
@@ -99,12 +99,12 @@
 
             <div class="flex flex-col text-center py-3 border-b-2 gap-2">
                 <p class="text-xs md:text-sm lg:text-lg">Total Completed</p>
-                <p class="text-green-500 font-semibold">0</p>
+                <p class="text-green-500 font-semibold">{{ $user->task_completed }}</p>
             </div>
 
             <div class="flex flex-col text-center py-3 border-r-2">
                 <p class="text-xs md:text-sm lg:text-lg">Today Remaining</p>
-                <p class="text-green-500 font-semibold">0</p>
+                <p class="text-green-500 font-semibold">{{ $user->remaining_task }}</p>
             </div>
             <div class="flex flex-col text-center py-3 border-r-2">
                 <p class="text-xs md:text-sm lg:text-lg">Task Rewards(NGN)</p>

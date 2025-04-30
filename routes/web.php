@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Backend\NavigationController;
 use App\Http\Controllers\Backend\TaskController;
 use App\Jobs\ResetUserTasks;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -12,7 +13,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/run-schedule', function () {
+Route::get('/run-schedule', function (Request $request) {
+    if ($request->query('token') !== env('RESET_JOB_TOKEN')) {
+        abort(403, 'Unauthorized');
+    }
+
+    while (true) {
+        Artisan::call('queue:work --once');
+
+        // Check if there's more work to do
+        if (!\Queue::size()) {
+            break;
+        }
+
+        sleep(1);
+    }
+
     ResetUserTasks::dispatch();
     return 'Reset job dispatched';
 });

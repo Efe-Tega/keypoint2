@@ -4,12 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WatchedVideo extends Model
+class PendingTask extends Model
 {
     protected $guarded = [];
 
-    public function video()
+    public function task()
     {
         return $this->belongsTo(TaskVideo::class, 'task_video_id');
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
     }
 }

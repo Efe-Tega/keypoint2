@@ -19,8 +19,13 @@
             </div>
         </a>
 
+        @php
+            $user = Auth::user();
+            $pendingTask = App\Models\PendingTask::where('user_id', $user->id)->first();
+        @endphp
+
         <div class="flex flex-col items-center">
-            <a href="{{ route('task.list') }}" class="py-2">
+            <a href="{{ route('task.list', ['id' => $pendingTask->id ?? 0]) }}" class="py-2">
                 <img src="{{ asset('backend/assets/svg/tasks.svg') }}" alt="" class="w-7 h-7" />
                 <span class="text-gray-500">Task</span>
             </a>

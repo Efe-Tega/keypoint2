@@ -4,23 +4,15 @@
     @include('user.include.header')
 
     <section class="container mx-auto px-4 py-5 lg:py-8">
-        {{-- <div class="container px-4 mx-auto">
-            <div class="">
-                <img src="{{ asset('backend/assets/banner/about15.jpg') }}" class="w-full rounded-lg h-48 md:h-56 lg:h-96"
-                    alt="" />
-            </div>
-        </div> --}}
-
         <div class="slider">
             <div><img src="{{ asset('backend/assets/banner/meeting-banner.jpg') }}" alt="" class="rounded-xl"></div>
             <div><img src="{{ asset('backend/assets/banner/about15.jpg') }}" alt="" class="rounded-xl"></div>
             <div><img src="{{ asset('backend/assets/banner/banner2.png') }}" alt="" class="rounded-xl"></div>
         </div>
-
     </section>
 
-    <section class="py-5 lg:py-16">
-        <div class="container mx-auto px-4">
+    <section class="container mx-auto px-4 py-2.5 lg:py-16">
+        <div class="px-4 py-6 rounded-lg bg-white">
             <div class="grid grid-cols-4 gap-10">
                 <a href="{{ route('recharge') }}">
                     <div class="flex flex-col items-center space-y-1.5">
@@ -106,50 +98,45 @@
     </section>
 
     <!-- Task Hall -->
-    <section id="task-hall" class="py-10">
-        <div class="text-center border-t-2 border-b-2 border-primaryLight py-5 bg-backgroundLight">
+    <section id="task-hall" class="container px-4 mx-auto py-2.5">
+        <div class="px-4  bg-white py-3 rounded-lg">
             <h1 class="text-2xl font-semibold">Task Hall</h1>
-        </div>
 
-        <div class="bg-blue-300 container px-4 mx-auto">
             <!-- Tasks -->
             @include('user.include.tasks-grid')
 
+            @foreach ($videos->chunk(2) as $chunk)
+                <div class="flex space-x-6 justify-between pt-10 last:mb-5 relative">
+                    @foreach ($chunk as $video)
+                        <div class="flex flex-col w-1/2">
+                            <span
+                                class="absolute top-4 bg-red-600 text-white px-2 rounded-t capitalize">{{ $video->level->level }}</span>
 
-            <div class="container mx-auto px-4">
-                @foreach ($videos->chunk(2) as $chunk)
-                    <div class="flex space-x-6 justify-between pt-10 last:mb-5 relative">
-                        @foreach ($chunk as $video)
-                            <div class="flex flex-col w-1/2">
-                                <span
-                                    class="absolute top-4 bg-red-600 text-white px-2 rounded-t capitalize">{{ $video->level->level }}</span>
+                            <!-- Image with play overlay -->
+                            <div class="relative">
+                                <a href="{{ route('task.detail', ['id' => $video->id]) }}">
+                                    <img src="{{ asset('https://d2qdns14jj6ua6.cloudfront.net/' . $video->thumbnail) }}"
+                                        class="w-full h-28 md:h-48 lg:h-64" alt="Thumbnail" />
 
-                                <!-- Image with play overlay -->
-                                <div class="relative">
-                                    <a href="{{ route('task.detail', ['id' => $video->id]) }}">
-                                        <img src="{{ asset('https://d2qdns14jj6ua6.cloudfront.net/' . $video->thumbnail) }}"
-                                            class="w-full h-28 md:h-48 lg:h-64" alt="Thumbnail" />
-
-                                        <!-- Play Icon -->
-                                        <div
-                                            class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 cursor-pointer">
-                                            <div class="bg-white p-2 lg:p-4 rounded-full">
-                                                <svg class="w-5 h-5 lg:w-10 lg:h-10 text-gray-800" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path d="M8 5v14l11-7z"></path>
-                                                </svg>
-                                            </div>
+                                    <!-- Play Icon -->
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 cursor-pointer">
+                                        <div class="bg-white p-2 lg:p-4 rounded-full">
+                                            <svg class="w-5 h-5 lg:w-10 lg:h-10 text-gray-800" fill="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path d="M8 5v14l11-7z"></path>
+                                            </svg>
                                         </div>
-                                    </a>
-                                </div>
-
-                                <button class="bg-gray-400 mt-2">NGN +200.00</button>
+                                    </div>
+                                </a>
                             </div>
-                        @endforeach
-                    </div>
-                @endforeach
-            </div>
 
+                            <button class="bg-gray-400 mt-2">NGN
+                                +{{ number_format($video->level->reward_amount, 2) }}</button>
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
 
         </div>
     </section>
@@ -159,12 +146,10 @@
     @endphp
 
     <!-- Membership List -->
-    <section class="pt-10">
-        <div class="text-center border-t-2 border-b-2 border-primaryLight py-5 bg-backgroundLight">
-            <h1 class="text-2xl font-semibold">Membership List</h1>
-        </div>
+    <section class="container mx-auto px-4 pt-3">
+        <div class="bg-white px-2 rounded-lg">
+            <h1 class="text-2xl font-semibold py-3">Membership List</h1>
 
-        <div class="container mx-auto px-4 pt-2">
             <div class="w-full overflow-hidden">
                 <div class="scroll-container">
                     <div id="scroll-content" class="scroll-content">
@@ -199,7 +184,6 @@
 
 <!-- Include Slick JS from CDN (Load after jQuery) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
 
 <script>
     $(document).ready(function() {
