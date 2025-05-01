@@ -3,7 +3,7 @@
 @section('user-content')
     @include('user.include.header')
 
-    <section class="container mx-auto px-4 py-5 lg:py-8">
+    <section class="container mx-auto px-4 py-2.5 lg:py-8">
         <div class="slider">
             <div><img src="{{ asset('backend/assets/banner/meeting-banner.jpg') }}" alt="" class="rounded-xl"></div>
             <div><img src="{{ asset('backend/assets/banner/about15.jpg') }}" alt="" class="rounded-xl"></div>
@@ -147,7 +147,7 @@
 
     <!-- Membership List -->
     <section class="container mx-auto px-4 pt-3">
-        <div class="bg-white px-2 rounded-lg">
+        <div class="bg-white px-4 rounded-t-lg">
             <h1 class="text-2xl font-semibold py-3">Membership List</h1>
 
             <div class="w-full overflow-hidden">
