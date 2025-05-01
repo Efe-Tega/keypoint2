@@ -10,6 +10,7 @@ use App\Models\WatchedVideo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
@@ -67,7 +68,6 @@ class TaskController extends Controller
         WatchedVideo::insert([
             'user_id' => $user->id,
             'task_video_id' => $taskId,
-            'level_id' => $user->level_id,
             'created_at' => Carbon::now()
         ]);
 

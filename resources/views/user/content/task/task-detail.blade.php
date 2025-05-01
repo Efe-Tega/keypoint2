@@ -98,6 +98,8 @@
                 e.preventDefault();
                 showPopup();
             } else {
+                button.disabled = true;
+                button.innerText = 'Submitting...';
                 console.log("Task Submitted", taskId);
                 submitTask(taskId);
             }
@@ -125,8 +127,10 @@
                 }).then(response => response.json())
                 .then(data => {
                     toastr.success('Task Completed!');
-                    window.location.href = "{{ route('task') }}"
-                    // console.log(data.message);
+
+                    setTimeout(() => {
+                        window.location.href = "{{ route('task') }}"
+                    }, 2000);
                 }).catch(error => {
                     console.error('Error: ', error);
                 })

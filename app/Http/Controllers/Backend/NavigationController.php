@@ -17,7 +17,7 @@ class NavigationController extends Controller
             ->pluck('task_video_id')
             ->toArray();
         $videos = TaskVideo::where('level_id', $user->level_id)
-            ->whereNotIn('id', $watchedVideo)->get();
+            ->whereNotIn('id', $watchedVideo)->take(10)->get();
         return view('user.index', compact('videos', 'user'));
     }
     public function account(Request $request)

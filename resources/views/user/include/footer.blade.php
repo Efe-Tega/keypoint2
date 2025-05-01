@@ -31,7 +31,7 @@
             </a>
         </div>
 
-        <a href="" class="py-2">
+        <a href="{{ route('view.levels') }}" class="py-2">
             <div class="flex flex-col items-center">
                 <img src="{{ asset('backend/assets/svg/diamond.svg') }}" alt="" class="w-7 h-7" />
                 <span class="text-gray-500">VIP</span>
