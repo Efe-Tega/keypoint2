@@ -99,13 +99,14 @@
 
                     <h4 class="card-title">All Levels</h4>
 
-                    <x-tables :columns="['S/N', 'Level', 'Upgrade Amount', 'Reward Amount', 'Action']">
+                    <x-tables :columns="['S/N', 'Level', 'Upgrade Amount', 'Reward Amount', 'Daily Task', 'Action']">
                         @foreach ($levels as $key => $level)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $level->level }}</td>
                                 <td>{{ number_format($level->upgrade_amount) }} NGN</td>
                                 <td>{{ $level->reward_amount }} NGN</td>
+                                <td>{{ $level->daily_task }} times</td>
                                 <td>
                                     <button class="btn btn-primary btn-sm edit-level" data-bs-toggle="modal"
                                         data-bs-target=".level-modal" data-level="{{ $level->level }}"

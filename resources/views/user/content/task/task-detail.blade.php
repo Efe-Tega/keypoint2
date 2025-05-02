@@ -61,7 +61,9 @@
 
                         <div id="reward" class="flex flex-col ">
                             <h2 class="text-end text-sm font-semibold">Reward Amount</h2>
-                            <span class="text-end text-green-500 font-semibold text-lg">+300.00 NGN</span>
+                            <span
+                                class="text-end text-green-500 font-semibold text-lg">+{{ number_format($video->level->reward_amount, 2) }}
+                                NGN</span>
                         </div>
                     </div>
 

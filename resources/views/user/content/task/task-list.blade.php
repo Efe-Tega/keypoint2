@@ -18,7 +18,7 @@
         <div class="bg-black min-h-screen">
             <div id="page1" class="section active space-y-1">
                 @if ($pendingTask)
-                    <div class="bg-purple container mx-auto flex justify-between w-full p-4 gap-5">
+                    <div class="bg-purpleBg container mx-auto flex justify-between w-full p-4 gap-5">
                         <div class="w-3/4 space-y-1.5">
                             <div class="flex items-center justify-between bg-white/30 backdrop-blur-sm px-2 rounded ">
                                 <span
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 @elseif($video)
-                    <div class="bg-purple container mx-auto flex justify-between w-full p-4 gap-5">
+                    <div class="bg-purpleBg container mx-auto flex justify-between w-full p-4 gap-5">
                         <div class="w-3/4 space-y-1.5">
                             <div class="flex items-center justify-between bg-white/30 backdrop-blur-sm px-2 rounded ">
                                 <span class="text-slate-50 font-bold text-sm lg:text-base">{{ $video->level->level }}</span>
@@ -88,7 +88,7 @@
             <!-- Watched History -->
             <div id="page2" class="section space-y-1">
                 @foreach ($watchedVideos as $watched)
-                    <div class="bg-purple container mx-auto flex justify-between w-full p-4 gap-5">
+                    <div class="bg-purpleBg container mx-auto flex justify-between w-full p-4 gap-5">
                         <div class="w-3/4 space-y-1.5">
                             <div class="flex items-center justify-between bg-white/30 backdrop-blur-sm px-2 rounded ">
                                 <span
