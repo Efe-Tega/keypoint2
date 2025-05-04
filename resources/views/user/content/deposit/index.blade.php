@@ -9,7 +9,7 @@
                 </span>
 
                 <div>
-                    <img src="{{ asset('backend/assets/logo.png') }}" alt="" class="w-52 h-14" />
+                    <img src="{{ asset('backend/assets/logo.png') }}" alt="" class="w-36 h-10 lg:w-52 lg:h-14 " />
                 </div>
 
                 <!-- menu items -->
@@ -23,13 +23,15 @@
             <!-- Balance info -->
             <div class="py-6 flex justify-between items-center">
                 <div class="font-semibold text-2xl">Balance</div>
-                <div class="text-3xl text-green-600 font-bold">NGN 2000</div>
+                <div class="text-3xl text-green-600 font-bold">{{ number_format(2000, 2) }}
+                    <span class="text-sm"> NGN</span>
+                </div>
             </div>
 
             <!-- Payment Method -->
-            <a href="../content/recharge-details.html">
+            <a href="{{ route('recharge.details') }}">
                 <div
-                    class="flex items-center justify-between gap-4 text-gray-700 text-sm font-medium bg-gray-200 mb-3 px-2 py-2 rounded-tl-lg">
+                    class="flex items-center justify-between gap-4 text-gray-700 text-sm font-medium bg-gray-200 mb-3 px-2 py-2 rounded-tl-lg rounded-tr-lg">
                     <div class="flex gap-1.5 items-center">
                         <img src="{{ asset('backend/assets/svg/bank.svg') }}" alt=""
                             class="w-10 h-10 p-2 rounded-full bg-white" />

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Backend\NavigationController;
+use App\Http\Controllers\Backend\PaymentController;
 use App\Http\Controllers\Backend\TaskController;
 use App\Jobs\ResetUserTasks;
 use Illuminate\Http\Request;
@@ -52,6 +53,15 @@ Route::post('/admin-login', [AdminController::class, 'login']);
 Route::middleware('admin.auth')->get('/admin/dashboard', function () {
     return view('admin.index');
 })->name('admin.index');
+
+// === Payment Routes ===
+Route::controller(PaymentController::class)->group(function () {
+    Route::get('/pay', 'showForm')->name('payment.gateway');
+    Route::get('/payment/callback', 'paymentCallback')->name('payment.callback');
+
+    Route::post('/pay', 'initiatePayment')->name('payment.initiate');
+});
+
 
 // Route::get('/run-queue', function () {
 //     while (true) {

@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     // == Deposit Controller
     Route::controller(DepositController::class)->group(function () {
         Route::get('/recharge', 'recharge')->name('recharge');
+        Route::get('/recharge-details', 'rechargeDetails')->name('recharge.details');
     });
 
     Route::controller(TaskController::class)

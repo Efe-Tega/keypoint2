@@ -11,4 +11,9 @@ class DepositController extends Controller
     {
         return view('user.content.deposit.index');
     }
+
+    public function rechargeDetails()
+    {
+        return view('user.content.deposit.deposit-details');
+    }
 }

@@ -15,8 +15,10 @@ return new class extends Migration
         Schema::create('deposit_transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->nullable();
-            $table->string('amount')->nullable();
-            $table->string('trans_id')->nullable();
+            $table->string('trans_id')->unique()->nullable();
+            $table->decimal('amount', 10, 2)->nullable();
+            $table->enum('status', ['pending', 'paid', 'failed'])->default('pending');
+            $table->timestamp('paid_at')->nullable();
             $table->timestamps();
         });
     }

@@ -131,7 +131,7 @@
                                 </a>
                             </div>
 
-                            <button class="bg-gray-400 mt-2">NGN
+                            <button class="bg-gray-400 mt-2 text-white font-semibold">NGN
                                 +{{ number_format($video->level->reward_amount, 2) }}</button>
                         </div>
                     @endforeach
