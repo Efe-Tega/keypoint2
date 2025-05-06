@@ -22,11 +22,12 @@
         <div class="container mx-auto px-4 mb-10">
             <!-- Balance info -->
             <div class="py-6 flex justify-between items-center">
-                <div class="font-semibold text-2xl">Balance</div>
-                <div class="text-3xl text-green-600 font-bold">{{ number_format(2000, 2) }}
+                <div class="font-semibold md:text-2xl text-sm">Available Balance</div>
+                <div class="text-3xl text-green-600 font-bold">{{ number_format($wallet->com_wallet, 2) }}
                     <span class="text-sm"> NGN</span>
                 </div>
             </div>
+            <p class="text-sm mb-3">Please select a recharge method below</p>
 
             <!-- Payment Method -->
             <a href="{{ route('recharge.details') }}">

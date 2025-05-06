@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ExpireTransaction;
 use App\Models\DepositTransaction;
+use App\Models\Wallet;
 use App\Services\MonnifyService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +23,13 @@ class PaymentController extends Controller
             'trans_id' => $reference,
             'user_id' => $user->id,
             'amount' => $request->amount,
+            'created_at' => Carbon::now(),
         ]);
+
+        $transaction = DepositTransaction::where('trans_id', $reference)->first();
+
+        ExpireTransaction::dispatch($transaction->trans_id)
+            ->delay(now()->addMinutes(40));
 
         $paymentData = [
             'amount' => $request->amount,
@@ -67,6 +76,11 @@ class PaymentController extends Controller
             if ($transaction) {
                 $transaction->status = strtolower($status);
                 $transaction->save();
+
+                $user = Auth::user();
+                $walletUpdate = Wallet::where('user_id', $user->id)->first();
+                $walletUpdate->acct_bal += $transaction->amount;
+                $walletUpdate->save();
             }
 
             if ($status === 'PAID') {

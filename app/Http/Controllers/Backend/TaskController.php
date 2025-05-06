@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Earning;
 use App\Models\PendingTask;
 use App\Models\TaskVideo;
 use App\Models\User;
@@ -70,6 +71,13 @@ class TaskController extends Controller
             'task_video_id' => $taskId,
             'created_at' => Carbon::now()
         ]);
+
+        $taskData = TaskVideo::where('id', $taskId)->first();
+
+        $earning = Earning::where('user_id', $user->id)->first();
+        $earning->today_earning += $taskData->level->reward_amount;
+        $earning->save();
+
 
         PendingTask::where('task_video_id', $taskId)->delete();
 

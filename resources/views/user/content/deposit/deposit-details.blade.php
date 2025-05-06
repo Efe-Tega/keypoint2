@@ -52,8 +52,8 @@
                         class="bg-primaryDark px-4 py-2 w-1/2 text-white font-semibold rounded-tl-lg rounded-br-lg hover:bg-gradient-to-tl hover:from-primaryLight hover:to-primaryDark transition duration-300 ease-in-out hover:-translate-y-1">
                         Recharge
                     </button>
-                    <a href=""
-                        class="w-1/2 px-4 py-2 font-semibold bg-backgroundLight border border-primaryLight rounded-tr-lg rounded-bl-lg hover:bg-gray-200 transition duration-300 ease-in-out hover:-translate-y-1">
+                    <a href="{{ route('recharge') }}"
+                        class="w-1/2 px-4 py-2 font-semibold bg-backgroundLight border border-primaryLight rounded-tr-lg rounded-bl-lg hover:bg-gray-200 transition duration-300 ease-in-out hover:-translate-y-1 text-center">
                         Back
                     </a>
                 </div>

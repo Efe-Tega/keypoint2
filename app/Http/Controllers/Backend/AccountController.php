@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\BankInfo;
+use App\Models\DepositTransaction;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -115,7 +117,10 @@ class AccountController extends Controller
 
     public function userWallet()
     {
-        return view('user.content.funds-management.user-wallet');
+        $user = Auth::user();
+        $wallet = Wallet::where('user_id', $user->id)->first();
+        $transactions = DepositTransaction::where('user_id', $user->id)->latest()->get();
+        return view('user.content.funds-management.user-wallet', compact('wallet', 'transactions'));
     }
 
     public function changePassword(Request $request)

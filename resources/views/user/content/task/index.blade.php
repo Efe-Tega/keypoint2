@@ -68,7 +68,8 @@
 
                             <x-popup-notification>No more daily Task</x-popup-notification>
 
-                            <button class="bg-gray-400 mt-2">NGN +200.00</button>
+                            <button class="bg-gray-400 mt-2">NGN + {{ number_format($video->level->reward_amount, 2) }}
+                            </button>
                         </div>
                     @endforeach
                 </div>
