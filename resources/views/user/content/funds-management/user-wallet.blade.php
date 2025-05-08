@@ -27,22 +27,23 @@
         <div
             class="grid grid-cols-2 lg:grid-cols-3 border rounded-lg gap-4 justify-items-center px-4 py-6 shadow-[0px_-1px_10px_rgba(9,187,254,0.9),0px_2px_6px_rgba(0,0,0,0.1)] bg-white/20 backdrop-blur-sm ">
             <div class="flex items-center flex-col col-span-1 md:col-span-2 lg:col-span-1">
-                <div class="text-white">Account Balance</div>
+                <div class="text-white">Account Balance(NGN)</div>
                 <div class="text-lg md:text-2xl text-green-400 font-semibold">{{ number_format($wallet->acct_bal, 2) }}
-                    <span class="text-sm font-bold text-green-600 ">NGN</span>
+                    {{-- <span class="text-sm font-bold text-green-600 ">NGN</span> --}}
                 </div>
             </div>
             <div class="flex flex-col items-center ">
-                <div class="text-white">Main Wallet</div>
-                <div class="text-lg md:text-2xl text-green-400 font-semibold">0.00
-                    <span class="text-sm font-bold text-green-600 ">NGN</span>
+                <div class="text-white">Deposit(NGN)</div>
+                <div class="text-lg md:text-2xl text-green-400 font-semibold">
+                    {{ number_format($wallet->deposit_wallet, 2) }}
+                    {{-- <span class="text-sm font-bold text-green-600 ">NGN</span> --}}
                 </div>
             </div>
 
             <div class="flex flex-col items-center mt-3 md:mt-0 col-span-2 md:col-span-1">
-                <div class="text-white">Commission Wallet</div>
-                <div class="text-lg md:text-2xl text-green-400 font-semibold">0.00
-                    <span class="text-sm font-bold text-green-600 ">NGN</span>
+                <div class="text-white">Commission Wallet(NGN)</div>
+                <div class="text-lg md:text-2xl text-green-400 font-semibold">{{ number_format($wallet->com_wallet, 2) }}
+                    {{-- <span class="text-sm font-bold text-green-600 ">NGN</span> --}}
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Level;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,12 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wallets', function (Blueprint $table) {
+        Schema::create('level_subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->integer('acct_bal')->default(0);
-            $table->integer('deposit_wallet')->default(0);
-            $table->integer('com_wallet')->default(0);
+            $table->foreignIdFor(User::class)->nullable();
+            $table->foreignIdFor(Level::class)->nullable();
+            $table->string('sub_amount')->nullable();
+            $table->enum('status', ['expired', 'active'])->default('active');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wallets');
+        Schema::dropIfExists('level_subscriptions');
     }
 };

@@ -94,6 +94,18 @@
                                     </div>
                                 </div>
 
+                                <div class="w-full">
+                                    <label for="" class="text-base font-medium text-gray-900">
+                                        Invitation Code
+                                    </label>
+
+                                    <div class="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
+                                        <input type="text" name="referral_code"
+                                            placeholder="Enter your invitation code"
+                                            class="block w-full py-2.5 pl-5 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600" />
+                                    </div>
+                                </div>
+
                                 <div class="text-center">
                                     <button type="submit"
                                         class="inline-flex items-center justify-center px-8 py-2 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-md focus:outline-none hover:bg-blue-700 focus:bg-blue-700">

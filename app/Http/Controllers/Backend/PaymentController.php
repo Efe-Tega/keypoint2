@@ -76,14 +76,16 @@ class PaymentController extends Controller
             if ($transaction) {
                 $transaction->status = strtolower($status);
                 $transaction->save();
+            }
+
+            if ($status === 'PAID') {
 
                 $user = Auth::user();
                 $walletUpdate = Wallet::where('user_id', $user->id)->first();
                 $walletUpdate->acct_bal += $transaction->amount;
+                // $walletUpdate->deposit_wallet += $transaction->amount;
                 $walletUpdate->save();
-            }
 
-            if ($status === 'PAID') {
                 return view('user.content.deposit.callback', ['message' => 'Payment successful']);
             } else {
 

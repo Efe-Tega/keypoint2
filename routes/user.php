@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
     // == Level Controller
     Route::controller(LevelController::class)->group(function () {
         Route::get('/view-levels', 'viewLevels')->name('view.levels');
+
+        Route::post('/upgrade-level', 'upgradeLevel')->name('upgrade.level');
     });
 
     // == Deposit Controller

@@ -63,22 +63,20 @@ Route::controller(PaymentController::class)->group(function () {
 });
 
 
-// Route::get('/run-queue', function () {
-//     while (true) {
-//         Artisan::call('queue:work --once');
+Route::get('/run-queue', function () {
+    while (true) {
+        Artisan::call('queue:work --once');
 
-//         // Check if there's more work to do
-//         if (!\Queue::size()) {
-//             break;
-//         }
+        // Check if there's more work to do
+        if (!\Queue::size()) {
+            break;
+        }
 
-//         sleep(1);
-//     }
+        sleep(1);
+    }
 
-//     return response()->json(['status' => 'all available jobs processed']);
-// });
-
-
+    return response()->json(['status' => 'all available jobs processed']);
+});
 
 require base_path('routes/user.php');
 require base_path('routes/admin.php');

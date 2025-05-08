@@ -19,6 +19,19 @@
     </header>
 
     <section>
+        @if (session('error'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        icon: 'warning',
+                        text: '{{ session('error') }}',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    });
+                });
+            </script>
+        @endif
+
         <div class="container mx-auto px-4 mb-10">
             <!-- Balance info -->
             <div class="py-6 flex justify-between items-center">

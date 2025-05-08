@@ -11,7 +11,7 @@
         </div>
     </section>
 
-    <section class="container mx-auto px-4 py-2.5 lg:py-16">
+    <section class="container mx-auto px-4 py-2.5 lg:py-8">
         <div class="px-4 py-6 rounded-lg bg-white">
             <div class="grid grid-cols-4 gap-10">
                 <a href="{{ route('recharge') }}">
@@ -98,7 +98,7 @@
     </section>
 
     <!-- Task Hall -->
-    <section id="task-hall" class="container px-4 mx-auto py-2.5">
+    <section id="task-hall" class="container px-4 mx-auto py-2.5 lg:py-8">
         <div class="px-4  bg-white py-3 rounded-lg">
             <h1 class="text-2xl font-semibold">Task Hall</h1>
 
@@ -146,8 +146,8 @@
     @endphp
 
     <!-- Membership List -->
-    <section class="container mx-auto px-4 pt-3">
-        <div class="bg-white px-4 rounded-t-lg">
+    <section class="bg-white container mx-auto px-4 mt-8">
+        <div class="">
             <h1 class="text-2xl font-semibold py-3">Membership List</h1>
 
             <div class="w-full overflow-hidden">

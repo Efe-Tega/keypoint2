@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wallets', function (Blueprint $table) {
+        Schema::create('referrals', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->integer('acct_bal')->default(0);
-            $table->integer('deposit_wallet')->default(0);
-            $table->integer('com_wallet')->default(0);
+            $table->foreignIdFor('user_id')->constrained()->onDelete('cascade');
+            $table->foreignIdFor('referred_by')->constrained('users')->onDelete('cascade');
+            $table->decimal('referral_earnings', 10, 2)->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wallets');
+        Schema::dropIfExists('referrals');
     }
 };

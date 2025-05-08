@@ -74,12 +74,12 @@ class AccountController extends Controller
         $acctName = $request->acct_name;
 
         if ($fullname !== $acctName) {
-            $notify = array(
-                'message' => 'Account Name does not match with Real Name',
-                'alert-type' => 'warning'
+            $infoNotify = array(
+                'message' => 'Contact Support to correct Real Name',
+                'alert-type' => 'info'
             );
 
-            return redirect()->back()->with($notify);
+            return redirect()->back()->with($infoNotify);
         }
 
         if ($userId) {

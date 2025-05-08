@@ -7,6 +7,7 @@ use App\Models\Earning;
 use App\Models\PendingTask;
 use App\Models\TaskVideo;
 use App\Models\User;
+use App\Models\Wallet;
 use App\Models\WatchedVideo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -78,6 +79,9 @@ class TaskController extends Controller
         $earning->today_earning += $taskData->level->reward_amount;
         $earning->save();
 
+        $wallet = Wallet::where('user_id', $user->id)->first();
+        $wallet->com_wallet += $taskData->level->reward_amount;
+        $wallet->save();
 
         PendingTask::where('task_video_id', $taskId)->delete();
 

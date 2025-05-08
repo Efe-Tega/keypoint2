@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\BankInfo;
 use App\Models\Earning;
+use App\Models\LevelSubscription;
 use App\Models\User;
 use App\Models\UserTask;
 use App\Models\Wallet;
@@ -69,6 +70,7 @@ class UserController extends Controller
         UserTask::create(['user_id' => $userId]);
         Wallet::create(['user_id' => $userId]);
         Earning::create(['user_id' => $userId]);
+        LevelSubscription::create(['user_id' => $userId]);
 
         $notification = array(
             'message' => 'Account Created Successfully',

@@ -381,6 +381,11 @@
                     message.textContent = '⚠️ Password does not match!';
                     message.style.color = "yellow";
                 }
+
+                if (newPass === confirmPass) {
+                    message.textContent = '100% Match ✅'
+                    message.style.color = "green"
+                }
             }
 
             newPassword.addEventListener("input", comparePassword);
