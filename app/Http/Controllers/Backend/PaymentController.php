@@ -89,8 +89,15 @@ class PaymentController extends Controller
                 $referral = Referral::where('user_id', $user->id)->first();
 
                 if ($referral) {
-                    $referral->referral_earnings = $transaction->amount * 0.10;
+                    $percentage = $transaction->amount * 0.10;
+                    $referral->referral_earnings = $percentage;
                     $referral->save();
+
+                    $wallet = Wallet::where('user_id', $referral->referred_by)->first();
+
+                    $wallet->referral_bal += $percentage;
+                    $wallet->com_wallet += $percentage;
+                    $wallet->save();
                 }
 
                 return view('user.content.deposit.callback', ['message' => 'Payment successful']);

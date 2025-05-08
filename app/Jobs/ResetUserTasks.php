@@ -37,7 +37,7 @@ class ResetUserTasks implements ShouldQueue
             $taskCount = 0;
 
             if ($user->level_id == 1) {
-                $taskCount = 1;
+                $taskCount = 0;
             } elseif ($user->level_id == 2) {
                 $taskCount = 5;
             } elseif ($user->level_id == 3) {

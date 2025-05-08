@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->integer('acct_bal')->default(0);
             $table->integer('deposit_wallet')->default(0);
+            $table->integer('referral_bal')->default(0);
             $table->integer('com_wallet')->default(0);
             $table->timestamps();
         });

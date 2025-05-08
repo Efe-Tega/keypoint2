@@ -29,13 +29,13 @@
                         <div class="mt-1 relative text-gray-400 focus-within:text-gray-600">
                             <select name="" id=""
                                 class="block w-full py-2 pl-5 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600">
-                                <option value="" disabled selected class="text-sm">
+                                <option value="" disabled selected class="text-xs md:text-sm">
                                     -- Select Withdraw --
                                 </option>
-                                <option value="" class="text-sm">Opay</option>
-                                <option value="" class="text-sm">PalmPay</option>
-                                <option value="" class="text-sm">Moniepoint</option>
-                                <option value="" class="text-sm">Kuda</option>
+                                <option value="" class="text-xs md:text-sm">Opay</option>
+                                <option value="" class="text-xs md:text-sm">PalmPay</option>
+                                <option value="" class="text-xs md:text-sm">Moniepoint</option>
+                                <option value="" class="text-xs md:text-sm">Kuda</option>
                             </select>
                         </div>
                     </div>
@@ -50,7 +50,8 @@
                                 class="block w-full py-2 pl-5 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600">
 
                                 <option value="" class="text-xs md:text-sm lg:text-base">Main Wallet [0.00]</option>
-                                <option value="" class="text-xs md:text-sm lg:text-base">Commission Wallet [0.00]
+                                <option value="" class="text-xs md:text-sm lg:text-base">Commission Wallet
+                                    [{{ number_format($wallet->com_wallet, 2) }}]
                                 </option>
 
                             </select>
@@ -61,7 +62,8 @@
 
             <div class="bg-backgroundDark">
                 <div class="flex  py-3 justify-around container mx-auto px-4 ">
-                    <h1 class="text-white">Current wallet balance NGN 200, you can only withdraw 1 time daily</h1>
+                    <h1 class="text-white">Current wallet balance NGN {{ number_format($wallet->com_wallet) }}, you can
+                        only withdraw 1 time daily</h1>
                 </div>
             </div>
 
@@ -83,14 +85,14 @@
             <div class="bg-backgroundDark py-1"></div>
 
             <div class="grid grid-cols-4 bg-white/20 backdrop-blur-sm ">
-                <x-tile data-amount="10">10</x-tile>
-                <x-tile data-amount="100">100</x-tile>
-                <x-tile data-amount="500">500</x-tile>
-                <x-tile data-amount="1000">1000</x-tile>
-                <x-tile data-amount="30000">30000</x-tile>
-                <x-tile data-amount="50000">50000</x-tile>
+                <x-tile data-amount="1500">1500</x-tile>
+                <x-tile data-amount="4500">4500</x-tile>
+                <x-tile data-amount="15000">15000</x-tile>
                 <x-tile data-amount="120000">120000</x-tile>
-                <x-tile data-amount="1000000" class="text-sm">1000000</x-tile>
+                <x-tile data-amount="900000" class="text-sm">900000</x-tile>
+                <x-tile data-amount="2000000" class="text-sm">2000000</x-tile>
+                <x-tile data-amount="7000000" class="text-sm">7000000</x-tile>
+                <x-tile data-amount="14000000" class="text-sm">14000000</x-tile>
             </div>
 
             <div class="container mx-auto px-4 py-8">

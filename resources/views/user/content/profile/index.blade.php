@@ -111,7 +111,7 @@
             </div>
             <div class="flex flex-col text-center py-3">
                 <p class="text-xs md:text-sm lg:text-lg">Referral Rewards</p>
-                <p class="text-green-500 font-semibold">0.00</p>
+                <p class="text-green-500 font-semibold">{{ $wallet->referral_bal }}</p>
             </div>
         </div>
     </section>

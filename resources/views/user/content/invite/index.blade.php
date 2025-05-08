@@ -19,7 +19,7 @@
                 </div>
                 <div class="text-lg md:text-xl text-white mb-6">invited you to join KPE</div>
                 <div class="flex justify-center mb-6">
-                    <img src={{ 'https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://www.solsticecoreonline.com/register?ref=' . $user->referral_code }}
+                    <img src={{ 'https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=' . config('app.url') . '/user-registration?ref=' . $user->referral_code }}
                         alt="QR Code" class="w-40 h-40 bg-white rounded-md shadow-md">
                 </div>
                 <div class="text-xl text-white font-semibold mb-2">Referral Code: <span
@@ -34,8 +34,8 @@
                     <span id="copy-referral-label">Copy Referral Code</span>
                 </button>
                 <div class="text-white text-lg mb-2">
-                    <a href={{ config('app.url') . '/register?ref=' . $user->referral_code }} id="invite-link"
-                        class="break-all underline hover:text-deepViolet transition">{{ config('app.url') . '/register?ref=' . $user->referral_code }}</a>
+                    <a href={{ config('app.url') . '/user-registration?ref=' . $user->referral_code }} id="invite-link"
+                        class="break-all underline hover:text-deepViolet transition">{{ config('app.url') . '/user-registration?ref=' . $user->referral_code }}</a>
                 </div>
                 <button onclick="copyInviteLink()"
                     class="flex items-center text-purple-400 hover:text-purpleBg mb-6 transition">

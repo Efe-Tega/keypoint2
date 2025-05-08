@@ -126,14 +126,21 @@
                                 </div>
 
                                 <div class="text-right">
-                                    <button type="button" data-level-id="{{ $levels[1]->id }}"
-                                        data-level-name="{{ $levels[1]->level }}"
-                                        data-upgrade-amount ="{{ number_format($levels[1]->upgrade_amount) }}"
-                                        onclick="openUpgradeModal(this)"
-                                        class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
-                                        <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
-                                        Join Now
-                                    </button>
+                                    @if ($user->level_id === 2)
+                                        <span
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            Current Level
+                                        </span>
+                                    @else
+                                        <button type="button" data-level-id="{{ $levels[1]->id }}"
+                                            data-level-name="{{ $levels[1]->level }}"
+                                            data-upgrade-amount ="{{ number_format($levels[1]->upgrade_amount) }}"
+                                            onclick="openUpgradeModal(this)"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
+                                            Join Now
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -209,10 +216,21 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <span
-                                        class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-indigo-400 text-white">
-                                        Current
-                                    </span>
+                                    @if ($user->level_id === 3)
+                                        <span
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            Current Level
+                                        </span>
+                                    @else
+                                        <button type="button" data-level-id="{{ $levels[2]->id }}"
+                                            data-level-name="{{ $levels[2]->level }}"
+                                            data-upgrade-amount ="{{ number_format($levels[2]->upgrade_amount) }}"
+                                            onclick="openUpgradeModal(this)"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-indigo-400 text-white">
+                                            <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
+                                            Join Now
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -288,12 +306,21 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="button" data-level-id="{{ $levels[3]->id }}"
-                                        onclick="openUpgradeModal(this)"
-                                        class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
-                                        <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
-                                        Join Now
-                                    </button>
+                                    @if ($user->level_id === 4)
+                                        <span
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            Current Level
+                                        </span>
+                                    @else
+                                        <button type="button" data-level-id="{{ $levels[3]->id }}"
+                                            data-level-name="{{ $levels[3]->level }}"
+                                            data-upgrade-amount ="{{ number_format($levels[3]->upgrade_amount) }}"
+                                            onclick="openUpgradeModal(this)"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
+                                            Join Now
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -367,12 +394,21 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="button" data-level-id="{{ $levels[4]->id }}"
-                                        onclick="openUpgradeModal(this)"
-                                        class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
-                                        <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
-                                        Join Now
-                                    </button>
+                                    @if ($user->level_id === 5)
+                                        <span
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            Current Level
+                                        </span>
+                                    @else
+                                        <button type="button" data-level-id="{{ $levels[4]->id }}"
+                                            data-level-name="{{ $levels[4]->level }}"
+                                            data-upgrade-amount ="{{ number_format($levels[4]->upgrade_amount) }}"
+                                            onclick="openUpgradeModal(this)"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
+                                            Join Now
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -446,12 +482,21 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="button" data-level-id="{{ $levels[5]->id }}"
-                                        onclick="openUpgradeModal(this)"
-                                        class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
-                                        <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
-                                        Join Now
-                                    </button>
+                                    @if ($user->level_id === 6)
+                                        <span
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            Current Level
+                                        </span>
+                                    @else
+                                        <button type="button" data-level-id="{{ $levels[5]->id }}"
+                                            data-level-name="{{ $levels[5]->level }}"
+                                            data-upgrade-amount ="{{ number_format($levels[5]->upgrade_amount) }}"
+                                            onclick="openUpgradeModal(this)"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
+                                            Join Now
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -521,12 +566,21 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="button" data-level-id="{{ $levels[6]->id }}"
-                                        onclick="openUpgradeModal(this)"
-                                        class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
-                                        <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
-                                        Join Now
-                                    </button>
+                                    @if ($user->level_id === 7)
+                                        <span
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            Current Level
+                                        </span>
+                                    @else
+                                        <button type="button" data-level-id="{{ $levels[6]->id }}"
+                                            data-level-name="{{ $levels[6]->level }}"
+                                            data-upgrade-amount ="{{ number_format($levels[6]->upgrade_amount) }}"
+                                            onclick="openUpgradeModal(this)"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
+                                            Join Now
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -596,12 +650,21 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="button" data-level-id="{{ $levels[7]->id }}"
-                                        onclick="openUpgradeModal(this)"
-                                        class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
-                                        <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
-                                        Join Now
-                                    </button>
+                                    @if ($user->level_id === 8)
+                                        <span
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            Current Level
+                                        </span>
+                                    @else
+                                        <button type="button" data-level-id="{{ $levels[7]->id }}"
+                                            data-level-name="{{ $levels[7]->level }}"
+                                            data-upgrade-amount ="{{ number_format($levels[7]->upgrade_amount) }}"
+                                            onclick="openUpgradeModal(this)"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
+                                            Join Now
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -672,12 +735,21 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="button" data-level-id="{{ $levels[8]->id }}"
-                                        onclick="openUpgradeModal(this)"
-                                        class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
-                                        <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
-                                        Join Now
-                                    </button>
+                                    @if ($user->level_id === 9)
+                                        <span
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            Current Level
+                                        </span>
+                                    @else
+                                        <button type="button" data-level-id="{{ $levels[8]->id }}"
+                                            data-level-name="{{ $levels[8]->level }}"
+                                            data-upgrade-amount ="{{ number_format($levels[8]->upgrade_amount) }}"
+                                            onclick="openUpgradeModal(this)"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
+                                            Join Now
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -733,7 +805,6 @@
                 @endisset
 
                 @isset($levels[9])
-                    <!-- Continue with VIP4-VIP9 with similar structure but increasing values -->
                     <!-- Example for VIP9 (Supreme) -->
                     <div class="bg-white rounded-xl shadow-sm overflow-hidden">
                         <div class="bg-gradient-to-r from-yellow-300 to-amber-500 px-6 py-4">
@@ -748,12 +819,21 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="button" data-level-id="{{ $levels[9]->id }}"
-                                        onclick="openUpgradeModal(this)"
-                                        class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-400 text-white">
-                                        <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
-                                        Join Now
-                                    </button>
+                                    @if ($user->level_id === 10)
+                                        <span
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-yellow-400 text-white">
+                                            Current Level
+                                        </span>
+                                    @else
+                                        <button type="button" data-level-id="{{ $levels[9]->id }}"
+                                            data-level-name="{{ $levels[9]->level }}"
+                                            data-upgrade-amount ="{{ number_format($levels[9]->upgrade_amount) }}"
+                                            onclick="openUpgradeModal(this)"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-yellow-400 text-white">
+                                            <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
+                                            Join Now
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
