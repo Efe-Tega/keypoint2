@@ -84,7 +84,7 @@
                     </div>
                 </a>
 
-                <a href="">
+                <a href="{{ route('user.invite') }}">
                     <div class="flex flex-col items-center text-center space-y-1.5">
                         <div class="bg-backgroundLight p-3 rounded-lg hover:-translate-y-0.5 transition-all duration-300">
                             <img src="{{ asset('backend/assets/svg/gift.svg') }}" alt=""

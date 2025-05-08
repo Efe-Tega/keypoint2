@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BankInfo;
 use App\Models\Earning;
 use App\Models\LevelSubscription;
+use App\Models\Referral;
 use App\Models\User;
 use App\Models\UserTask;
 use App\Models\Wallet;
@@ -45,7 +46,8 @@ class UserController extends Controller
 
     public function userRegistration(Request $request)
     {
-        return view('auth.user-registration');
+        $referralCode = $request->query('ref');
+        return view('auth.user-registration', compact('referralCode'));
     }
 
     public function register(Request $request)
@@ -65,6 +67,18 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'created_at' => Carbon::now()
         ]);
+
+        if ($request->filled('referral_code')) {
+            $referrer = User::where('referral_code', $request->referral_code)->first();
+
+            if ($referrer) {
+                Referral::insert([
+                    'user_id' => $userId,
+                    'referred_by' => $referrer->id,
+                    'created_at' => Carbon::now(),
+                ]);
+            }
+        }
 
         BankInfo::insert(['user_id' => $userId]);
         UserTask::create(['user_id' => $userId]);

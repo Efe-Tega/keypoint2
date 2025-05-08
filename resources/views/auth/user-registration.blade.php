@@ -100,7 +100,7 @@
                                     </label>
 
                                     <div class="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
-                                        <input type="text" name="referral_code"
+                                        <input type="text" name="referral_code" value="{{ $referralCode ?? '' }}"
                                             placeholder="Enter your invitation code"
                                             class="block w-full py-2.5 pl-5 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600" />
                                     </div>

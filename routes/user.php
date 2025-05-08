@@ -12,6 +12,7 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(NavigationController::class)->group(function () {
         Route::get('/account', 'account')->name('account');
+        Route::get('/user-invite', 'userInvitation')->name('user.invite');
     });
 
     Route::controller(AccountController::class)

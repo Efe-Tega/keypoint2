@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Jobs\ExpireTransaction;
 use App\Models\DepositTransaction;
+use App\Models\Referral;
 use App\Models\Wallet;
 use App\Services\MonnifyService;
 use Carbon\Carbon;
@@ -83,8 +84,14 @@ class PaymentController extends Controller
                 $user = Auth::user();
                 $walletUpdate = Wallet::where('user_id', $user->id)->first();
                 $walletUpdate->acct_bal += $transaction->amount;
-                // $walletUpdate->deposit_wallet += $transaction->amount;
                 $walletUpdate->save();
+
+                $referral = Referral::where('user_id', $user->id)->first();
+
+                if ($referral) {
+                    $referral->referral_earnings = $transaction->amount * 0.10;
+                    $referral->save();
+                }
 
                 return view('user.content.deposit.callback', ['message' => 'Payment successful']);
             } else {

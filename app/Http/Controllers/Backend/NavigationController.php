@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Earning;
 use App\Models\TaskVideo;
+use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WatchedVideo;
 use Illuminate\Http\Request;
@@ -29,5 +30,13 @@ class NavigationController extends Controller
         $earning = Earning::where('user_id', $user->id)->first();
         $wallet = Wallet::where('user_id', $user->id)->first();
         return view('user.content.profile.index', compact('user', 'earning', 'wallet'));
+    }
+
+    public function userInvitation(Request $request)
+    {
+        $userId = Auth::user()->id;
+        $user = User::where('id', $userId)->first();
+
+        return view('user.content.invite.index', compact('user'));
     }
 }

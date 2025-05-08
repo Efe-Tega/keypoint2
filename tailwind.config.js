@@ -38,6 +38,10 @@ export default {
                 backgroundLight: '#f1f5f9',
                 backgroundDark: '#0F171C',
                 primaryGradient: 'linear-gradient(90deg, rgba(9,187,254,1) 0%, rgba(90,66,236,1) 100%)',
+                darkBlue: '#15344A',
+                darkerBlue: '#102535',
+                primary: '#2B7A78',
+                accent: '#3AAFA9',
             },
             scrollBehavior: ['smooth'],
             fontFamily: {
