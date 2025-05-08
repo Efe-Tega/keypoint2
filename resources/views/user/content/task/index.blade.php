@@ -1,4 +1,7 @@
 @extends('user.user-main')
+@section('title')
+    {{ __('Tasks') }}
+@endsection
 @section('user-content')
     <header class="bg-backgroundLight">
         <x-navigation>

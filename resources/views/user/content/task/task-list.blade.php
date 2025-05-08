@@ -1,4 +1,9 @@
 @extends('user.user-main')
+
+@section('title')
+    {{ __('Task List') }}
+@endsection
+
 @section('user-content')
     <x-navigation>
         <x-slot:heading>Task List</x-slot:heading>

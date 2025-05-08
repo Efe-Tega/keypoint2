@@ -1,5 +1,9 @@
 @extends('user.user-main')
 
+@section('title')
+{{__('Daily Report')}}
+@endsection
+
 @section('user-content')
     <header class="bg-backgroundLight">
         <x-navigation>

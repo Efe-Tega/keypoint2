@@ -1,4 +1,7 @@
 @extends('user.user-main')
+@section('title')
+    {{ __('Account Record') }}
+@endsection
 @section('user-content')
     <header class="bg-backgroundLight">
         <x-navigation>

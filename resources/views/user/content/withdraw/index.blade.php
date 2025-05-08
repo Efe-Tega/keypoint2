@@ -1,4 +1,7 @@
 @extends('user.user-main')
+@section('title')
+    {{ __('Withdrawal') }}
+@endsection
 @section('user-content')
     <header class="bg-backgroundLight">
         <nav class="p-4 container mx-auto">

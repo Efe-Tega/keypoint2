@@ -1,4 +1,7 @@
 @extends('user.user-main')
+@section('title')
+    {{ __('Recharge Amount') }}
+@endsection
 @section('user-content')
     <header class="bg-backgroundLight">
         <nav class="p-4 container mx-auto">

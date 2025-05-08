@@ -1,4 +1,9 @@
 @extends('user.user-main')
+
+@section('title')
+    {{ __('Level System') }}
+@endsection
+
 @section('user-content')
     <x-navigation>
         <x-slot:heading>Level System</x-slot:heading>

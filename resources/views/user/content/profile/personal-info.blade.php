@@ -1,5 +1,9 @@
 @extends('user.user-main')
 
+@section('title')
+    {{ __('Personal Information') }}
+@endsection
+
 @section('user-content')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 

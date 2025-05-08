@@ -14,7 +14,7 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 
-    <title>Video Player</title>
+    <title>Task Details | KeyPoint</title>
 
     @vite('resources/css/app.css')
 </head>

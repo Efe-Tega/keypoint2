@@ -1,5 +1,9 @@
 @extends('user.user-main')
 
+@section('title')
+    {{ __('Home Page') }}
+@endsection
+
 @section('user-content')
     @include('user.include.header')
 
