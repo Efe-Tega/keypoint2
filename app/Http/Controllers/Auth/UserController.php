@@ -93,4 +93,6 @@ class UserController extends Controller
 
         return redirect('/login')->with($notification);
     }
+
+    public function userLogout() {}
 }

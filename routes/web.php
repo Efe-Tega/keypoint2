@@ -37,8 +37,10 @@ Route::get('/run-schedule', function (Request $request) {
 // === User Authentication ===
 Route::controller(UserController::class)->group(function () {
     Route::get('/login', 'showLogin')->name('login');
-    Route::post('/login', 'login');
     Route::get('/user-registration', 'userRegistration')->name('user.registration');
+    Route::get('/user-logout', 'userLogout')->name('user.logout');
+
+    Route::post('/login', 'login');
     Route::post('/register', 'register')->name('register');
 });
 

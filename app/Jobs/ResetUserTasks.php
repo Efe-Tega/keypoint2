@@ -61,6 +61,12 @@ class ResetUserTasks implements ShouldQueue
             $user->remaining_task = $taskCount;
             $user->task_completed = 0;
             $user->save();
+
+            if ($today->isSunday()) {
+                $user->remaining_task = 0;
+                $user->task_completed = 0;
+                $user->save();
+            }
         }
 
         foreach ($earnings as $earning) {
