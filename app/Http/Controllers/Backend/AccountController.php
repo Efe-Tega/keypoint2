@@ -7,6 +7,7 @@ use App\Models\BankInfo;
 use App\Models\DepositTransaction;
 use App\Models\User;
 use App\Models\Wallet;
+use App\Models\WithdrawTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -120,7 +121,8 @@ class AccountController extends Controller
         $user = Auth::user();
         $wallet = Wallet::where('user_id', $user->id)->first();
         $transactions = DepositTransaction::where('user_id', $user->id)->latest()->get();
-        return view('user.content.funds-management.user-wallet', compact('wallet', 'transactions'));
+        $withdraws = WithdrawTransaction::where('user_id', $user->id)->latest()->get();
+        return view('user.content.funds-management.user-wallet', compact('wallet', 'transactions', 'withdraws'));
     }
 
     public function changePassword(Request $request)

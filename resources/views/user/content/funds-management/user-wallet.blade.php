@@ -28,15 +28,15 @@
 
     <section class="py-5 container mx-auto px-4">
         <div
-            class="grid grid-cols-2 lg:grid-cols-3 border rounded-lg gap-4 justify-items-center px-4 py-6 shadow-[0px_-1px_10px_rgba(9,187,254,0.9),0px_2px_6px_rgba(0,0,0,0.1)] bg-white/20 backdrop-blur-sm ">
+            class="grid grid-cols-2 lg:grid-cols-3 border rounded-lg gap-4 justify-items-center px-2 py-4 md:py-6 shadow-[0px_-1px_10px_rgba(9,187,254,0.9),0px_2px_6px_rgba(0,0,0,0.1)] bg-white/20 backdrop-blur-sm ">
             <div class="flex items-center flex-col col-span-1 md:col-span-2 lg:col-span-1">
-                <div class="text-white">Account Balance(NGN)</div>
+                <div class="text-white text-center sm:text-sm md:text-base"> Balance(NGN)</div>
                 <div class="text-lg md:text-2xl text-green-400 font-semibold">{{ number_format($wallet->acct_bal, 2) }}
                     {{-- <span class="text-sm font-bold text-green-600 ">NGN</span> --}}
                 </div>
             </div>
             <div class="flex flex-col items-center ">
-                <div class="text-white">Deposit(NGN)</div>
+                <div class="text-white sm:text-sm md:text-base">Deposit(NGN)</div>
                 <div class="text-lg md:text-2xl text-green-400 font-semibold">
                     {{ number_format($wallet->deposit_wallet, 2) }}
                     {{-- <span class="text-sm font-bold text-green-600 ">NGN</span> --}}
@@ -44,7 +44,7 @@
             </div>
 
             <div class="flex flex-col items-center mt-3 md:mt-0 col-span-2 md:col-span-1">
-                <div class="text-white">Commission Wallet(NGN)</div>
+                <div class="text-white">Commission Wallet</div>
                 <div class="text-lg md:text-2xl text-green-400 font-semibold">{{ number_format($wallet->com_wallet, 2) }}
                     {{-- <span class="text-sm font-bold text-green-600 ">NGN</span> --}}
                 </div>
@@ -94,7 +94,35 @@
                 </div>
 
                 <div id="page2" class="section">
-                    <h2 class="text-white"">Page 2 Content</h2>
+                    @foreach ($withdraws as $withdraw)
+                        <div class="flex bg-white/50 backdrop-blur-sm justify-between p-1.5 gap-3 mb-3">
+
+                            <div class="flex space-x-1 justify-center items-center">
+                                <div class="bg-purpleBg text-white rounded-full px-2 text-lg">+</div>
+                                <div class="space-y-1">
+                                    <div id="tranId" class="text-xs">{{ $withdraw->trans_id }}</div>
+                                    @if ($withdraw->status === 'success')
+                                        <div id="amount" class="text-base font-semibold text-green-800">
+                                            {{ number_format($withdraw->amount) }} NGN</div>
+                                    @else
+                                        <div id="amount" class="text-base font-semibold text-red-800">
+                                            {{ number_format($withdraw->amount) }} NGN</div>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col items-end">
+                                <div id="date" class="text-xs">{{ $withdraw->created_at }}</div>
+                                @if ($withdraw->status === 'success')
+                                    <div id="status" class="text-base font-semibold text-green-900">Successful</div>
+                                @elseif ($withdraw->status === 'pending')
+                                    <div id="status" class="text-base font-semibold text-yellow-200">Pending...</div>
+                                @else
+                                    <div id="status" class="text-base font-semibold text-red-900">Withdraw Failed</div>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

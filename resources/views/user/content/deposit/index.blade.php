@@ -39,7 +39,7 @@
             <!-- Balance info -->
             <div class="py-6 flex justify-between items-center">
                 <div class="font-semibold md:text-2xl text-sm">Available Balance</div>
-                <div class="text-3xl text-green-600 font-bold">{{ number_format($wallet->com_wallet, 2) }}
+                <div class="text-lg md:text-3xl text-green-600 font-bold">{{ number_format($wallet->com_wallet, 2) }}
                     <span class="text-sm"> NGN</span>
                 </div>
             </div>
