@@ -20,27 +20,77 @@
     </header>
 
     <section class="">
-        <form action="/home" method="post">
+        <form action="{{ route('withdraw.request') }}" method="post">
+            @csrf
+
+
+            @if (session('error'))
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: '{{ session('error') }}',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        });
+                    });
+                </script>
+            @elseif(session('success'))
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: '{{ session('success') }}',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        });
+                    });
+                </script>
+            @endif
+
+            @if (session('withdrawal_limit'))
+                <script>
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Withdrawal Limit Exceeded',
+                        text: '{{ session('withdrawal_limit') }}',
+                    });
+                </script>
+            @endif
+
+
             <div class="container mx-auto px-4 py-8">
 
                 <div class="lg:flex lg:gap-6 space-y-4 lg:space-y-0 bg-white/20 backdrop-blur-sm px-5 py-8 rounded-xl">
                     <div class="w-full">
                         <label for="" class="font-medium text-sm text-white">
-                            Withdrawal Method
+                            Withdrawal Account
                         </label>
 
+                        @php
+                            $bankParts = [];
+                            if (!empty($bankInfo->bank_name)) {
+                                $bankParts[] = '[ ' . $bankInfo->bank_name . ' ]';
+                            }
+                            if (!empty($bankInfo->acct_no)) {
+                                $bankParts[] = '[ ' . $bankInfo->acct_no . ' ]';
+                            }
+                            if (!empty($bankInfo->acct_name)) {
+                                $bankParts[] = '[ ' . $bankInfo->acct_name . ' ]';
+                            }
+                            $bankString = implode(' ', $bankParts);
+                        @endphp
+
                         <div class="mt-1 relative text-gray-400 focus-within:text-gray-600">
-                            <select name="" id=""
-                                class="block w-full py-2 pl-5 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600">
-                                <option value="" disabled selected class="text-xs md:text-sm">
-                                    -- Select Withdraw --
-                                </option>
-                                <option value="" class="text-xs md:text-sm">Opay</option>
-                                <option value="" class="text-xs md:text-sm">PalmPay</option>
-                                <option value="" class="text-xs md:text-sm">Moniepoint</option>
-                                <option value="" class="text-xs md:text-sm">Kuda</option>
-                            </select>
+                            <input name="withdraw_acct" id="" value="{{ $bankString }}" readonly
+                                class="block w-full py-2 pl-5 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600" />
                         </div>
+
+                        @error('withdraw_acct')
+                            <span class="text-yellow-300">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="w-full">
@@ -49,13 +99,13 @@
                         </label>
 
                         <div class="mt-1 relative text-gray-400 focus-within:text-gray-600">
-                            <select name="" id=""
+                            <select name="wallet" id=""
                                 class="block w-full py-2 pl-5 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600">
 
-                                <option value="" class="text-xs md:text-sm lg:text-base">Main Wallet [0.00]</option>
-                                <option value="" class="text-xs md:text-sm lg:text-base">Commission Wallet
-                                    [{{ number_format($wallet->com_wallet, 2) }}]
+                                <option value="2" class="text-xs md:text-sm lg:text-base">Commission Wallet
+                                    [{{ number_format($wallet->com_wallet, 2) }} NGN]
                                 </option>
+                                <option value="1" class="text-xs md:text-sm lg:text-base">Main Wallet [0.00]</option>
 
                             </select>
                         </div>
@@ -65,7 +115,7 @@
 
             <div class="bg-backgroundDark">
                 <div class="flex  py-3 justify-around container mx-auto px-4 ">
-                    <h1 class="text-white">Current wallet balance NGN {{ number_format($wallet->com_wallet) }}, you can
+                    <h1 class="text-white">Current wallet balance NGN {{ number_format($wallet->com_wallet) }}. You can
                         only withdraw 1 time daily</h1>
                 </div>
             </div>
@@ -77,10 +127,14 @@
                             Withdrawal Amount
                         </label>
                         <div class="mt-1 relative text-gray-400 focus-within:text-gray-600">
-                            <input type="text" name="" id="amountInput" placeholder="Select withdraw amount below"
+                            <input type="text" name="amount" id="amountInput" placeholder="Select withdraw amount below"
                                 readonly
                                 class="block w-full py-2 pl-5 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600" />
                         </div>
+
+                        @error('amount')
+                            <span class="text-yellow-300">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -120,13 +174,13 @@
 
             amountBoxes.forEach(box => {
                 box.addEventListener("click", function() {
-                    // const amount = this.dataset.amount;
-                    // amountInput.value = `${amount} NGN`;
+                    const amount = this.dataset.amount;
+                    amountInput.value = `${amount}`;
 
-                    // === With Number format ===
-                    const rawAmount = this.dataset.amount;
-                    const formattedAmount = `${formatAmount(rawAmount)} NGN`;
-                    amountInput.value = formattedAmount;
+                    // // === With Number format ===
+                    // const rawAmount = this.dataset.amount;
+                    // const formattedAmount = `${formatAmount(rawAmount)}`;
+                    // amountInput.value = formattedAmount;
                 });
             });
 

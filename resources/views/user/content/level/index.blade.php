@@ -14,17 +14,6 @@
             <!-- Level Cards -->
             <div class="grid grid-cols-1 gap-4 sm:gap-6">
 
-                {{-- @if (session('success'))
-                    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-                        <div class="bg-white rounded-lg w-full max-w-md p-6 text-center">
-                            <h2 class="text-2xl font-semibold text-green-600 mb-4">Upgrade Successful!</h2>
-                            <div class="text-gray-700 mb-4">{{ session('success') }}</div>
-                            <button onclick="document.getElementById('successModal').classList.add('hidden')"
-                                class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">OK</button>
-                        </div>
-                    </div>
-                @endif --}}
-
                 @if (session('success'))
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {

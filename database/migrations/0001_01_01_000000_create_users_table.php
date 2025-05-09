@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('profile_pic')->nullable();
             $table->string('referral_code')->nullable();
             $table->tinyInteger('status')->default(1);
-            $table->integer('remaining_task')->default(10);
+            $table->integer('remaining_task')->default(1);
             $table->integer('task_completed')->default(0);
             $table->tinyInteger('withdraw_status')->default(1);
             $table->string('phone')->nullable();

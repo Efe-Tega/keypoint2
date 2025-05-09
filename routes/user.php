@@ -51,5 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(WithdrawController::class)->group(function () {
         Route::get('/withdraw', 'withdraw')->name('withdraw');
+
+        Route::post('/withdraw-request', 'withdrawRequest')->name('withdraw.request');
     });
 });
