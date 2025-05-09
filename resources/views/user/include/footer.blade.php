@@ -1,9 +1,15 @@
+@php
+    $route = Route::current()->getName();
+@endphp
+
 <footer class="bg-backgroundLight border-t-2 border-primaryLight rounded-t-3xl sticky bottom-0">
     <div class="flex container mx-auto px-4 justify-between">
-        <a href="{{ route('user.dashboard') }}" class="py-2 active:text-primaryDark nav-link">
-            <div class="flex flex-col items-center hover:text-primaryDark">
-                <svg viewBox="0 0 32 32" class="w-7 h-7 active:stroke-primaryDark hover:fill-primaryDark"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <a href="{{ route('user.dashboard') }}" class="py-2 nav-link">
+            <div
+                class="group flex flex-col items-center text-gray-500 hover:text-primaryDark {{ $route == 'user.dashboard' ? 'text-primaryDark font-semibold' : '' }}">
+                <svg viewBox="0 0 32 32"
+                    class="w-7 h-7 group-hover:fill-primaryDark group-hover:stroke-primaryDark {{ $route == 'user.dashboard' ? 'stroke-primaryDark fill-primaryDark' : '' }}""
+                    xmlns="http://www.w3.org/2000/svg">
                     <g id="SVGRepo_iconCarrier">
                         <path
                             d="M16 2.672l-5.331 5.331v-2.133h-4.265v6.398l-3.755 3.755 0.754 0.754 12.597-12.597 12.597 12.597 0.754-0.754-13.351-13.351zM7.47 6.937h2.132v2.132l-2.133 2.133v-4.265z">
@@ -14,8 +20,7 @@
                     </g>
                 </svg>
 
-                <!-- <img src="{{ asset('backend/assets/svg/home.svg') }}" alt="" class="w-7 h-7" /> -->
-                <span class="hover:text-primaryDark text-gray-500">Home</span>
+                <span class="group-hover:text-primaryDark">Home</span>
             </div>
         </a>
 
@@ -24,23 +29,72 @@
             $pendingTask = App\Models\PendingTask::where('user_id', $user->id)->first();
         @endphp
 
+
+
         <div class="flex flex-col items-center">
             <a href="{{ route('task.list', ['id' => $pendingTask->id ?? 0]) }}" class="py-2">
-                <img src="{{ asset('backend/assets/svg/tasks.svg') }}" alt="" class="w-7 h-7" />
-                <span class="text-gray-500">Task</span>
+
+                <div
+                    class="group flex flex-col items-center text-gray-500 hover:text-primaryDark {{ $route == 'task.list' ? 'text-primaryDark font-semibold' : '' }}">
+                    <svg viewBox="0 0 28 28"
+                        class="w-7 h-7 group-hover:fill-primaryDark group-hover:stroke-primaryDark {{ $route == 'task.list' ? 'fill-primaryDark stroke-primaryDark' : '' }} "
+                        xmlns="http://www.w3.org/2000/svg">
+
+                        <g id="SVGRepo_iconCarrier">
+                            <path
+                                d="M4 5.25C4 3.45508 5.45507 2 7.25 2H20.75C22.5449 2 24 3.45507 24 5.25V17.3787C23.8796 17.4592 23.7653 17.5527 23.659 17.659L22.5 18.818V5.25C22.5 4.2835 21.7165 3.5 20.75 3.5H7.25C6.2835 3.5 5.5 4.2835 5.5 5.25V22.7497C5.5 23.7162 6.2835 24.4997 7.25 24.4997H15.3177L16.8177 25.9997H7.25C5.45507 25.9997 4 24.5446 4 22.7497V5.25Z"
+                                fill="#212121"></path>
+                            <path
+                                d="M10.5 8.75C10.5 9.44036 9.94036 10 9.25 10C8.55964 10 8 9.44036 8 8.75C8 8.05964 8.55964 7.5 9.25 7.5C9.94036 7.5 10.5 8.05964 10.5 8.75Z"
+                                fill="#212121"></path>
+                            <path
+                                d="M9.25 15.2498C9.94036 15.2498 10.5 14.6902 10.5 13.9998C10.5 13.3095 9.94036 12.7498 9.25 12.7498C8.55964 12.7498 8 13.3095 8 13.9998C8 14.6902 8.55964 15.2498 9.25 15.2498Z"
+                                fill="#212121"></path>
+                            <path
+                                d="M9.25 20.5C9.94036 20.5 10.5 19.9404 10.5 19.25C10.5 18.5596 9.94036 18 9.25 18C8.55964 18 8 18.5596 8 19.25C8 19.9404 8.55964 20.5 9.25 20.5Z"
+                                fill="#212121"></path>
+                            <path
+                                d="M12.75 8C12.3358 8 12 8.33579 12 8.75C12 9.16421 12.3358 9.5 12.75 9.5H19.25C19.6642 9.5 20 9.16421 20 8.75C20 8.33579 19.6642 8 19.25 8H12.75Z"
+                                fill="#212121"></path>
+                            <path
+                                d="M12 13.9998C12 13.5856 12.3358 13.2498 12.75 13.2498H19.25C19.6642 13.2498 20 13.5856 20 13.9998C20 14.414 19.6642 14.7498 19.25 14.7498H12.75C12.3358 14.7498 12 14.414 12 13.9998Z"
+                                fill="#212121"></path>
+                            <path
+                                d="M12.75 18.5C12.3358 18.5 12 18.8358 12 19.25C12 19.6642 12.3358 20 12.75 20H19.25C19.6642 20 20 19.6642 20 19.25C20 18.8358 19.6642 18.5 19.25 18.5H12.75Z"
+                                fill="#212121"></path>
+                            <path
+                                d="M25.7803 19.7803L19.7803 25.7803C19.6397 25.921 19.4489 26 19.25 26C19.0511 26 18.8603 25.921 18.7197 25.7803L15.7216 22.7823C15.4287 22.4894 15.4287 22.0145 15.7216 21.7216C16.0145 21.4287 16.4894 21.4287 16.7823 21.7216L19.25 24.1893L24.7197 18.7197C25.0126 18.4268 25.4874 18.4268 25.7803 18.7197C26.0732 19.0126 26.0732 19.4874 25.7803 19.7803Z"
+                                fill="#212121"></path>
+                        </g>
+                    </svg>
+                    <span class="group-hover:text-primaryDark">Tasks</span>
+                </div>
+
             </a>
         </div>
 
         <a href="{{ route('view.levels') }}" class="py-2">
-            <div class="flex flex-col items-center">
-                <img src="{{ asset('backend/assets/svg/diamond.svg') }}" alt="" class="w-7 h-7" />
-                <span class="text-gray-500">VIP</span>
+            <div
+                class="group flex flex-col items-center text-gray-500 hover:text-primaryDark {{ $route == 'view.levels' ? 'text-primaryDark font-semibold' : '' }}">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"
+                    class="w-7 h-7 group-hover:fill-primaryDark group-hover:stroke-primaryDark {{ $route == 'view.levels' ? 'fill-primaryDark stroke-primaryDark' : '' }}">
+
+                    <g id="SVGRepo_iconCarrier">
+                        <g id="k">
+                            <path
+                                d="M50.51,11.11c-.55-.78-1.46-1.25-2.42-1.25H16.37c-.95,0-1.85,.46-2.42,1.22L4.43,23.94c-.64,.87-.56,2.06,.19,2.83l25.95,26.77c.74,.76,1.97,.85,2.85,0l25.95-26.77c.74-.77,.84-1.96,.22-2.83l-9.08-12.83Zm-10.44,15.24l-8.05,24-7.61-24h15.66Zm-15.21-2l7.37-11.62,7.4,11.62h-14.77Zm9.19-12.49h13.39l-6.07,11.5-7.32-11.5Zm-10.93,11.5l-6.1-11.5h13.39l-7.29,11.5Zm6.64,26.47L6.99,26.35h15.32l7.45,23.48Zm12.42-23.48h14.82l-22.67,23.4,7.85-23.4Zm.94-2l6.11-11.58,8.2,11.58h-14.31ZM15.22,12.73l6.17,11.62H6.62L15.22,12.73Z">
+                            </path>
+                        </g>
+                    </g>
+                </svg>
+
+                <span class="group-hover:text-primaryDark">VIP</span>
             </div>
         </a>
 
-        <a href="" class="py-2 hover:text-primaryDark transition-colors duration-300">
-            <div class="flex flex-col items-center">
-                <svg class="w-7 h-7 fill-black hover:fill-primaryDark transition-colors duration-300"
+        <a href="" class="py-2 ">
+            <div class="group flex flex-col items-center text-gray-500 hover:text-primaryDark">
+                <svg class="w-7 h-7 hover:fill-primaryDark hover:stroke-primaryDark transition-colors duration-300"
                     viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
                     <g id="SVGRepo_iconCarrier">
                         <g id="Profit">
@@ -56,14 +110,24 @@
                         </g>
                     </g>
                 </svg>
-                <span class="text-gray-500">Profit</span>
+
+                <span class="group-hover:text-primaryDark">Profit</span>
             </div>
         </a>
 
         <a href="{{ route('account') }}" class="py-2">
-            <div class="flex flex-col items-center">
-                <img src="{{ asset('backend/assets/svg/user.svg') }}" alt="" class="w-7 h-7" />
-                <span class="text-gray-500">Account</span>
+            <div
+                class="group flex flex-col items-center text-gray-500 hover:text-primaryDark {{ $route == 'account' ? 'text-primaryDark font-semibold' : '' }}">
+                <svg viewBox="0 0 256 256" id="Flat"
+                    class="w-7 h-7 hover:fill-primaryDark hover:stroke-primaryDark {{ $route == 'account' ? 'fill-primaryDark stroke-primaryDark' : '' }}"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="M231.93652,211.98633a120.48718,120.48718,0,0,0-67.12-54.14258,72,72,0,1,0-73.633,0,120.48821,120.48821,0,0,0-67.11859,54.14062,7.99981,7.99981,0,1,0,13.84863,8.0127,104.0375,104.0375,0,0,1,180.17432.00195,7.99981,7.99981,0,1,0,13.84863-8.01269ZM72,96a56,56,0,1,1,56,56A56.06353,56.06353,0,0,1,72,96Z">
+                        </path>
+                    </g>
+                </svg>
+                <span class="group-hover:text-primaryDark">Account</span>
             </div>
         </a>
     </div>
