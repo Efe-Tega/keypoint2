@@ -222,7 +222,7 @@
                         class="flex w-full justify-between items-center border border-primaryDark p-3 rounded-2xl hover:bg-backgroundLight hover:translate-x-2 transition duration-300 ease-in-out">
                         <div class="flex gap-3 items-center">
                             <span>
-                                <img src="{{ asset('backend/assets/svg/question.svg') }}" alt=""
+                                <img src="{{ asset('backend/assets/svg/logout.svg') }}" alt=""
                                     class="w-7 h-7" />
                             </span>
                             <p>Logout</p>
