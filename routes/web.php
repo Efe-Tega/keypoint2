@@ -49,8 +49,13 @@ Route::middleware('auth')->controller(NavigationController::class)->group(functi
     Route::get('/dashboard', 'index')->name('user.dashboard');
 });
 
-Route::get('/admin-login', [AdminController::class, 'adminLogin']);
-Route::post('/admin-login', [AdminController::class, 'login']);
+// === Admin Authentication ===
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin-login', 'adminLogin');
+    Route::get('/admin-logout', 'adminLogout')->name('admin.logout');
+
+    Route::post('/admin-login', 'login');
+});
 
 Route::middleware('admin.auth')->get('/admin/dashboard', function () {
     return view('admin.index');
