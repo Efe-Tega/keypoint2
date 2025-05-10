@@ -11,6 +11,20 @@
             <div class="card">
                 <div class="card-body">
 
+                    @if (session('success'))
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success!',
+                                    text: '{{ session('success') }}',
+                                    confirmButtonColor: '#3085d6',
+                                    confirmButtonText: 'OK'
+                                });
+                            });
+                        </script>
+                    @endif
+
                     <div class="mt-4 mt-md-0 text-center">
                         <img class="img-thumbnail rounded-circle avatar-xl" alt="200x200"
                             src=" {{ asset('admin/upload/profile-pics/blank_profile_pic.png') }}" data-holder-rendered="true">
@@ -24,23 +38,18 @@
                     <div class="mt-5">
                         <div class="d-flex justify-content-between mb-2">
                             <div class="card-text text-capitalize">Account Balance:</div>
-                            <div> {{ $user->wallet->acct_bal }} <span>NGN </span></div>
+                            <div> {{ number_format($user->wallet->acct_bal, 2) }} <span>NGN </span></div>
                         </div>
 
                         <div class="d-flex justify-content-between mb-2">
-                            <div class="card-text text-capitalize">Deposit:</div>
-                            <div><span>NGN </span> 20</div>
-                        </div>
-
-                        {{-- <div class="d-flex justify-content-between mb-2">
-                            <div class="card-text text-capitalize">Referral Bonus:</div>
-                            <div><span>NGN </span> 20</div>
+                            <div class="card-text text-capitalize">Upgrade Deposit:</div>
+                            <div> {{ number_format($user->wallet->deposit_wallet, 2) }} <span>NGN </span></div>
                         </div>
 
                         <div class="d-flex justify-content-between mb-2">
-                            <div class="card-text text-capitalize">Signin Bonus:</div>
-                            <div><span>NGN </span> 20</div>
-                        </div> --}}
+                            <div class="card-text text-capitalize">Commission Wallet:</div>
+                            <div> {{ number_format($user->wallet->com_wallet, 2) }} <span>NGN </span></div>
+                        </div>
 
                         <hr>
 
@@ -73,7 +82,7 @@
                                     data-off-label="Blocked"></label>
                             </div>
                         </div>
-
+                        {{-- 
                         <div class="d-flex justify-content-between">
                             <div class="card-text text-capitalize">Withdrawal:</div>
 
@@ -84,7 +93,7 @@
                                 <label for="withdraw-status-{{ $user->id }}" data-on-label="Enable"
                                     data-off-label="Disable"></label>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="d-flex justify-content-between mb-2">
                             <div class="card-text text-capitalize">Level:</div>
@@ -106,11 +115,9 @@
                             <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal"
                                 data-bs-target=".credit-debit-modal">Credit/Debit User</button>
 
-                            <button type="button" class="btn btn-warning waves-effect waves-light" data-bs-toggle="modal"
+                            <button type="button" id="resetBtn" class="btn btn-warning waves-effect waves-light"
+                                data-bs-toggle="modal" data-action="{{ route('reset.password', $user->id) }}"
                                 data-bs-target=".reset-password">Reset Password</button>
-
-                            <button type="button" class="btn btn-secondary waves-effect waves-light" data-bs-toggle="modal"
-                                data-bs-target="">Login as User</button>
 
                             <button type="button" class="btn btn-danger">Delete User</button>
                         </div>
@@ -125,38 +132,28 @@
                     <h4 class="card-title mb-3">Update Bio Data</h4>
                     <span class="text-danger">All fields are required</span>
 
-                    <form method="POST" action="" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('update.user') }}" enctype="multipart/form-data">
                         @csrf
-
+                        {{-- 
                         <div class="mb-3">
                             <label>Profile Pics</label>
                             <input type="file" name="profile_pic" class="form-control" />
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Username</label>
-                            <input type="text" class="form-control" name="username" value=""
-                                placeholder="Username" />
-
-                            @error('username')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-
-                        </div>
+                        </div> --}}
+                        <input type="hidden" name="id" value="{{ $user->id }}">
 
                         <div class="mb-3">
                             <label>Full Name</label>
-                            <input type="text" class="form-control" name="name" value=""
+                            <input type="text" class="form-control" name="fullname" value="{{ $user->fullname }}"
                                 placeholder="Full Name" />
 
-                            @error('name')
+                            @error('fullname')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="mb-3">
                             <label>Email</label>
-                            <input type="email" class="form-control" name="email" value=""
+                            <input type="email" class="form-control" name="email" value="{{ $user->email }}"
                                 placeholder="Email Address" />
 
                             @error('email')
@@ -166,7 +163,7 @@
 
                         <div class="mb-3">
                             <label>Mobile Number</label>
-                            <input type="text" class="form-control" name="phone" value=""
+                            <input type="text" class="form-control" name="phone" value="{{ $user->phone }}"
                                 placeholder="Enter Mobile Number" />
 
                             @error('phone')
@@ -176,15 +173,15 @@
 
                         <div class="mb-3">
                             <label>Level</label>
-                            <select name="" id="" class="form-select">
-                                <option value="">Internship</option>
-                                <option value="">VIP1</option>
-                                <option value="">VIP2</option>
-                                <option value="">VIP3</option>
+                            <select name="level_id" id="" class="form-select">
+                                <option value="{{ $user->level_id }}">{{ $user->level->level }}</option>
+                                @foreach ($levels as $level)
+                                    <option value="{{ $level->id }}">{{ $level->level }}</option>
+                                @endforeach
                             </select>
                         </div>
 
-                        <button class="btn btn-primary">Submit</button>
+                        <button class="btn btn-primary">Update</button>
 
                     </form>
 
@@ -228,7 +225,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <!-- Trading history modal -->
+    <!-- Resete Password modal -->
     <div class="modal fade reset-password" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -238,24 +235,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="POST">
+                        @csrf
                         <div class="row">
                             <div class="mb-3">
-                                <label class="form-label" for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter Name">
+                                <span><strong>{{ $user->fullname }}</strong> password will be changed to <strong
+                                        class="text-danger">user01236</strong> </span>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="mb-3">
-                                <label class="form-label" for="subject">Subject</label>
-                                <textarea class="form-control" id="subject" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="text-end mt-3">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </div>
+
+                        <button type="submit" class="btn btn-primary">Change</button>
+
                     </form>
                 </div>
             </div><!-- /.modal-content -->
@@ -303,5 +293,14 @@
                     alert('Something went wrong!');
                 })
         }
+    </script>
+
+    <script>
+        const resetBtn = document.getElementById('resetBtn');
+        resetBtn.addEventListener('click', function() {
+            const action = this.getAttribute('data-action');
+
+            document.querySelector('.reset-password form').action = action;
+        });
     </script>
 @endsection

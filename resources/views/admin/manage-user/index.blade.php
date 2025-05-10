@@ -12,12 +12,12 @@
             <div class="card">
                 <div class="card-body">
 
-                    <x-tables :columns="['S/N', 'Account Balance', 'Email', 'Phone', 'Status', 'Date Registered', 'Action']">
+                    <x-tables :columns="['S/N', 'Commission Balance', 'Email', 'Phone', 'Status', 'Date Registered', 'Action']">
                         @foreach ($users as $key => $user)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>
-                                    {{ $user->wallet->acct_bal }} NGN
+                                    {{ number_format($user->wallet->com_wallet, 2) }} NGN
                                 </td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone }}</td>

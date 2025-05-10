@@ -32,6 +32,18 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
+        $user = User::where('email', $credentials['email'])->first();
+
+        if ($user->status == 2) {
+
+            $notification = array(
+                'message' => 'Account Restricted! Contact support',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
         if (Auth::guard('web')->attempt($credentials)) {
             return redirect()->route('user.dashboard');
         };

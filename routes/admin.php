@@ -25,6 +25,8 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
 
         Route::post('/users/toggle-status/{id}', 'userToggleStatus');
         Route::post('/withdraw/toggle-status/{id}', 'withdrawToggleStatus');
+        Route::post('/update/user-data', 'updateUser')->name('update.user');
+        Route::post('/reset-password/{id}', 'resetPassword')->name('reset.password');
     });
 
     Route::controller(AppSettings::class)->group(function () {
