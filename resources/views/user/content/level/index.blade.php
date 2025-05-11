@@ -375,7 +375,7 @@
 
                 @isset($levels[4])
                     <!-- VIP4 Level -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden" onclick="showPopup()">
                         <div class="bg-creamPlum px-6 py-4">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
@@ -394,14 +394,17 @@
                                             Current Level
                                         </span>
                                     @else
-                                        <button type="button" data-level-id="{{ $levels[4]->id }}"
+                                        {{-- <button type="button" data-level-id="{{ $levels[4]->id }}"
                                             data-level-name="{{ $levels[4]->level }}"
                                             data-upgrade-amount ="{{ number_format($levels[4]->upgrade_amount) }}"
                                             onclick="openUpgradeModal(this)"
                                             class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
                                             <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
                                             Join Now
-                                        </button>
+                                        </button> --}}
+                                        <button type="button" onclick="showPopup()"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">Coming
+                                            Soon</button>
                                     @endif
                                 </div>
                             </div>
@@ -463,7 +466,7 @@
 
                 @isset($levels[5])
                     <!-- VIP5 Level -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden" onclick="showPopup()">
                         <div class="bg-softSky px-6 py-4">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
@@ -482,14 +485,18 @@
                                             Current Level
                                         </span>
                                     @else
-                                        <button type="button" data-level-id="{{ $levels[5]->id }}"
+                                        {{-- <button type="button" data-level-id="{{ $levels[5]->id }}"
                                             data-level-name="{{ $levels[5]->level }}"
                                             data-upgrade-amount ="{{ number_format($levels[5]->upgrade_amount) }}"
                                             onclick="openUpgradeModal(this)"
                                             class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
                                             <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
                                             Join Now
-                                        </button>
+                                        </button> --}}
+
+                                        <button type="button" onclick="showPopup()"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">Coming
+                                            Soon</button>
                                     @endif
                                 </div>
                             </div>
@@ -547,7 +554,7 @@
 
                 @isset($levels[6])
                     <!-- VIP6 Level -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden" onclick="showPopup()">
                         <div class="bg-peachBrick px-6 py-4">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
@@ -566,14 +573,18 @@
                                             Current Level
                                         </span>
                                     @else
-                                        <button type="button" data-level-id="{{ $levels[6]->id }}"
+                                        {{-- <button type="button" data-level-id="{{ $levels[6]->id }}"
                                             data-level-name="{{ $levels[6]->level }}"
                                             data-upgrade-amount ="{{ number_format($levels[6]->upgrade_amount) }}"
                                             onclick="openUpgradeModal(this)"
                                             class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
                                             <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
                                             Join Now
-                                        </button>
+                                        </button> --}}
+
+                                        <button type="button" onclick="showPopup()"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">Coming
+                                            Soon</button>
                                     @endif
                                 </div>
                             </div>
@@ -631,7 +642,7 @@
 
                 @isset($levels[7])
                     <!-- VIP7 Level -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden" onclick="showPopup()">
                         <div class="bg-lilacDeepViolet px-6 py-4">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
@@ -650,14 +661,14 @@
                                             Current Level
                                         </span>
                                     @else
-                                        <button type="button" data-level-id="{{ $levels[7]->id }}"
+                                        {{-- <button type="button" data-level-id="{{ $levels[7]->id }}"
                                             data-level-name="{{ $levels[7]->level }}"
                                             data-upgrade-amount ="{{ number_format($levels[7]->upgrade_amount) }}"
                                             onclick="openUpgradeModal(this)"
                                             class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
                                             <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
                                             Join Now
-                                        </button>
+                                        </button> --}}
                                     @endif
                                 </div>
                             </div>
@@ -716,7 +727,7 @@
 
                 @isset($levels[8])
                     <!-- VIP8 Level -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden" onclick="showPopup()">
                         <div class="bg-frostIceblue px-6 py-4">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
@@ -735,14 +746,17 @@
                                             Current Level
                                         </span>
                                     @else
-                                        <button type="button" data-level-id="{{ $levels[8]->id }}"
+                                        {{-- <button type="button" data-level-id="{{ $levels[8]->id }}"
                                             data-level-name="{{ $levels[8]->level }}"
                                             data-upgrade-amount ="{{ number_format($levels[8]->upgrade_amount) }}"
                                             onclick="openUpgradeModal(this)"
                                             class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
                                             <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
                                             Join Now
-                                        </button>
+                                        </button> --}}
+                                        <button type="button" onclick="showPopup()"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">Coming
+                                            Soon</button>
                                     @endif
                                 </div>
                             </div>
@@ -800,7 +814,7 @@
 
                 @isset($levels[9])
                     <!-- Example for VIP9 (Supreme) -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden" onclick="showPopup()">
                         <div class="bg-gradient-to-r from-yellow-300 to-amber-500 px-6 py-4">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
@@ -819,14 +833,17 @@
                                             Current Level
                                         </span>
                                     @else
-                                        <button type="button" data-level-id="{{ $levels[9]->id }}"
+                                        {{-- <button type="button" data-level-id="{{ $levels[9]->id }}"
                                             data-level-name="{{ $levels[9]->level }}"
                                             data-upgrade-amount ="{{ number_format($levels[9]->upgrade_amount) }}"
                                             onclick="openUpgradeModal(this)"
                                             class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-yellow-400 text-white">
                                             <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
                                             Join Now
-                                        </button>
+                                        </button> --}}
+                                        <button type="button" onclick="showPopup()"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">Coming
+                                            Soon</button>
                                     @endif
                                 </div>
                             </div>
@@ -891,6 +908,17 @@
         </div>
     </div>
 
+    <!-- Popup Notification -->
+    <div id="popup-notification" class="container mx-auto px-4 hidden">
+        <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center max-w-sm">
+                <div class="mb-1 text-sm">Coming Soon</div>
+                <button onclick="closePopup()" class="mt-2 px-4 py-1 bg-primaryDark text-white rounded-sm">Ok</button>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Modal -->
     <div id="upgradeModal" class="fixed inset-0 z-50 items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white rounded-lg w-full max-w-md p-6">
@@ -933,6 +961,14 @@
             const modal = document.getElementById('upgradeModal');
             modal.classList.remove('flex');
             modal.classList.add('hidden');
+        }
+
+        function showPopup() {
+            document.getElementById('popup-notification').classList.remove('hidden');
+        }
+
+        function closePopup() {
+            document.getElementById('popup-notification').classList.add('hidden');
         }
     </script>
 @endsection

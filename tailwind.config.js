@@ -27,6 +27,9 @@ export default {
             colors: {
                 iceBlue: '#3f729b',
                 deepViolet: '#6a1b9a',
+                royalPurple: '#8A2BE2',
+                deepPurple: '#4B0082',
+                lightPurple: '#E6E6FA',
                 brick: '#cc5200',
                 sky: '#00838f',
                 plum: '#957dad',

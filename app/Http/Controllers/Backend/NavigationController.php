@@ -32,6 +32,11 @@ class NavigationController extends Controller
         return view('user.content.profile.index', compact('user', 'earning', 'wallet'));
     }
 
+    public function companyInfo()
+    {
+        return view('user.content.company.index');
+    }
+
     public function userInvitation(Request $request)
     {
         $userId = Auth::user()->id;
