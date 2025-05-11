@@ -14,7 +14,7 @@ class TaskManagement extends Controller
 {
     public function viewTask(Request $request)
     {
-        $levels = Level::latest()->get();
+        $levels = Level::all();
         return view('admin.task.index', compact('levels'));
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\BankInfo;
+use App\Models\BankList;
 use App\Models\DepositTransaction;
 use App\Models\User;
 use App\Models\Wallet;
@@ -23,7 +24,8 @@ class AccountController extends Controller
     {
         $user = Auth::user();
         $bankInfo = BankInfo::where('user_id', $user->id)->first();
-        return view('user.content.profile.personal-info', compact('user', 'bankInfo'));
+        $bankLists = BankList::all();
+        return view('user.content.profile.personal-info', compact('user', 'bankInfo', 'bankLists'));
     }
 
     public function uploadPic(Request $request)

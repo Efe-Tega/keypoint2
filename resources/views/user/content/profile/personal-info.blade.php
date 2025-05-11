@@ -216,10 +216,10 @@
                                                 selected>
                                                 {{ $bankInfo->bank_name ? $bankInfo->bank_name : '-- Select Bank --' }}
                                             </option>
-                                            <option value="Opay">Opay</option>
-                                            <option value="Palmpay">PalmPay</option>
-                                            <option value="Moniepoint">Moniepoint</option>
-                                            <option value="Kuda">Kuda</option>
+                                            @foreach ($bankLists as $bankList)
+                                                <option value="{{ $bankList->bank_name }}">{{ $bankList->bank_name }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
 
