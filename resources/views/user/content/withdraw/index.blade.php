@@ -143,8 +143,8 @@
 
             <div class="grid grid-cols-4 bg-white/20 backdrop-blur-sm ">
                 <x-tile data-amount="1500">1500</x-tile>
-                <x-tile data-amount="4500">4500</x-tile>
-                <x-tile data-amount="15000">15000</x-tile>
+                <x-tile data-amount="9000">9000</x-tile>
+                <x-tile data-amount="40000">40000</x-tile>
                 <x-tile data-amount="120000">120000</x-tile>
                 <x-tile data-amount="900000" class="text-sm">900000</x-tile>
                 <x-tile data-amount="2000000" class="text-sm">2000000</x-tile>

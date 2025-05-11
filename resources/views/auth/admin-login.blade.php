@@ -4,10 +4,9 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Login | Upcube - Admin & Dashboard Template</title>
+    <title>Admin Login | {{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesdesign" name="author" />
+    <meta content="Admin login page" name="description" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
 
@@ -27,12 +26,24 @@
         <div class="container-fluid p-0">
             <div class="card">
                 <div class="card-body">
-
-                    <div class="text-center mt-4"></div>
-
                     <h4 class="text-muted text-center font-size-18"><b>Sign In</b></h4>
 
                     <div class="p-3">
+                        @if ($errors->has('emails'))
+                            <div class="alert alert-danger" role="alert" id="error-message">
+                                {{ $errors->first('emails') }}
+                            </div>
+
+                            <script>
+                                setTimeout(function() {
+                                    let error = document.getElementById('error-message');
+                                    if (error) {
+                                        error.style.display = 'none';
+                                    }
+                                }, 3000); // hides after 3 seconds
+                            </script>
+                        @endif
+
                         <form class="form-horizontal mt-3" action="{{ url('/admin-login') }}" method="POST">
                             @csrf
 

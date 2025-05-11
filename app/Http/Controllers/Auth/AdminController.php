@@ -29,7 +29,7 @@ class AdminController extends Controller
             return redirect()->route('admin.index');
         }
 
-        return back()->withErrors(['emails' => 'Invalid credentials'])->withInput();
+        return back()->withErrors(['emails' => 'Incorrect Email or Password'])->withInput();
     }
 
     public function adminLogout(Request $request)
