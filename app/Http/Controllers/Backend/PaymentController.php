@@ -17,7 +17,7 @@ class PaymentController extends Controller
     public function initiatePayment(Request $request, MonnifyService $monnify)
     {
         $user = Auth::user();
-        $reference = uniqid("txn_");
+        $reference = strtoupper(uniqid("txn_"));
 
 
         DepositTransaction::create([

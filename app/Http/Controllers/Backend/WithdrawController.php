@@ -35,15 +35,20 @@ class WithdrawController extends Controller
 
         $user = Auth::user();
         $amount = $request->amount;
-
         $today = Carbon::today();
+        $now = Carbon::now();
+
+        if ($now->isSaturday() || $now->isSunday()) {
+            return redirect()->back()->with('withdrawal', 'Withdrawal is only from Monday to Friday');
+        }
+
         $hasWithdrawnToday = WithdrawTransaction::where('user_id', $user->id)
             ->whereDate('created_at', $today)
             ->whereIn('status', ['pending', 'success'])
             ->exists();
 
         if ($hasWithdrawnToday) {
-            return redirect()->back()->with('withdrawal_limit', 'You have already made a withdrawal today.');
+            return redirect()->back()->with('withdrawal', 'You have already made a withdrawal today.');
         }
 
         $reference = strtoupper(uniqid("TXN_"));

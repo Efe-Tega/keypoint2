@@ -38,23 +38,23 @@
                     </div>
                 </a>
 
-                <a href="">
+                <a href="{{ route('user.invite') }}">
+                    <div class="flex flex-col items-center text-center space-y-1.5">
+                        <div class="bg-backgroundLight p-3 rounded-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <img src="{{ asset('backend/assets/svg/gift.svg') }}" alt=""
+                                class="w-7 h-7 lg:w-10 lg:h-10" />
+                        </div>
+                        <span class="text-sm lg:text-lg">Invitation Rewards</span>
+                    </div>
+                </a>
+
+                <a href="{{ route('user.wallet') }}">
                     <div class="flex flex-col items-center space-y-1.5">
                         <div class="bg-backgroundLight p-3 rounded-lg hover:-translate-y-0.5 transition-all duration-300">
                             <img src="{{ asset('backend/assets/svg/coinstack.svg') }}" alt=""
                                 class="w-7 h-7 lg:w-10 lg:h-10" />
                         </div>
-                        <span class="text-sm lg:text-lg">Fund</span>
-                    </div>
-                </a>
-
-                <a href="">
-                    <div class="flex flex-col items-center space-y-1.5">
-                        <div class="bg-backgroundLight p-3 rounded-lg hover:-translate-y-0.5 transition-all duration-300">
-                            <img src="{{ asset('backend/assets/svg/calender.svg') }}" alt=""
-                                class="w-7 h-7 lg:w-10 lg:h-10" />
-                        </div>
-                        <span class="text-sm lg:text-lg">Calender</span>
+                        <span class="text-sm lg:text-lg">Funds</span>
                     </div>
                 </a>
 
@@ -88,15 +88,26 @@
                     </div>
                 </a>
 
-                <a href="{{ route('user.invite') }}">
-                    <div class="flex flex-col items-center text-center space-y-1.5">
-                        <div class="bg-backgroundLight p-3 rounded-lg hover:-translate-y-0.5 transition-all duration-300">
-                            <img src="{{ asset('backend/assets/svg/gift.svg') }}" alt=""
-                                class="w-7 h-7 lg:w-10 lg:h-10" />
-                        </div>
-                        <span class="text-sm lg:text-lg">Invitation Rewards</span>
+                <div class="flex flex-col items-center space-y-1.5" onclick="showWheelPopup()">
+                    <div class="bg-backgroundLight p-3 rounded-lg hover:-translate-y-0.5 transition-all duration-300">
+                        <img src="{{ asset('backend/assets/svg/wheel.svg') }}" alt=""
+                            class="w-7 h-7 lg:w-10 lg:h-10 rotate" />
                     </div>
-                </a>
+                    <span class="text-sm lg:text-lg">Wheel of Fortune</span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Wheel Popup Notification -->
+        <div id="wheel-popup-notification" class="container mx-auto px-4 hidden">
+            <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center max-w-sm">
+                    <div class="mb-1 text-sm">Coming Soon</div>
+                    <button onclick="closeWheelPopup()"
+                        class="mt-2 px-4 py-1 bg-primaryDark text-white rounded-sm">Ok</button>
+                </div>
             </div>
         </div>
     </section>
@@ -266,11 +277,19 @@
         document.getElementById('dailypopup-notification').classList.remove('hidden');
     }
 
+    function showWheelPopup() {
+        document.getElementById('wheel-popup-notification').classList.remove('hidden');
+    }
+
     function closeLevelPopup() {
         document.getElementById('levelpopup-notification').classList.add('hidden');
     }
 
     function closeDailyPopup() {
         document.getElementById('dailypopup-notification').classList.add('hidden');
+    }
+
+    function closeWheelPopup() {
+        document.getElementById('wheel-popup-notification').classList.add('hidden');
     }
 </script>

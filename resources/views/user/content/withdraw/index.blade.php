@@ -50,12 +50,12 @@
                 </script>
             @endif
 
-            @if (session('withdrawal_limit'))
+            @if (session('withdrawal'))
                 <script>
                     Swal.fire({
                         icon: 'warning',
-                        title: 'Withdrawal Limit Exceeded',
-                        text: '{{ session('withdrawal_limit') }}',
+                        title: 'Withdrawal Error',
+                        text: '{{ session('withdrawal') }}',
                     });
                 </script>
             @endif

@@ -97,6 +97,20 @@
         .animate-up {
             animation: upDown 3s ease-in-out infinite;
         }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rotate {
+            animation: spin 10s linear infinite;
+        }
     </style>
 </head>
 

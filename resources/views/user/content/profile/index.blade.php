@@ -37,7 +37,7 @@
                     <p class="text-sm lg:text-lg font-semibold">
                         Account: {{ $user->phone }}
                     </p>
-                    <p class="text-xs lg:text-sm">Actual Sign-in Bonus: 200.00</p>
+                    {{-- <p class="text-xs lg:text-sm">Actual Sign-in Bonus: 200.00</p> --}}
                 </div>
             </div>
 
@@ -53,12 +53,13 @@
             class="flex justify-between py-5 rounded-t-2xl shadow-[0px_-1px_10px_rgba(9,187,254,0.9),0px_2px_6px_rgba(0,0,0,0.1)] border border-slate-100">
             <div class="flex flex-col items-center border-r-2 w-1/3">
                 <p class="text-sm lg:text-lg">Balance(NGN)</p>
-                <p class="text-green-500 font-semibold">{{ number_format($wallet->com_wallet, 2) }}</p>
+                <p class="text-green-500 font-semibold text-sm md:text-base">{{ number_format($wallet->com_wallet, 2) }}</p>
             </div>
 
             <div class="flex flex-col items-center border-r-2 w-1/3">
                 <p class="text-sm lg:text-lg">Deposit(NGN)</p>
-                <p class="text-green-500 font-semibold">{{ number_format($user->level->upgrade_amount) }}</p>
+                <p class="text-green-500 font-semibold text-sm md:text-base">
+                    {{ number_format($user->level->upgrade_amount) }}</p>
             </div>
 
             <div class="flex flex-col items-center w-1/3">
@@ -74,49 +75,54 @@
                 <p class="text-xs md:text-sm lg:text-lg">
                     Yesterday's Earnings(NGN)
                 </p>
-                <p class="text-green-500 font-semibold">{{ number_format($earning->yesterday_earning, 2) }}</p>
+                <p class="text-green-500 font-semibold text-sm md:text-base">
+                    {{ number_format($earning->yesterday_earning, 2) }}</p>
             </div>
 
             <div class="flex flex-col py-3 text-center border-r-2 border-b-2 gap-2">
                 <p class="text-xs md:text-sm lg:text-lg">Today's Earnings(NGN)</p>
-                <p class="text-green-500 font-semibold">{{ number_format($earning->today_earning, 2) }}</p>
+                <p class="text-green-500 font-semibold text-sm md:text-base">
+                    {{ number_format($earning->today_earning, 2) }}</p>
             </div>
 
             <div class="flex flex-col text-center py-3 border-b-2 gap-2">
                 <p class="text-xs md:text-sm lg:text-lg">
                     This Week's Earnings(NGN)
                 </p>
-                <p class="text-green-500 font-semibold">{{ number_format($earning->this_week_earning, 2) }}</p>
+                <p class="text-green-500 font-semibold text-sm md:text-base">
+                    {{ number_format($earning->this_week_earning, 2) }}</p>
             </div>
 
             <div class="flex flex-col border-r-2 border-b-2 py-3 text-center gap-2">
                 <p class="text-xs md:text-sm lg:text-lg">
                     This Month's Earnings(NGN)
                 </p>
-                <p class="text-green-500 font-semibold">{{ number_format($earning->this_month_earning, 2) }}</p>
+                <p class="text-green-500 font-semibold text-sm md:text-base">
+                    {{ number_format($earning->this_month_earning, 2) }}</p>
             </div>
 
             <div class="flex flex-col py-3 text-center border-r-2 border-b-2 gap-2">
                 <p class="text-xs md:text-sm lg:text-lg">Total Earnings(NGN)</p>
-                <p class="text-green-500 font-semibold">{{ number_format($earning->total_earning, 2) }}</p>
+                <p class="text-green-500 font-semibold text-sm md:text-base">
+                    {{ number_format($earning->total_earning, 2) }}</p>
             </div>
 
             <div class="flex flex-col text-center py-3 border-b-2 gap-2">
                 <p class="text-xs md:text-sm lg:text-lg">Total Completed</p>
-                <p class="text-green-500 font-semibold">{{ $user->task_completed }}</p>
+                <p class="text-green-500 font-semibold text-sm md:text-base">{{ $user->task_completed }}</p>
             </div>
 
             <div class="flex flex-col text-center py-3 border-r-2">
                 <p class="text-xs md:text-sm lg:text-lg">Today Remaining</p>
-                <p class="text-green-500 font-semibold">{{ $user->remaining_task }}</p>
+                <p class="text-green-500 font-semibold text-sm md:text-base">{{ $user->remaining_task }}</p>
             </div>
             <div class="flex flex-col text-center py-3 border-r-2">
-                <p class="text-xs md:text-sm lg:text-lg">Task Rewards(NGN)</p>
-                <p class="text-green-500 font-semibold">0.00</p>
+                <p class="text-xs md:text-sm lg:text-lg">Total Referral</p>
+                <p class="text-green-500 font-semibold">0</p>
             </div>
             <div class="flex flex-col text-center py-3">
                 <p class="text-xs md:text-sm lg:text-lg">Referral Rewards</p>
-                <p class="text-green-500 font-semibold">{{ $wallet->referral_bal }}</p>
+                <p class="text-green-500 font-semibold text-sm md:text-base">{{ number_format($wallet->referral_bal) }}</p>
             </div>
         </div>
     </section>
@@ -169,39 +175,27 @@
                         </div>
 
                         <div>
+                            <img src="{{ asset('backend/assets/svg/arrow-right.svg') }}" alt="" class="w-4 h-4" />
+                        </div>
+                    </div>
+                </a>
+
+                <a href="{{ route('user.invite') }}">
+                    <div
+                        class="flex w-full justify-between items-center border border-primaryDark p-3 rounded-2xl hover:bg-backgroundLight hover:translate-x-2 transition duration-300 ease-in-out">
+                        <div class="flex gap-3 items-center">
+                            <span>
+                                <img src="{{ asset('backend/assets/svg/share.svg') }}" alt="" class="w-7 h-7" />
+                            </span>
+                            <p>Invite Friends</p>
+                        </div>
+
+                        <div>
                             <img src="{{ asset('backend/assets/svg/arrow-right.svg') }}" alt=""
                                 class="w-4 h-4" />
                         </div>
                     </div>
                 </a>
-
-                <div
-                    class="flex w-full justify-between items-center border border-primaryDark p-3 rounded-2xl hover:bg-backgroundLight hover:translate-x-2 transition duration-300 ease-in-out">
-                    <div class="flex gap-3 items-center">
-                        <span>
-                            <img src="{{ asset('backend/assets/svg/share.svg') }}" alt="" class="w-7 h-7" />
-                        </span>
-                        <p>Invite Friends</p>
-                    </div>
-
-                    <div>
-                        <img src="{{ asset('backend/assets/svg/arrow-right.svg') }}" alt="" class="w-4 h-4" />
-                    </div>
-                </div>
-
-                <div
-                    class="flex w-full justify-between items-center border border-primaryDark p-3 rounded-2xl hover:bg-backgroundLight hover:translate-x-2 transition duration-300 ease-in-out">
-                    <div class="flex gap-3 items-center">
-                        <span>
-                            <img src="{{ asset('backend/assets/svg/bar-chart.svg') }}" alt="" class="w-7 h-7" />
-                        </span>
-                        <p>Team Report</p>
-                    </div>
-
-                    <div>
-                        <img src="{{ asset('backend/assets/svg/arrow-right.svg') }}" alt="" class="w-4 h-4" />
-                    </div>
-                </div>
 
                 <div
                     class="flex w-full justify-between items-center border border-primaryDark p-3 rounded-2xl hover:bg-backgroundLight hover:translate-x-2 transition duration-300 ease-in-out">
