@@ -45,6 +45,8 @@ export default {
                 darkerBlue: '#102535',
                 primary: '#2B7A78',
                 accent: '#3AAFA9',
+                navy: '#1a2234',
+                navyLight: '#232b3e',
             },
             scrollBehavior: ['smooth'],
             fontFamily: {

@@ -54,6 +54,13 @@
         </li>
 
         <li>
+            <a href="{{ route('view.message') }}" class=" waves-effect">
+                <i class="ri-calendar-2-line"></i>
+                <span>Message Notifications</span>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('settings') }}" class=" waves-effect">
                 <i class="ri-calendar-2-line"></i>
                 <span>Settings</span>

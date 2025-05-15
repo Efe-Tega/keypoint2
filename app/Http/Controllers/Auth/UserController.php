@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\BankInfo;
 use App\Models\Earning;
 use App\Models\LevelSubscription;
+use App\Models\MessageNotification;
 use App\Models\Referral;
 use App\Models\User;
+use App\Models\UserMessage;
 use App\Models\UserTask;
 use App\Models\Wallet;
 use Carbon\Carbon;
@@ -91,6 +93,14 @@ class UserController extends Controller
                 ]);
             }
         }
+
+        $welcomeMessage = MessageNotification::where('message_key', 'greetings')->first();
+
+        UserMessage::insert([
+            'user_id' => $userId,
+            'message_notification_id' => $welcomeMessage->id,
+            'created_at' => Carbon::now(),
+        ]);
 
         BankInfo::insert(['user_id' => $userId]);
         UserTask::create(['user_id' => $userId]);

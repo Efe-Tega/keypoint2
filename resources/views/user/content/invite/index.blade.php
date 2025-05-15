@@ -34,7 +34,7 @@
                     <span id="copy-referral-label">Copy Referral Code</span>
                 </button>
                 <div class="text-white text-lg mb-2">
-                    <a href={{ config('app.url') . '/user-registration?ref=' . $user->referral_code }} id="invite-link"
+                    <a id="invite-link"
                         class="break-all underline hover:text-deepViolet transition">{{ config('app.url') . '/user-registration?ref=' . $user->referral_code }}</a>
                 </div>
                 <button onclick="copyInviteLink()"

@@ -923,20 +923,20 @@
     <div id="upgradeModal" class="fixed inset-0 z-50 items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white rounded-lg w-full max-w-md p-6">
             <h6 id="upgradeModalText" class="sm:text-sm md:text-xl font-semibold text-gray-800 mb-4 text-center">
-                </h4>
+            </h6>
 
-                <form action="{{ route('upgrade.level') }}" method="POST">
-                    @csrf
+            <form action="{{ route('upgrade.level') }}" method="POST">
+                @csrf
 
-                    <input type="hidden" name="level_id" id="modalLevelId">
+                <input type="hidden" name="level_id" id="modalLevelId">
 
-                    <div class="flex justify-center space-x-2 mt-5">
-                        <button type="button" onclick="closeUpgradeModal()"
-                            class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Cancel</button>
-                        <button type="submit"
-                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Confirm</button>
-                    </div>
-                </form>
+                <div class="flex justify-center space-x-2 mt-5">
+                    <button type="button" onclick="closeUpgradeModal()"
+                        class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Cancel</button>
+                    <button type="submit"
+                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Confirm</button>
+                </div>
+            </form>
         </div>
     </div>
 

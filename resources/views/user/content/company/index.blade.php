@@ -197,7 +197,12 @@
     <footer class="bg-gray-800 border-t border-gray-700 py-6">
         <div class="container mx-auto px-6">
             <div class="text-center text-gray-400">
-                <p>&copy; 2025 Kepoint Media & Entertainment Limited. All rights reserved.</p>
+                <p>&copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    Kepoint Media & Entertainment Limited. All rights reserved.
+                </p>
             </div>
         </div>
     </footer>

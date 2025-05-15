@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Earning;
+use App\Models\MessageNotification;
 use App\Models\TaskVideo;
 use App\Models\User;
+use App\Models\UserMessage;
 use App\Models\Wallet;
 use App\Models\WatchedVideo;
 use Illuminate\Http\Request;
@@ -43,5 +45,27 @@ class NavigationController extends Controller
         $user = User::where('id', $userId)->first();
 
         return view('user.content.invite.index', compact('user'));
+    }
+
+    public function userMessage()
+    {
+        $userId = Auth::user()->id;
+        $messages = UserMessage::where('user_id', $userId)
+            ->orWhereNull('user_id')
+            ->latest()
+            ->get();
+
+        return view('user.content.message.index', compact('messages', 'userId'));
+    }
+
+    public function markAsRead(Request $request, $id)
+    {
+        $message = UserMessage::findOrFail($id);
+
+        if ($message->status === 'unread') {
+            $message->status = 'read';
+            $message->save();
+        }
+        return response()->json(['success' => true]);
     }
 }

@@ -63,7 +63,7 @@
                             class="avatar-md rounded-circle">
                     </div>
                     <div class="mt-3">
-                        <h4 class="font-size-16 mb-1">Julia Hudda</h4>
+                        <h4 class="font-size-16 mb-1">{{ config('app.name') }} Admin</h4>
                         <span class="text-muted"><i
                                 class="ri-record-circle-line align-middle font-size-14 text-success"></i> Online</span>
                     </div>
@@ -130,6 +130,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('admin/assets/js/code.js') }}"></script>
+
+    <!--tinymce js-->
+    <script src="{{ asset('admin/assets/libs/tinymce/tinymce.min.js') }}"></script>
+
+    <!-- init js -->
+    <script src="{{ asset('admin/assets/js/pages/form-editor.init.js') }}"></script>
 
     <!-- Datatable init js -->
     <script src="{{ asset('admin/assets/js/pages/datatables.init.js') }}"></script>

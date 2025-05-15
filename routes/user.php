@@ -14,6 +14,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/account', 'account')->name('account');
         Route::get('/company-info', 'companyInfo')->name('company.info');
         Route::get('/user-invite', 'userInvitation')->name('user.invite');
+        Route::get('/message', 'userMessage')->name('user.message');
+
+        Route::post('/show/{id}', 'markAsRead');
     });
 
     Route::controller(AccountController::class)
