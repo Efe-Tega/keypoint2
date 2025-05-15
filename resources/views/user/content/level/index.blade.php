@@ -125,6 +125,15 @@
                                             class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
                                             Current Level
                                         </span>
+                                    @elseif ($user->level_id > 2)
+                                        <button type="button" data-level-id="{{ $levels[1]->id }}"
+                                            data-level-name="{{ $levels[1]->level }}"
+                                            data-upgrade-amount ="{{ number_format($levels[1]->upgrade_amount) }}"
+                                            onclick="openPastModal(this)"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
+                                            <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
+                                            Join Now
+                                        </button>
                                     @else
                                         <button type="button" data-level-id="{{ $levels[1]->id }}"
                                             data-level-name="{{ $levels[1]->level }}"
@@ -215,6 +224,15 @@
                                             class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
                                             Current Level
                                         </span>
+                                    @elseif ($user->level_id > 3)
+                                        <button type="button" data-level-id="{{ $levels[2]->id }}"
+                                            data-level-name="{{ $levels[2]->level }}"
+                                            data-upgrade-amount ="{{ number_format($levels[2]->upgrade_amount) }}"
+                                            onclick="openPastModal(this)"
+                                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-indigo-400 text-white">
+                                            <i class="fas fa-arrow-circle-up animate-up mr-1"></i>
+                                            Join Now
+                                        </button>
                                     @else
                                         <button type="button" data-level-id="{{ $levels[2]->id }}"
                                             data-level-name="{{ $levels[2]->level }}"
@@ -919,6 +937,19 @@
     </div>
 
 
+    <!-- Past Modal -->
+    <div id="pastUpgradeModal" class="fixed inset-0 z-50 items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg w-full max-w-md p-6">
+            <h6 id="pastModalText" class="sm:text-sm md:text-xl font-semibold text-gray-800 mb-4 text-center">
+            </h6>
+
+            <div class="flex justify-center space-x-2 mt-5">
+                <button type="button" onclick="closePastUpgradeModal()"
+                    class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Okay</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal -->
     <div id="upgradeModal" class="fixed inset-0 z-50 items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white rounded-lg w-full max-w-md p-6">
@@ -941,6 +972,18 @@
     </div>
 
     <script>
+        function openPastModal(button) {
+            const levelName = button.getAttribute('data-level-name');
+            const modal = document.getElementById('pastUpgradeModal');
+
+            const modalMsg = `Looks like you are ahead of ${levelName} already. Keep up the great progress!`;
+            document.getElementById('pastModalText').textContent = modalMsg;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+        }
+
         function openUpgradeModal(button) {
             const levelId = button.getAttribute('data-level-id');
             const levelName = button.getAttribute('data-level-name');
@@ -955,6 +998,12 @@
 
             modal.classList.remove('hidden');
             modal.classList.add('flex')
+        }
+
+        function closePastUpgradeModal() {
+            const modal = document.getElementById('pastUpgradeModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
         }
 
         function closeUpgradeModal() {
