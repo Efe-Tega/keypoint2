@@ -18,6 +18,13 @@
     </div>
     <!-- end page title -->
 
+    @php
+        $users = App\Models\User::all();
+        $withdraws = App\Models\WithdrawTransaction::where('status', 'success')->sum('amount');
+        $deposits = App\Models\DepositTransaction::where('status', 'paid')->sum('amount');
+        $tasks = App\Models\TaskVideo::all();
+    @endphp
+
     <div class="row">
         <div class="col-xl-3 col-md-6">
             <div class="card">
@@ -25,45 +32,9 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-truncate font-size-14 mb-2">Total Users</p>
-                            <h4 class="mb-2">1452</h4>
+                            <h4 class="mb-2">{{ $users->count() }}</h4>
                         </div>
 
-                        <div class="avatar-sm">
-                            <span class="avatar-title bg-light text-primary rounded-3">
-                                <i class="ri-shopping-cart-2-line font-size-24"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div><!-- end cardbody -->
-            </div><!-- end card -->
-        </div><!-- end col -->
-        <div class="col-xl-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <p class="text-truncate font-size-14 mb-2">Total Deposit</p>
-                            <h4 class="mb-2">938</h4>
-
-                        </div>
-                        <div class="avatar-sm">
-                            <span class="avatar-title bg-light text-success rounded-3">
-                                <i class="mdi mdi-currency-usd font-size-24"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div><!-- end cardbody -->
-            </div><!-- end card -->
-        </div><!-- end col -->
-        <div class="col-xl-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <p class="text-truncate font-size-14 mb-2">Total Withdrawal</p>
-                            <h4 class="mb-2">8246</h4>
-
-                        </div>
                         <div class="avatar-sm">
                             <span class="avatar-title bg-light text-primary rounded-3">
                                 <i class="ri-user-3-line font-size-24"></i>
@@ -78,13 +49,49 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <p class="text-truncate font-size-14 mb-2">Unique Visitors</p>
-                            <h4 class="mb-2">29670</h4>
+                            <p class="text-truncate font-size-14 mb-2">Total Deposit</p>
+                            <h4 class="mb-2">{{ number_format($deposits) }}</h4>
 
                         </div>
                         <div class="avatar-sm">
                             <span class="avatar-title bg-light text-success rounded-3">
-                                <i class="mdi mdi-currency-btc font-size-24"></i>
+                                <i class="mdi mdi-currency-ngn font-size-24"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div><!-- end cardbody -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <p class="text-truncate font-size-14 mb-2">Total Withdrawal</p>
+                            <h4 class="mb-2">{{ number_format($withdraws) }}</h4>
+
+                        </div>
+                        <div class="avatar-sm">
+                            <span class="avatar-title bg-light text-primary rounded-3">
+                                <i class="mdi mdi-currency-ngn font-size-24"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div><!-- end cardbody -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <p class="text-truncate font-size-14 mb-2">Total Tasks</p>
+                            <h4 class="mb-2">{{ $tasks->count() }}</h4>
+
+                        </div>
+                        <div class="avatar-sm">
+                            <span class="avatar-title bg-light text-success rounded-3">
+                                <i class="mdi mdi-video-vintage font-size-24"></i>
                             </span>
                         </div>
                     </div>
