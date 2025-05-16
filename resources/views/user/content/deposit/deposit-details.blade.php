@@ -31,8 +31,14 @@
                             Recharge Amount
                         </label>
                         <div class="mt-2.5 text-gray-400 focus-within:text-gray-600">
-                            <input type="text" name="amount" id="" placeholder="Enter recharge amount"
+                            <input type="number" name="amount" id="amount" placeholder="Enter recharge amount"
                                 class="w-full py-2 pl-5 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600" />
+                            <span class="text-red-500 mt-2 text-sm" id="amount-error"></span>
+
+                            @error('amount')
+                                <span class="text-red-500 mt-2 text-sm">{{ $message }}</span>
+                            @enderror
+
                         </div>
                     </div>
 
@@ -85,4 +91,20 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.getElementById('amount').addEventListener('input', function(e) {
+            const amountField = this;
+            const errorSpan = document.getElementById('amount-error');
+            const amount = parseInt(amountField.value);
+
+
+            if (isNaN(amount) || amount < 1000) {
+                e.preventDefault();
+                errorSpan.textContent = 'Amount must be at least 1000.'
+            } else {
+                errorSpan.textContent = ''
+            }
+        });
+    </script>
 @endsection

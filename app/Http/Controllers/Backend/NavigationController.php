@@ -23,7 +23,8 @@ class NavigationController extends Controller
             ->toArray();
         $videos = TaskVideo::where('level_id', $user->level_id)
             ->whereNotIn('id', $watchedVideo)->take(10)->get();
-        return view('user.index', compact('videos', 'user'));
+        $message = UserMessage::where('user_id', $user->id)->where('status', 'unread');
+        return view('user.index', compact('videos', 'user', 'message'));
     }
 
     public function account(Request $request)
@@ -51,7 +52,6 @@ class NavigationController extends Controller
     {
         $userId = Auth::user()->id;
         $messages = UserMessage::where('user_id', $userId)
-            ->orWhereNull('user_id')
             ->latest()
             ->get();
 

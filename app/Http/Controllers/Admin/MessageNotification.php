@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendUserNotifications;
 use App\Models\MessageNotification as ModelsMessageNotification;
 use App\Models\UserMessage;
 use Carbon\Carbon;
@@ -91,10 +92,7 @@ class MessageNotification extends Controller
 
     public function sendNotification(Request $request, $id)
     {
-        UserMessage::insert([
-            'message_notification_id' => $id,
-            'created_at' => Carbon::now(),
-        ]);
+        SendUserNotifications::dispatch($id);
 
         $notification = array(
             'message' => 'Message has been sent to all users',

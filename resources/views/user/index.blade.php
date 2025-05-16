@@ -80,7 +80,15 @@
 
                 <a href="{{ route('user.message') }}">
                     <div class="flex flex-col items-center text-center space-y-1.5">
-                        <div class="bg-backgroundLight p-3 rounded-lg hover:-translate-y-0.5 transition-all duration-300">
+                        <div
+                            class="bg-backgroundLight p-3 rounded-lg hover:-translate-y-0.5 transition-all duration-300 relative">
+                            @if ($message->count() >= 1)
+                                <span
+                                    class="absolute font-semibold top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-[10px] rounded-full px-1.5 min-w-[1.25rem] h-5 flex items-center justify-center leading-none">
+                                    {{ $message->count() }}
+                                </span>
+                            @endif
+
                             <img src="{{ asset('backend/assets/svg/message.svg') }}" alt=""
                                 class="w-7 h-7 lg:w-10 lg:h-10" />
                         </div>
@@ -93,7 +101,7 @@
                         <img src="{{ asset('backend/assets/svg/wheel.svg') }}" alt=""
                             class="w-7 h-7 lg:w-10 lg:h-10 rotate" />
                     </div>
-                    <span class="text-sm lg:text-lg">Wheel of Fortune</span>
+                    <span class="text-sm lg:text-lg text-center">Wheel of Fortune</span>
                 </div>
 
             </div>

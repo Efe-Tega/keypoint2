@@ -18,6 +18,10 @@ class PaymentController extends Controller
 {
     public function initiatePayment(Request $request, MonnifyService $monnify)
     {
+        $request->validate([
+            'amount' => 'required|numeric|min:1000'
+        ]);
+
         $user = Auth::user();
         $reference = strtoupper(uniqid("txn_"));
 
@@ -87,6 +91,13 @@ class PaymentController extends Controller
                 $walletUpdate = Wallet::where('user_id', $user->id)->first();
                 $walletUpdate->acct_bal += $transaction->amount;
                 $walletUpdate->save();
+
+                $successDeposit = MessageNotification::where('message_key', 'recharge_success')->first();
+                UserMessage::insert([
+                    'user_id' => $user->id,
+                    'message_notification_id' => $successDeposit->id,
+                    'created_at' => Carbon::now(),
+                ]);
 
                 $referral = Referral::where('user_id', $user->id)->first();
 
