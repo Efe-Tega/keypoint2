@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Jobs\ResetUserTasks;
 use App\Models\BankInfo;
+use App\Models\DepositTransaction;
 use App\Models\Level;
 use App\Models\User;
+use App\Models\WithdrawTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,7 +25,24 @@ class UserManagement extends Controller
         $bank = BankInfo::where('user_id', $id)->first();
         $user = User::findOrFail($id);
         $levels = Level::all();
-        return view('admin.manage-user.user-details', compact('user', 'bank', 'levels'));
+
+        $deposits = DepositTransaction::select('id', 'user_id', 'trans_id', 'amount', 'status', 'created_at')->get()
+            ->map(function ($item) {
+                $item->type = 'Deposit';
+                return $item;
+            });
+
+        $withdrawals = WithdrawTransaction::select('id', 'user_id', 'trans_id', 'amount', 'status', 'created_at')->get()
+            ->map(function ($item) {
+                $item->type = 'Withdrawal';
+                return $item;
+            });
+
+        $transactions = $deposits->merge($withdrawals)->where('user_id', $id)
+            ->sortByDesc('created_at')
+            ->values();
+
+        return view('admin.manage-user.user-details', compact('user', 'bank', 'levels', 'transactions'));
     }
 
     public function userToggleStatus($id)

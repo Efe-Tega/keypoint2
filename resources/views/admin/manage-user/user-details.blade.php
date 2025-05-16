@@ -188,6 +188,35 @@
                 </div>
             </div>
         </div> <!-- end col -->
+
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="card-title">Manage Account</h4>
+
+                    <x-tables :columns="['S/N', 'Type', 'Transaction ID', 'Amount', 'Status', 'Date', 'Action']">
+                        @foreach ($transactions as $key => $transaction)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $transaction->type }}</td>
+                                <td>{{ $transaction->trans_id }}</td>
+                                <td>
+                                    {{ number_format($transaction->amount, 2) }} NGN
+                                </td>
+
+                                <td>{{ strtoupper($transaction->status) }}</td>
+                                <td>{{ $transaction->created_at }}</td>
+                                <td>
+                                    <a href="{{ route('edit.transaction', ['id' => $transaction->id, 'type' => $transaction->type]) }}"
+                                        class="btn btn-primary btn-sm">Edit status</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </x-tables>
+                </div>
+            </div>
+        </div>
     </div> <!-- end row -->
 
 

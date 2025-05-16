@@ -20,7 +20,7 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Message Title</label>
                                     <input type="text" class="form-control" id="movie-title" name="title"
-                                        placeholder="Enter movie title" required>
+                                        placeholder="Enter Message title" required>
 
                                     @error('title')
                                         <span class="text-danger">{{ $message }}</span>
@@ -33,11 +33,19 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Notification Type</label>
-                                    <select name="type" id="" class="form-select">
+                                    <select name="type" id="notificationType" class="form-select">
                                         <option value="general" selected>General Notification</option>
                                         <option value="specific">User-Defined Notification</option>
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12" id="specificUserInput" style="display: none">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Message Key</label>
+                                <input type="text" class="form-control" id="" name="message_key"
+                                    placeholder="enter unique key" required>
                             </div>
                         </div>
 
@@ -83,6 +91,16 @@
                     if (spinner) spinner.classList.remove('d-none');
                 });
             }
-        })
+
+            document.getElementById('notificationType').addEventListener('change', function() {
+                const specificInput = document.getElementById('specificUserInput');
+
+                if (this.value === 'specific') {
+                    specificInput.style.display = 'block';
+                } else {
+                    specificInput.style.display = 'none';
+                }
+            });
+        });
     </script>
 @endsection

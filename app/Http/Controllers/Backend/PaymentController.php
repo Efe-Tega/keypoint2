@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Jobs\ExpireTransaction;
 use App\Models\DepositTransaction;
+use App\Models\MessageNotification;
 use App\Models\Referral;
+use App\Models\UserMessage;
 use App\Models\Wallet;
 use App\Services\MonnifyService;
 use Carbon\Carbon;
@@ -73,6 +75,7 @@ class PaymentController extends Controller
             $status = $response['responseBody']['paymentStatus'];
 
             $transaction = DepositTransaction::where('trans_id', $reference)->first();
+            $user = Auth::user();
 
             if ($transaction) {
                 $transaction->status = strtolower($status);
@@ -81,7 +84,6 @@ class PaymentController extends Controller
 
             if ($status === 'PAID') {
 
-                $user = Auth::user();
                 $walletUpdate = Wallet::where('user_id', $user->id)->first();
                 $walletUpdate->acct_bal += $transaction->amount;
                 $walletUpdate->save();
@@ -102,6 +104,13 @@ class PaymentController extends Controller
 
                 return view('user.content.deposit.callback', ['message' => 'Payment successful']);
             } else {
+
+                $message = MessageNotification::where('message_key', 'recharge_failed')->first();
+                UserMessage::insert([
+                    'user_id' => $user->id,
+                    'message_notification_id' => $message->id,
+                    'created_at' => Carbon::now(),
+                ]);
 
                 // If not paid, mark as failed
                 $transaction->update(['status' => 'failed']);

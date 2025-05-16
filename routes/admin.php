@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AppSettings;
 use App\Http\Controllers\Admin\LevelManagement;
 use App\Http\Controllers\Admin\MessageNotification;
 use App\Http\Controllers\Admin\TaskManagement;
+use App\Http\Controllers\Admin\TransactionManagement;
 use App\Http\Controllers\Admin\UserManagement;
 use App\Http\Controllers\Admin\VideoManagement;
 use Illuminate\Support\Facades\Route;
@@ -53,5 +54,17 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
 
         Route::post('/upload-message', 'uploadMessage')->name('upload.message');
         Route::post('/update-message', 'updateMessage')->name('update.message');
+    });
+
+    // Transaction Managements
+    Route::controller(TransactionManagement::class)->group(function () {
+        Route::get('/deposit-transactions', 'depositTransactions')->name('deposit.transactions');
+        Route::get('/edit-transaction/{id}', 'editTransaction')->name('edit.transaction');
+        Route::get('/edit-deposit/{id}', 'editDeposit')->name('edit.deposit');
+        Route::get('/withdraw-transaction', 'withdrawTransaction')->name('withdraw.transaction');
+        Route::get('/edit-withdrawal/{id}', 'editWithdrawal')->name('edit.withdrawal');
+
+        Route::post('/deposit/update-transaction', 'updateDepositTransaction')->name('update.deposit');
+        Route::post('/withdrawal/update-transaction', 'updateWithdrawTransaction')->name('update.withdrawal');
     });
 });

@@ -55,7 +55,7 @@
                         </div>
                         <div class="avatar-sm">
                             <span class="avatar-title bg-light text-success rounded-3">
-                                <i class="mdi mdi-currency-ngn font-size-24"></i>
+                                <i class="ri-share-forward-fill font-size-24"></i>
                             </span>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="avatar-sm">
                             <span class="avatar-title bg-light text-primary rounded-3">
-                                <i class="mdi mdi-currency-ngn font-size-24"></i>
+                                <i class="ri-download-2-fill font-size-24"></i>
                             </span>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
 
                         </div>
                         <div class="avatar-sm">
-                            <span class="avatar-title bg-light text-success rounded-3">
+                            <span class="avatar-title bg-light text-info rounded-3">
                                 <i class="mdi mdi-video-vintage font-size-24"></i>
                             </span>
                         </div>

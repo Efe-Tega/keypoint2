@@ -36,6 +36,7 @@ class MessageNotification extends Controller
         $notification = new ModelsMessageNotification();
         $notification->title = $request->title;
         $notification->type = $request->type;
+        $notification->message_key = $request->message_key;
         $notification->content = $request->content;
         $notification->created_at = Carbon::now();
         $notification->save();
@@ -69,6 +70,7 @@ class MessageNotification extends Controller
         ModelsMessageNotification::findOrFail($id)->update([
             'title' => $request->title,
             'type' => $request->type,
+            'message_key' => $request->message_key,
             'content' => $request->content,
         ]);
 

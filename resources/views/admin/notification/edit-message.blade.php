@@ -35,14 +35,21 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Notification Type</label>
-                                    <select name="type" id="" class="form-select">
+                                    <select name="type" id="notificationType" class="form-select">
                                         <option value="specific" {{ $msg->type === 'specific' ? 'selected' : '' }}>
                                             User-Defined Notification</option>
                                         <option value="general" {{ $msg->type === 'general' ? 'selected' : '' }}>General
                                             Notification</option>
-
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12" id="specificUserInput" style="display: none">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Message Key</label>
+                                <input type="text" class="form-control" id="" name="message_key"
+                                    value="{{ $msg->message_key }}" placeholder="enter unique key" required>
                             </div>
                         </div>
 
@@ -88,6 +95,16 @@
                     if (spinner) spinner.classList.remove('d-none');
                 });
             }
+
+            document.getElementById('notificationType').addEventListener('change', function() {
+                const specificInput = document.getElementById('specificUserInput');
+
+                if (this.value === 'specific') {
+                    specificInput.style.display = 'block';
+                } else {
+                    specificInput.style.display = 'none';
+                }
+            })
         })
     </script>
 @endsection
