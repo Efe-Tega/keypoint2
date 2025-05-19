@@ -1,4 +1,9 @@
 @extends('admin.admin-master')
+
+@section('title')
+    {{ __('Edit Message Notification') }}
+@endsection
+
 @section('content')
     <!-- start page title -->
     <x-admin.page-title>

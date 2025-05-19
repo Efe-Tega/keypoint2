@@ -1,4 +1,9 @@
 @extends('admin.admin-master')
+
+@section('title')
+    {{ __('Add Task') }}
+@endsection
+
 @section('content')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 

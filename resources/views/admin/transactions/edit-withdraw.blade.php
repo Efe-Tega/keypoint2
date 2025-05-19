@@ -1,4 +1,9 @@
 @extends('admin.admin-master')
+
+@section('title')
+    {{ __('Update Transaction') }}
+@endsection
+
 @section('content')
     <!-- start page title -->
     <x-admin.page-title>

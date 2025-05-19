@@ -22,7 +22,7 @@ class TaskManagement extends Controller
     {
         $levelId = $request->level_id;
         $tasks = TaskVideo::where('level_id', $levelId)->get();
-        $levels = Level::latest()->get();
+        $levels = Level::all();
 
         return view('admin.task.index', compact('tasks', 'levels'));
     }

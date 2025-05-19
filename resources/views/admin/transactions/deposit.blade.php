@@ -1,4 +1,9 @@
 @extends('admin.admin-master')
+
+@section('title')
+    {{ __('Deposit Transaction') }}
+@endsection
+
 @section('content')
     <!-- start page title -->
     <x-admin.page-title>
@@ -22,7 +27,14 @@
                                     {{ number_format($deposit->amount, 2) }} NGN
                                 </td>
 
-                                <td>{{ strtoupper($deposit->status) }}</td>
+                                @if ($deposit->status === 'pending')
+                                    <td class="text-warning text-capitalize">{{ $deposit->status }}</td>
+                                @elseif($deposit->status === 'failed')
+                                    <td class="text-danger text-capitalize">{{ $deposit->status }}</td>
+                                @else
+                                    <td class="text-success text-capitalize">{{ $deposit->status }}</td>
+                                @endif
+
                                 <td>{{ $deposit->created_at }}</td>
                                 <td>
                                     <a href="{{ route('edit.deposit', $deposit->id) }}" class="btn btn-primary btn-sm">Edit

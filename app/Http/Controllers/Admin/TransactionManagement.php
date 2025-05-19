@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DepositTransaction;
+use App\Models\MessageNotification;
+use App\Models\UserMessage;
 use App\Models\WithdrawTransaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TransactionManagement extends Controller
@@ -81,14 +84,34 @@ class TransactionManagement extends Controller
         ]);
 
         $id = $request->id;
-        WithdrawTransaction::findOrFail($id)->update([
+        $withdrawTransaction = WithdrawTransaction::findOrFail($id);
+
+        $userId = $withdrawTransaction->user_id;
+        $amount = $withdrawTransaction->amount;
+
+        $withdrawTransaction->update([
             'status' => $request->status,
         ]);
+
+        if ($request->status === "success") {
+            UserMessage::insert([
+                'user_id' => $userId,
+                'message' => 'Your withdraw of ' . $amount . ' was successful.',
+                'created_at' => Carbon::now(),
+            ]);
+        }
 
         $notification = array(
             'message' => 'Status Updated!',
             'alert-type' => 'success'
         );
+
+        $failedMsg = MessageNotification::where('message_key', 'failed_withdraw')->first();
+        UserMessage::insert([
+            'user_id' => $userId,
+            'message_notification_id' => $failedMsg->id,
+            'created_at' => Carbon::now(),
+        ]);
 
         return redirect()->back()->with($notification);
     }

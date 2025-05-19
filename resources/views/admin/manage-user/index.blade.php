@@ -1,4 +1,9 @@
 @extends('admin.admin-master')
+
+@section('title')
+    {{ __('Manage User') }}
+@endsection
+
 @section('content')
     <!-- start page title -->
     <x-admin.page-title>
@@ -12,10 +17,20 @@
             <div class="card">
                 <div class="card-body">
 
-                    <x-tables :columns="['S/N', 'Commission Balance', 'Email', 'Phone', 'Status', 'Date Registered', 'Action']">
+                    <x-tables :columns="[
+                        'S/N',
+                        'Fullname',
+                        'Commission Balance',
+                        'Email',
+                        'Phone',
+                        'Status',
+                        'Date Registered',
+                        'Action',
+                    ]">
                         @foreach ($users as $key => $user)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
+                                <td>{{ $user->fullname }}</td>
                                 <td>
                                     {{ number_format($user->wallet->com_wallet, 2) }} NGN
                                 </td>

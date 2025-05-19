@@ -1,14 +1,18 @@
 @extends('admin.admin-master')
+
+@section('title')
+    {{ __('General Settings') }}
+@endsection
+
 @section('content')
     <!-- start page title -->
-
     <x-admin.page-title>
         <x-slot:heading>Settings</x-slot:heading>
         <x-back-button />
     </x-admin.page-title>
     <!-- end page title -->
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-body">
@@ -134,6 +138,5 @@
             </div>
             <!-- end card -->
         </div> <!-- end col -->
-    </div>
-    <!-- end row -->
+    </div> --}}
 @endsection

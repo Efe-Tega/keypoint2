@@ -1,4 +1,9 @@
 @extends('admin.admin-master')
+
+@section('title')
+    {{ __('All Task') }}
+@endsection
+
 @section('content')
     <!-- start page title -->
     <x-admin.page-title>
@@ -51,9 +56,6 @@
                     <div class="card-body">
 
                         <h4 class="card-title">
-                            @foreach ($tasks as $task)
-                                {{ $task->level->level }}
-                            @endforeach
                             Task List
                         </h4>
 

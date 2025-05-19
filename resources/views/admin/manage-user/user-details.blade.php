@@ -1,7 +1,12 @@
 @extends('admin.admin-master')
+
+@section('title')
+    {{ __('User Details') }}
+@endsection
+
 @section('content')
     <x-admin.page-title>
-        <x-slot:heading>Efe Tega</x-slot:heading>
+        <x-slot:heading>{{ $user->fullname }}</x-slot:heading>
         <x-back-button />
     </x-admin.page-title>
 
@@ -193,7 +198,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">Manage Account</h4>
+                    <h4 class="card-title">User Transactions</h4>
 
                     <x-tables :columns="['S/N', 'Type', 'Transaction ID', 'Amount', 'Status', 'Date', 'Action']">
                         @foreach ($transactions as $key => $transaction)
@@ -205,7 +210,14 @@
                                     {{ number_format($transaction->amount, 2) }} NGN
                                 </td>
 
-                                <td>{{ strtoupper($transaction->status) }}</td>
+                                @if ($transaction->status === 'success' || $transaction->status === 'paid')
+                                    <td class="text-success text-capitalize">{{ $transaction->status }}</td>
+                                @elseif ($transaction->status === 'pending')
+                                    <td class="text-warning text-capitalize">{{ $transaction->status }}</td>
+                                @else
+                                    <td class="text-danger text-capitalize">{{ $transaction->status }}</td>
+                                @endif
+
                                 <td>{{ $transaction->created_at }}</td>
                                 <td>
                                     <a href="{{ route('edit.transaction', ['id' => $transaction->id, 'type' => $transaction->type]) }}"

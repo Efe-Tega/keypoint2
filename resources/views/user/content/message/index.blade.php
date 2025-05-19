@@ -81,10 +81,10 @@
                         @foreach ($messages as $message)
                             <li class="group hover:bg-navy/50 transition-colors">
                                 <button onclick="showMessage(this)" data-id="{{ $message->id }}"
-                                    data-title="{{ $message->messageNotification->title }}"
+                                    data-title="{{ $message->messageNotification->title ?? 'Notice' }}"
                                     data-date="{{ $message->created_at->format('F j, Y') }}"
                                     data-status="{{ $message->status }}"
-                                    data-content="{{ $message->messageNotification->content }}"
+                                    data-content="{{ $message->messageNotification->content ?? $message->message }}"
                                     class="w-full flex items-center justify-between px-6 py-4 text-left">
                                     <div class="flex items-center space-x-4">
                                         <div
@@ -93,7 +93,8 @@
                                         <div>
                                             <span
                                                 class="text-sm capitalize {{ $message->status === 'unread' ? 'text-green-500' : 'text-white' }}">{{ $message->status }}</span>
-                                            <p class="text-gray-200 mt-0.5">{{ $message->messageNotification->title }}
+                                            <p class="text-gray-200 mt-0.5">
+                                                {{ $message->messageNotification->title ?? 'Notice' }}
                                             </p>
                                         </div>
                                     </div>

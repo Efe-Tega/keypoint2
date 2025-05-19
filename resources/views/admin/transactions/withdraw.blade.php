@@ -1,4 +1,9 @@
 @extends('admin.admin-master')
+
+@section('title')
+    {{ __('Deposit Transaction') }}
+@endsection
+
 @section('content')
     <!-- start page title -->
     <x-admin.page-title>
@@ -22,7 +27,14 @@
                                     {{ number_format($withdraw->amount, 2) }} NGN
                                 </td>
 
-                                <td>{{ strtoupper($withdraw->status) }}</td>
+                                @if ($withdraw->status === 'pending')
+                                    <td class="text-capitalize text-warning">{{ $withdraw->status }}</td>
+                                @elseif ($withdraw->status === 'failed')
+                                    <td class="text-capitalize text-danger">{{ $withdraw->status }}</td>
+                                @else
+                                    <td class="text-capitalize text-success">{{ $withdraw->status }}</td>
+                                @endif
+
                                 <td>{{ $withdraw->created_at }}</td>
                                 <td>
                                     <a href="{{ route('edit.withdrawal', $withdraw->id) }}"
