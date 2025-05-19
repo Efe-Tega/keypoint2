@@ -1,13 +1,13 @@
 @extends('admin.admin-master')
 
 @section('title')
-    {{ __('Deposit Transaction') }}
+    {{ __('Withdraw Transaction') }}
 @endsection
 
 @section('content')
     <!-- start page title -->
     <x-admin.page-title>
-        <x-slot:heading>Deposit Transactions</x-slot:heading>
+        <x-slot:heading>Withdraw Transactions</x-slot:heading>
         <x-back-button />
     </x-admin.page-title>
     <!-- end page title -->

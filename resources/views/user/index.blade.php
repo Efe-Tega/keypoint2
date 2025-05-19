@@ -24,7 +24,7 @@
                             <img src="{{ asset('backend/assets/svg/coinbag.svg') }}" alt=""
                                 class="w-7 h-7 lg:w-10 lg:h-10" />
                         </div>
-                        <span class="text-sm lg:text-lg">Recharge</span>
+                        <span class="text-sm lg:text-lg">Deposit</span>
                     </div>
                 </a>
 
