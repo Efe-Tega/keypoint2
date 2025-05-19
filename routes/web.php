@@ -39,9 +39,13 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/login', 'showLogin')->name('login');
     Route::get('/user-registration', 'userRegistration')->name('user.registration');
     Route::get('/user-logout', 'userLogout')->name('user.logout');
+    Route::get('/forgot-password', 'forgotPassword')->name('forgot.password');
+    Route::get('/reset-password/{token}', 'resetPassword')->name('password.reset');
 
     Route::post('/login', 'login');
     Route::post('/register', 'register')->name('register');
+    Route::post('/email-reset', 'sendEmailResetLink')->name('password.email');
+    Route::post('/password-update', 'passwordUpdate')->name('password.update');
 });
 
 
