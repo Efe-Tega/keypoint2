@@ -32,6 +32,10 @@
                                     A password reset link will be sent to your email
                                 </p>
 
+                                @if (session('status'))
+                                    <span class="alert alert-success">{{ session('status') }}</span>
+                                @endif
+
                                 <div>
                                     <label for="" class="text-base font-medium text-gray-900">
                                         Email address

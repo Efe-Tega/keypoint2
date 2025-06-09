@@ -40,7 +40,7 @@ class UserController extends Controller
 
         $user = User::where('email', $credentials['email'])->first();
 
-        if ($user->status == 2) {
+        if ($user && $user->status == 2) {
 
             $notification = array(
                 'message' => 'Account Restricted! Contact support',
@@ -135,7 +135,7 @@ class UserController extends Controller
         }
 
         $token = Str::random(60);
-        DB::table('password_resets')->updateOrInsert(
+        DB::table('password_reset_tokens')->updateOrInsert(
             ['email' => $request->email],
             ['token' => $token, 'created_at' => Carbon::now()]
         );
@@ -169,13 +169,13 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:8',
         ]);
 
-        $reset = DB::table('password_resets')->where([
+        $reset = DB::table('password_reset_tokens')->where([
             ['email', $request->email],
             ['token', $request->token]
         ])->first();
 
         if (!$reset) {
-            return back()->withErrors(['email' => 'Invalid token or email']);
+            return back()->withErrors(['email' => 'Invalid or Expired Token']);
         }
 
         $user = User::where('email', $request->email)->first();
@@ -186,9 +186,14 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        DB::table('password_resets')->where('email', $request->email)->delete();
+        DB::table('password_reset_tokens')->where('email', $request->email)->delete();
 
-        return redirect('/login')->with('status', 'Password has been reset!');
+        $notify = array(
+            'message' => "Password has been reset!",
+            'alert-type' => 'success'
+        );
+
+        return redirect('/login')->with($notify);
     }
 
     public function userLogout(Request $request)
